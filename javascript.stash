@@ -1,0 +1,3768 @@
+# <#>JavaScript<> SpeedSheet
+<b>What you need, faster.<>
+
+
+
+# Summary
+
+
+
+### Code Blocks
+
+<cb>{
+	<v>...<>
+}<>
+
+
+
+### Comments
+
+<cb><#>// comments.<><>
+
+
+
+### DocString
+
+<cb><#>/**
+ * This is a doc string.
+ */<>
+function <v>someFunction1<>() {
+	<v>...<>
+}<>
+@
+@ documentation, doc string
+
+
+
+### Multiline
+
+<cb>\\<>
+
+<cb><v>...<> \\
+<v>...<><>
+
+End with backslash <c>\\<>.
+
+
+
+### Escaping
+
+Syntax		\\<v>x<>			Escape using backslash.
+
+Quote (")	\\"
+
+
+
+### Escaping In HTML
+
+Quote (")		&quot;			Quotes must be escaped with proper html escape codes.
+
+
+Example:
+
+<cb>\<button onClick="alert (&quot;<v>Text<>&quot;);" ><>
+
+
+
+### Indexes
+
+0 Based.
+
+Indexes are 0 based.
+To get the first element, reference element 0.
+
+
+Example:
+
+<cb><v>first<> = <v>array_1<>[0]<>
+@
+@ indexing, base, zero, one
+
+
+
+### JavaScript - Importing
+
+Not supported.
+
+
+However:
+
+Can use Ajax to pull script
+- Limited to domain.
+- JavaScript sandbox security model.
+
+Can use JQuery Style Call:
+
+<cb>$.getScript("<v>scriptFile.js<>", function(){
+	<v>...<>
+});<>
+
+
+
+### Names
+
+Any letter unicode character
+(uppercase letter (LU), lowercase letter (LI), titlecase letter (Lt), modifier letter (lm), other letter (Lo))
+
+Any number unicode character
+(letter number (NI))
+
+<c>$<>, <c>_<>
+(Dollar sign, underscore)
+
+
+
+### Command Separator
+
+<cb>;<>
+
+Optional but should use because of clarity, edge cases.
+
+
+
+### Command Terminator
+
+Not Required but use '<c>;<>' command separator for clarity.
+
+
+
+### Functions
+
+Double Arrow
+
+<cb>() => {<v>...<>}<>
+
+<cb>(<v>param1<>, <v>param2<>, <v>...<>) => {<v>...<>}<>
+
+
+
+### Operator Overloading
+
+Strictly Speaking Not Supported.
+
+But... functions can send in any number of parameters to a function. The function can test the parameters internally to see if they have a value.
+
+
+
+
+### Function Overloading
+
+Not allowed. But parameters can simply be left off when calling.
+
+
+
+### Precedence
+
+<l>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence<>
+
+
+
+### Write to Console
+
+<cb>console.log ("<v>...<>");<>
+
+
+
+# Conventions
+
+
+
+### Convention - Variable Name
+
+<cb><v>variableName1<> = <v>...<>;<>
+
+Use camelCase.
+
+
+
+### Convention - Function Name
+
+<cb>function <v>functionName<>() <v>...<><>
+
+Use camelCase.
+
+
+### Convention - Constructor Function Name
+
+<cb>function <v>ConstructorFunctionName<>()<v>...<><>
+
+Use TiteCase.
+
+
+# Symbol Lookup
+
+<c>{<v>...<>}<>				Code Block
+<c>= {<v>...<>}<>				Object Properties
+<c><v>variable1<>[<v>index<>]<>	Array
+
+<c>'<v>A string<>'<>			String
+<c>"<v>A string<>"<>			Also A String
+
+<c><#># Comment<><>			Comment
+@
+@ {, }, {}, [, ], [], #
+@ square, brackets, braces
+
+
+# HTML - JavaScript
+@
+@ js
+
+
+
+### HTML - Javascript Section
+
+<cb>\<script>
+	<v>javascript...<>
+\</script><>
+
+
+Example:
+
+<cb>\<html>\<body>
+\<script>
+	alert("Javascript executed.");
+\</script>
+\</body>\</html><>
+@
+@ add, insert, code
+
+
+### HTML - JavaScript From File
+
+<cb>\<script type="text/javascript" src="<v>javascript_file.js<>">\</script><>
+@
+@ add, include, code
+
+
+
+### HTML - Call From Element
+
+<cb>\<<v>element<> <v>trigger_event<>="<v>javascript...<>" ><>
+
+
+Example
+<cb>\<h1 onclick="alert('Heading clicked.');" >
+	Heading
+\</h1><>
+@
+@ include, js, javascript, code
+
+
+
+# Control Structures
+
+
+
+### If
+
+<cb>if (<v>condition1<>) {
+	<v>...<>
+}
+else if (<v>condition2<>) {
+	<v>...<>
+}
+else {{
+	<v>...<>
+}<>
+@
+@ if else
+
+
+
+### If - Inline If
+
+<cb>= (expression) ? trueValue : falseValue<>
+
+
+Ternary / Conditional Operator
+@
+@ ternary conditional operator, iif
+
+
+
+### For
+
+<cb>for (<v>initialize<>; <v>continue_expression<>; <v>update<>) {<>
+
+<cb>for (var <v>i<> = 0; i < <v>array1<>.length; <v>i<>++) {
+	<v>...<>
+	<v>...<> = <v>array1<>[i]
+	<v>...<>
+}<>
+
+<cb>for (<v>...<>) {
+	<v>...<>
+	break;
+	<v>...<>
+	continue;
+}<>
+@
+@ for-only
+
+
+
+### For - For In
+
+<cb>for (<v>item<> in <v>object1<>) {
+	<v>...<>
+}<>
+
+<cb>for (<v>item<> in <v>object1<>) {
+	<v>...<>
+	break;
+	<v>...<>
+	continue;
+}<>
+
+Loops through properties of an object.
+Do not use on arrays! Use for-of instead.
+@
+@ For Each, Foreach, for-only, for-in-only
+
+
+
+### For - For Of
+
+<cb>for (<v>item<> of <v>array1<>) {
+	<v>...<>
+}<>
+
+<cb>for (<v>item<> of <v>array1<>) {
+	<v>...<>
+	break;
+	<v>...<>
+	continue;
+}<>
+
+Loops through items of any iterable type.
+Includes arrays, strings, and maps.
+@
+@ For Each, Foreach, for-only, for-of-only
+
+
+
+### Switch
+
+<cb>switch (<v>expression<>) {
+
+	case <v>value1<>:
+		<v>...<>
+		<#>// No break - Fall Through<>
+
+	case <v>value2<>:
+		<v>...<>
+		break;
+
+	default:
+		<v>...<>
+}<>
+@
+@ case, break, default
+
+
+
+### While
+
+<cb>while (<v>expression<>) {
+	<v>...<>
+	break;
+	<v>...<>
+	continue;
+}<>
+
+
+
+### While - Do While
+
+<cb>do {
+	<v>...<>
+	break;
+	<v>...<>
+	continue;
+} while (<v>expression<>)
+
+
+
+### Continue Loop
+
+<cb>continue;<>
+
+Use inside <c>for<> and <c>while<> statements.
+
+
+
+### Exit Loop
+
+<cb>break;<>
+
+Use inside <c>for<>, <c>while<> and <c>switch<> statements.
+
+
+
+# Operators
+
+
+
+### Operators - Return Value
+
+<cb>= <v>booleanValue<> && <v>value<><>
+
+
+if <v>booleanValue<> is true, returns <v>value<>.
+
+
+
+### Operators - Equals
+
+	<c>==<> 						<#>#1<>
+	<c>!=<>
+
+
+\#1  -  Will convert the types to one type and then compares.
+
+
+
+### Operators - Equals - Identity
+
+	<c>===<> 						<#>#1<>
+	<c>!==<>
+
+
+\#1  -  A strict comparison. No type conversion performed. Preferred over <c>==<>.
+
+
+
+### Operators - Boolean
+
+	<c>&&<> 			And			<#>#1<>
+	<c>||<> 			Or
+	<c>!<> 			Not
+
+
+\#1  -  Tests for trueness. If <v>object!<> is null, false.
+
+<!>Get a concrete example of this.<>
+
+
+
+### Operators - Compare
+
+	<c>\<<>
+	<c>><>
+	<c>\<=<>
+	<c>>=<>
+
+### Operators - Assignment
+
+	<c>+=<>
+	<c>-=<>
+	<c>/=<>
+	<c>*=<>
+	<c>%=<>
+
+	<c>\<\<=<>			Shift Bits Left
+	<c>>>=<>			Shif Bits Right
+
+### Operators - Increment
+
+	<c>++<v>value<><>
+	<c><v>value<>++<>
+
+### Operators - Decrement
+
+	<c>--<v>value<><>
+	<c><v>value<>--<>
+
+
+
+# Data Types
+
+
+
+## Assignment
+@
+@ Create, Insantiate, Declarations, New, variable
+
+
+
+### Assign - Without Keyword
+
+<cb><v>varableName<> = <v>value<>;<>
+
+
+Scope: Global
+
+
+Assign without <c>let<> or <c>var<> keyword.
+
+
+
+### Assign - Let
+
+<cb>let <v>varableName<> = <v>value<>;<>
+
+
+Scope: Block
+
+
+Preferred.
+Most limited scope.
+Confines scope to the block.
+
+
+
+### Assign - Var
+
+<cb>var <v>varableName<> = <v>value<>;<>
+
+
+Scope: Local
+
+
+Will declare the variable before running the script.
+It will have value 'Undefined' until code reaches assignment.
+
+
+
+### Assign Scope - Global
+
+<cb><v>varableName<> = <v>value<>;<>
+
+
+Assign without <c>let<> or <c>var<> keyword to create a global variable.
+
+
+### Assign Scope - Local
+
+<cb>var <v>varableName<> = <v>value<>;<>
+
+
+Use <c>var<> for a local variable.
+
+
+
+### Assign Scope - Block
+
+<cb>let <v>varableName<> = <v>value<>;<>
+
+Use <c>let<> for a block level variable.
+
+
+
+### Assign - Constant
+
+<cb>const <v>CONSTANT_NAME<> = <v>value<>;<>
+
+
+Scope: Block
+
+Declares a variable as a constant and can not be changed.
+
+
+
+### Destructure - From Iterable
+
+<cb>[ <v>item1<>, <v>item2<>, <v>...<> ] = <v>itemList<>;<>
+
+Skip items 1, 2:
+
+<cb>[ , , <v>item3<>, <v>item4<>, <v>...<> ] = <v>itemList<>;<>
+
+Return items 3 and Onwards. Return in new array:
+
+<cb>[ , , <v>items3AndRemaining<> ] = <v>itemList<>;<>
+@
+@ list, array
+
+
+
+### Destructure - From Object
+
+<cb>let {<v>property1<>, <v>property2<>, <v>...<>} = <v>object1<>;<>
+
+Rename Variables:
+
+<cb>let {<v>property1<>: <v>variable1<>, <v>property2<>: <v>variable2<>, <v>...<>} = <v>object1<>;		<#>// 1<><>
+
+Without <c>let<>:
+
+<cb>({ <v>property1<>, <v>property2<>, <v>...<> } = <v>object1<>)		<#>// 2<><>
+
+
+Extracts object properties into individual variables.
+
+
+1  <s>-<>  Use when variable names are different from property names.
+
+2  <s>-<>  Used when no let. Prevents compiler from getting confused with class creation syntax.
+
+
+Example:
+
+<cb><v>item1<> = {
+	<v>value1<> = <v>"A value 1"<>,
+	<v>value2<> = <v>"A value 2"<>,
+	<v>value3<> = <v>"A value 3"<>
+};
+
+
+let {<v>value1<>, <v>value2<>} = <v>item1<>;
+
+let {<v>value3<>: <v>subitem3<>} = <v>item1<>;				<#>// Extract with Rename<>
+
+({<v>value1<>, <v>value2<>} = <v>item1<>);					<#>// No <c>let<><><>
+
+
+
+## Types
+
+
+
+### Type - Get
+
+<cb>= typeof(<v>value1<>)<>
+
+<cb>= typeof <v>value1<><>
+
+
+Returns: <c>string<>
+
+
+Both are equivalent.
+
+
+Example:
+
+<cb>if (typeof(<v>value<>) == "number") {
+	console.log("This is a number.");
+}<>
+
+
+@
+@ Typeof, type of, To String
+@ instanceof, isinstance, type is
+
+
+
+## Types - Detailed
+
+
+
+### Type - NaN
+
+<cb>= NaN<>
+
+
+Not a number.
+@
+@ not a number
+
+
+
+### Type - Null
+
+<cb>= null<>
+
+
+The variable has been initialized, class assigned and the value is null.
+
+
+
+### Type - Undefined
+
+<cb>= undefined<>
+
+The variable has been declared but has no class/type assigned and no value.
+
+
+
+#### Undefined - Is Undefined?
+
+<cb>= typeof(<v>value<>) === "undefined"<>
+@
+@ value, variable
+
+
+
+#### Undefined - Not Undefined?
+
+<cb>= typeof(<v>value<>) !== "undefined"<>
+
+Returns <c>true<> when <c><v>value<><> is any value but undefined.
+@
+@ value, variable
+
+
+
+### Booleans
+
+<cb>= true
+= false<>
+
+
+
+### Date
+
+<cb>= Date()<>
+
+Get Unix Time	date1.getTime() 		// Unix time since 1970-01-01 in milliseconds
+
+
+
+### Date Operations
+
+
+
+#### Date - Get Hours
+
+<cb>= <v>date1<>.getHours()<>
+
+
+
+#### Date - Get Minutes
+
+<cb>= <v>date1<>.getMinutes()<>
+
+
+
+#### Date - Get Seconds
+
+<cb>= <v>date1<>.getSeconds()<>
+
+
+
+#### Date - Get Unix Time / Epoch Time
+
+<cb>= <v>date1<>.getTime()<>
+
+Returns Unix time in milliseconds since 1970-01-01.
+
+
+
+### Number
+
+
+Type: <c>number<>
+@
+@ Float, Integer
+
+
+
+#### Number Operations
+
+
+##### Number - To String
+
+<cb>= <v>number1<>.toString()<>
+
+<cb>= <v>number1<>.toString(<v>radix<>)<>
+
+
+<c><v>radix<><> can be any value between 2 and 32.
+
+
+
+### Strings
+
+<cb>='<v>A String<>'<>
+
+<cb>="<v>A String<>"<>
+
+<cb>="Join " + "Strings " + "Together"<>
+
+
+Type: <c>string<>
+
+Single or double quotes are fine.
+
+
+
+Is Empty	if (! string1) {...
+Starts With	if (string1.startsWith (compareString)) ...
+
+
+
+### String Operations
+
+
+
+#### String - Comparison
+
+<cb><v>string1<> == <v>string2<><>
+
+<cb><v>string1<> \< <v>string2<><>
+
+
+
+#### String - Ends With
+
+<cb>= <v>string1<>.endsWith(<v>ending<>)<>
+
+
+
+#### String - Starts With
+
+<cb>= <v>string1<>.startsWith(<v>start<>)<>
+
+
+
+#### String - Is Blank?
+
+<cb>= <v>string1<> == null || <v>string1<>.trim() === ''<>
+
+Returns true for null, "", " ", or all white spaces.
+
+
+
+#### String - Is Empty?
+
+<cb>= !<v>string1<><>
+
+Returns true for "", 0, null, undefined, false, NaN
+
+
+
+#### String - Is Null?
+
+<cb>= <v>string1<> === null<>
+
+
+
+#### String - Not Empty?
+
+<cb>= (<v>string1<> !== null && <v>string1<> !== '')<>
+
+
+
+#### String - Not Null?
+
+<cb>= <v>string1<> !== null<>
+
+
+
+#### String - Is String?
+
+<cb>= typeof(<v>value<>) === "string"<>
+
+
+
+#### String - Length
+
+<cb>= <v>string1<>.length<>
+@
+@ Size, Count
+
+
+
+#### String - Get Character
+
+<cb>= <v>string1<>.charAt(<v>position<>)<>
+
+
+Example:
+
+<cb><v>char2<> = "012345".charAt(2);
+
+<#>// Returns "2"<>
+
+
+
+#### String - Repeat
+
+<cb>= <v>string1<>.repeat(<v>count<>)<>
+
+
+
+#### String - Pad Start / Pad Left
+
+<cb>= <v>string1<>.padStart(<v>length<>)<>
+
+<cb>= <v>string1<>.padStart(<v>length<>, <v>padding<>)<>
+@
+@ Right Justify, Left, .padstart()
+
+
+
+#### String - Pad End / Pad Right
+
+<cb>= <v>string1<>.padEnd(<v>length<>)<>
+
+<cb>= <v>string1<>.padEnd(<v>length<>, <v>padding<>)<>
+@
+@ Left Justify, Right, End, padEnd()
+
+
+
+#### String - Substring
+
+<cb>= <v>string1<>.slice(<v>start<>, <v>end_plus_1<>)<>
+
+Or
+
+<cb>= <v>string1<>.substring(<v>start<>, <v>end_plus_1<>)<>
+
+
+These are equivalent.
+
+
+Example:
+
+<cb>let <v>string1<> = "<v>12345<>";
+
+console.log(<v>string1<>.slice(<v>1<>, <v>3<>));
+console.log(<v>string1<>.substring(<v>1<>, <v>3<>));
+
+<#>// All Print "23"<><>
+@
+@ .substring(), .slice()
+@ partial, slice
+
+
+
+#### String - Substring - Left
+
+<cb>= <v>string1<>.slice(0, <v>end_plus_1<>)<>
+
+Or
+
+<cb>= <v>string1<>.substring(0, <v>end_plus_1<>)<>
+
+
+These are equivalent.
+
+
+Example:
+
+<cb>let <v>string1<> = "<v>12345<>";
+
+console.log(<v>string1<>.slice(0, <v>3<>));
+console.log(<v>string1<>.substring(0, <v>3<>));
+
+<#>// All Print "123"<><>
+@
+@ .substring(), .slice()
+@ start, beginning, partial
+
+
+#### String - Substring - Right
+
+<cb>= <v>string1<>.slice(<v>start<>)<>
+
+Or
+
+<cb>= <v>string1<>.slice(-<v>length<>)<>
+
+Or
+
+<cb>= <v>string1<>.substring(<v>start<>)<>
+
+
+These are equivalent.
+
+
+Example:
+
+<cb>let <v>string1<> = "<v>12345<>";
+
+console.log(<v>string1<>.slice(<v>3<>));
+console.log(<v>string1<>.slice(<v>-2<>));
+console.log(<v>string1<>.substring(<v>3<>));
+
+<#>// All Print "45"<><>
+@
+@ .substring(), .slice()
+@ end, last, partial
+
+
+
+#### String - Trim
+
+<cb>= <v>string1<>.trim()<>
+@
+@ .trim(), .strip(), remove, whitespaces, white spaces
+
+
+
+#### String - Case - Upper
+
+<cb>= <v>string1<>.toUpperCase()<>
+@
+@ uppercase, .touppercase()
+
+
+
+#### String - Case - Lower
+
+<cb>= <v>string1<>.toLowerCase()<>
+@
+@ lowercase, .tolowercase()
+
+
+
+#### String - Iterate Over Characters
+
+<cb>for (<v>character<> of <v>string1<>) {
+	<v>...<>
+}<>
+
+<cb>[...<v>string1].forEach(<v>character<> => { <v>...<> } )
+
+
+
+#### String - From Integer
+
+<cb>= parseInt(<v>string1<>)<>
+@
+@ parseint(), parse
+
+
+
+#### String - From Float
+
+<cb>= parseFloat(<v>string1<>)<>
+@
+@ parsefloat(), parse
+
+
+
+### Iterable
+
+A generalization of arrays.
+
+e.g.	Array, String
+
+
+
+### Arrays, Sets, Objects, Maps
+
+Article on Arrays, Sets, Objects, Maps
+<l>https://codeburst.io/array-vs-set-vs-map-vs-object-real-time-use-cases-in-javascript-es6-47ee3295329b<>
+
+
+
+### Array
+
+<cb>= []<>
+
+<cb>= [<v>value1<>, <v>value2<>, <v>...<>]<>
+
+<cb>= new Array()<>
+
+<cb>= new Array(<v>value1<>, <v>value2<>, <v>...<>)<>
+@
+@ arrays, array-only, arrays-only, list
+@ create, define, instantiate, new
+
+
+
+### Array - Operations
+@
+@ arrays, array-only, arrays-only, list
+
+
+
+#### Array - Append
+
+<cb><v>array1<>.push(<v>value<>);<>
+@
+@ put, add, item, value
+
+
+
+#### Array - Append Array
+
+<cb><v>array1<>.concat(<v>array2<>);<>
+
+<cb><v>array1<>.concat(<v>array2<>, <v>array3<>, <v>...<>);<>
+
+Adds one or more arrays onto an existing array.
+@
+@ put, add, addall, concatenate, extend, combine
+
+
+#### Array - Get
+
+<cb>= <v>array1<>[<v>index<>]<>
+
+<c><v>index<><> is zero based.
+@
+@ item, value
+
+
+
+#### Array - Get First
+
+<cb>= <v>array1<>[0]<>
+
+<c><v>index<><> is zero based.
+@
+@ item, value
+
+
+
+#### Array - Get Last
+
+<cb>= <v>array1<>[<v>array1<>.length - 1]<>
+@
+@ item, value
+
+
+
+#### Array - Includes
+
+<cb>= <v>array1<>.includes(<v>value<>)<>
+@
+@ has, check, exists, in, includes, contains, item, element
+
+
+
+#### Array - Is Array
+
+<cb>= Array.isArray(<v>array1<>)<>
+
+<cb>= <v>array1<> instanceof Array<>
+
+
+Can not use <c>typeof<> because it returns <c>Object<> which might be something else.
+@
+@ typeof
+
+
+
+#### Array - Iterate
+
+<cb><v>array1<>.forEach(<v>item<> => {<v>...<>});<>
+
+Item With Index Value:
+
+<cb><v>array1<>.forEach(<v>item<>, <v>index<> => {<v>...<>});<>
+
+
+<!>Does not do this (not returned in order):<>
+
+<cb>for(<v>item<> in <v>array1<>) {
+	<v>...<>
+}<>
+@
+@ .foreach(), for each, over, loop through
+
+
+
+#### Array - Length
+
+<cb>= <v>array1<>.length<>
+@
+@ size, count
+
+
+
+#### Array - Update
+
+<cb><v>array1<>[<v>index<>] = <v>value<>;<>
+
+
+Example:
+
+<cb>var array1 = [1, 2, 3];
+
+<v>array1<>[<v>0<>] = <v>10<>;<>
+@
+@ change, modify, set, item, value
+
+
+
+
+
+
+### Associative Array
+
+<cb>= {}<>
+
+<cb>= {"<v>key1<>":<v>value1<>, "<v>key2<>":<v>value2<>, <v>...<>}<>
+@
+@ dictionary
+
+
+
+### Associative Array  - Operations
+
+
+
+#### Associative Array - Add / Update
+
+<cb><v>array1<>["<v>key1<>"]
+
+Keys must be strings.
+@
+@ add, put, instert, update, modify, change, item, element, value
+
+
+
+#### Associative Array - Contains?
+
+<!>Contains value?<>
+
+<!>Contains Key?<>
+
+<cb>= <v>value<> in <v>array1<><>
+
+<cb>if (<v>value<> in <v>array1<>) {
+	<v>...<><>
+
+
+
+#### Associative Array - Get Keys
+
+<cb>= Object.keys(<v>array1</Y);<>
+
+
+
+#### Associative Array - Get Value
+
+<cb>= <v>array1<>["<v>key1<>"]<>
+@
+@ retrieve, item, element
+
+
+
+#### Associative Array - Size
+
+<cb>= Object.keys(<v>array1</Y).length<>
+
+
+
+#### Associative Array - Iterate
+
+<cb>for (var <v>key<> in <v>array1) {
+	<v>...<>
+}<>
+
+
+
+### Map
+
+
+Maps are name value pairs that can be iterated over in insert order.
+
+<cb>= new Map();<>
+
+<cb>= new Map([[<v>key1<>, <v>value1<>], [<v>key2<>, <v>value2<>], <v>...<>])<>
+@
+@ map-only, maps-only, dictionary-only, dictionaries-only
+
+
+
+### Map - Operations
+@
+@ map-only, maps-only, dictionary-only, dictionaries-only
+
+
+
+#### Map - Set
+
+<cb><v>map1<>.set(<v>key<>, <v>value<>);<>
+
+
+Adds or updates the key to the given value.
+@
+@ add, insert, put, update
+
+
+
+#### Map - Get
+
+<cb>= <v>map1<>.get(<v>key<>);<>
+
+
+
+#### Map - Delete
+
+<cb><v>map1<>.delete(<v>key<>)<>
+@
+@ remove
+
+
+
+#### Map - Contains?
+
+<cb>= <v>map1<>.has(<v>value<>)<>
+
+<cb>if (<v>map1<>.has(<v>value<>)) {
+	<v>...<><>
+
+
+
+#### Map - Clear
+
+<cb><v>map1<>.clear()<>
+
+
+
+#### Map - Size
+
+<cb>= <v>map1<>.size<>
+@
+@ length, count
+
+
+
+#### Map - Copy
+
+<cb><v>map2<> = new Map(<v>map1<>)<>
+
+
+
+#### Map - Merge
+
+<cb><v>map3<> = new Map([...<v>map1<>, ...<v>map2<>])<>
+
+
+
+#### Map - Get Keys
+
+<cb>= <v>map1<>.keys()<>
+
+
+
+#### Map - Get Values
+
+<cb>= <v>map1<>.values()<>
+
+
+
+#### Map - Iterate Over Keys
+
+<cb>for (let <v>key<> of <v>map2<>.keys()) {
+	<v>...<>
+}<>
+
+
+
+#### Map - Iterate Over Values
+
+<cb>for (let <v>key<> of <v>map2<>.values()) {
+	<v>...<>
+}<>
+
+
+
+#### Map - Iterate Over Keys and Values
+
+<cb>for (let [<v>key<>, <v>value<>] of <v>map2<>) {
+	<v>...<>
+}<>
+
+
+
+#### Map - Iterate Over Key Values With forEach
+
+<cb><v>map1<>.forEach ((<v>value<>, <v>key<>) => { <v>...<> })<>
+
+
+
+### Set
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+
+	var set1 = new Set();
+	var set1 = new Set(array1);
+
+set1.add (value1);
+
+var value1 = map1.get (keyObject);
+
+Contains?	if (set1.has(value2)) {...
+
+Clear / Empty	set1.clear();
+
+Length	= set1. ... ?
+
+
+
+
+### Object
+
+<cb>= new Object()<>
+@
+@ object-only
+@ create, define, instantiate, new
+
+
+
+### Object - Operations
+@
+@ object-only
+
+
+
+#### Object - From JSON
+
+<cb>= JSON.parse(<v>jsonString<>)<>
+
+
+
+#### Object - To JSON
+
+<cb>= JSON.strigify(<v>object1<>)<>
+
+
+
+# Exceptions
+
+<!>Test Test Test<>
+
+
+
+### Exception - Try, Catch, Finally
+
+<cb>try {
+	<v>...<>
+}
+catch (<v>error<>) {
+	alert (<v>error<>.message);
+	alert (<v>error<>); 			<#>//1<>
+}
+finally {
+	<v>...<>
+}<>
+
+
+<#>//1<>  -  Displays Full Error Object (message, code, other fields)
+
+
+
+### Exception - Throw
+
+Throw:
+
+<cb>throw new Error('<v>Exception message.<>')<>
+
+Throw String:
+
+<cb>throw '<v>Exception message.<>'<>
+
+
+
+### Exception - Get Name
+
+<cb>= <v>error<>.name<>
+@
+@ type
+
+
+
+### Exception - Get Message
+
+<cb>= <v>error<>.message<>
+@
+@ text
+
+
+
+# Objects
+
+
+### Classes
+
+Everytihing is an object in JavaScript.
+Strictly speaking there are no classes.
+
+
+
+### Object - Define
+
+<cb>= {
+	<v>property1<>: <v>"value 1"<>,
+	<v>property2<>: <v>value2<>,
+};<>
+@
+@ New, Create, Definition
+
+
+
+### Object - Define - Constructor Function
+
+Define:
+
+<cb>function <v>ObjectName<> (<v>param1<>, <v>param2<>, <v>...<>) {		<#>// 1<>
+
+	this.<v>property1<> = <v>value1<>;					<#>// 2<>
+	this.<v>property2<> = <v>value2<>;
+
+	this.<v>method1<> = function(){
+		<v>...<>
+	}
+												<#>// 3<>
+}<>
+
+New Instance:
+
+<cb>= new <v>ObjectName<> (<v>param1<>, <v>param2<>);				<#>// 4<><>
+
+
+1  -  TitleCase by convention.
+
+2  -  Use <c>this<> to access the the object content.
+
+3  -  No return required.
+
+4  -  Uses <c>new<> keyword.
+
+
+
+
+### Object - Unsorted!
+
+
+Object - Function - Append	Object1.prototype.newMethod1 = function(){			// Use to prevent replication of functions in constructor function.
+		code...
+		this....
+	}
+
+Object - Function - Call With Other Object Data
+
+	object1.function1.call (object2) 				// Calls function1 but 'this' references object2.
+
+	object1.function1.apply (object2, [param1, param2]) 		// As for call but use when the function takes parameters.
+
+Object - Function - Bind	Create a copy of a function in one object but references another. The 'this' reference will reference the new object inside the function.
+
+	newFunction1 = object1.function1.bind (object2); 		// Performs as function1 but references object2.
+
+Lang - Streams
+
+Filter	filteredArray = streamable1.filter (item => filterEpression) 	// Returns element if filterEpression returns true.
+
+Find - First Match	firstMatch = streamable1.find (item => findEpression) 		// Returns first match to return true from expression.
+
+Iterate	streamable1.forEach (item => code...);				// Reference value using 'item' variable.
+		streamable1.forEach ((item, index) => code...);			// Reference value index using 'index' variable.
+
+Validate	isValid = streamable1.every (item => validationExpression) 	// Must return true for every element. Returns true or false.
+
+
+
+# Promise
+
+
+## Basics
+
+Create:
+
+<cb>var <v>promise1<> = new Promise(
+	(resolve, reject) => {
+		<v>...<>
+		resolve(<v>successful_response<>)
+		<v>...<>
+		reject(<v>failed_response<>)
+	});<>
+
+
+Use:
+
+<cb>var <v>result1<> =
+	() => {
+		<v>promise1<>
+			.then((fulfilled) => {
+				<v>...<>
+			})
+			.catch((error) => {
+				<v>...<>
+			})
+	};<>
+
+<cb>var <v>result1<> = <v>promise1<>
+		.then(<v>...<>)
+		.then(<v>...<>)
+		.then(<v>...<>)
+		.catch(<v>...<>);				<#>// Catch All Errors<><>
+
+<cb>var <v>result1<> = <v>promise1<>
+		.then(<v>...<>)
+		.catch(<v>...<>)				<#>// Catch Errors From 1st then()<>
+		.then(<v>...<>)
+		.catch(<v>...<>)				<#>// Catch Errors From 2nd then()<>
+		<v>...<><>
+
+
+
+## Details
+
+
+### Promise States
+
+Pending, Fulfilled, Rejected
+
+Pending		The promise is still waiting for the task to complete (not settled).
+Fulfilled		The promise completed successfully.
+Rejected		The promise was rejected or threw an exception.
+
+Settled		A promise that has completed and is either Fulfilled or Rejected.
+
+
+
+### Promise - Resolve
+
+Resolves to:
+
+	A Value
+	A Rejection
+	A Promise
+
+
+### Define Promise
+
+<cb>= new Promise((resolve, reject) => {
+
+	<v>...<>									<#>//1<>
+
+	resolve(<v>success_response<>)			<#>//2<>
+
+	reject(<v>failed_response<>)				<#>//3<>
+})<>
+
+
+Defines a pending promise.
+Promises are evaluated eagerly.
+Javascript will try to resolve them immediately.
+
+
+<#>//1<>  <s>-<>  Place long running code here.
+
+<#>//1<>  <s>-<>  Will start executing immediately.
+
+<#>//2<>  <s>-<>  Execute <c>resolve<> for success.
+
+<#>//3<>  <s>-<>  Execute <c>reject<> for fail.
+
+
+<b><c>resolve<><> is a callback function to capture the success response.
+- Takes one parameter, the success response.
+
+<b><c>reject<><> is a callback function to capture the failed response.
+- Takes one parameter, the failed response.
+
+
+
+### Define Promise - Run After Parent Completes
+
+<cb>function <v>newPromise<>() {
+
+	return Promise
+			.resolve()						<#>//1<>
+			.then (<v>previous_response<> => {	<#>//2<>
+		<v>...<>									<#>//3<>
+		return <v>response<>;
+	}
+});<>
+
+
+<#>//1<>  <s>-<>  Starts the promise.
+
+<#>//2<>  <s>-<>  Puts the actual function on the microtask queue.
+
+<#>//3<>  <s>-<>  Place long running code here.
+
+
+
+### Define Promise - With Parameters
+
+<cb>function <v>newPromise1<>(<v>param1<>, <v>param2<>, ...) {
+
+	return new Promise((resolve, reject) => {
+		<v>...<>
+	})
+}<>
+
+<cb>newPromise1().then(<v>...<>)<v>...<>;<>
+
+Use closures.
+Define the promise with a closure to pass parameters.
+<c><v>param1<><>, <c><v>param2<><> can be references inside the promise code.
+
+
+
+### Calling
+
+<c><v>newPromise1<>
+	.then(<v>...<>)
+	.catch(<v>...<>)
+	.finally(<v>...<>)<>
+@
+@ Using, Use
+
+
+
+#### Calling - .then()
+
+<c><v>promise1<>.then(<v>fulfilled_handler_function<>)<>
+
+
+<c><v>promise1<>.then (fulfilled => {
+		<v>...<>
+		})<>
+
+
+Returns:	<c>Promise<>
+
+
+Takes a function for a parameter.
+The result is passed to that function.
+<c><v>fulfilled_handler_function<><> should take 1 parameter.
+
+
+#### Calling - .catch()
+
+<c><v>promise1<>.catch(<v>error_handler_function<>)<>
+
+
+<c><v>promise1<>.catch(error => {
+		<v>...<>
+		})<>
+
+
+Takes a function for a parameter.
+The result is passed to that function.
+<c><v>error_handler_function<><> should take 1 parameter.
+
+
+#### Calling - .finally()
+
+<c><v>promise1<>.catch(<v>final_function<>)<>
+
+
+<c><v>promise1<>.finally(()) => {
+		<v>...<>
+		})<>
+
+
+Called once the promise is settled (either fulfilled or rejected).
+
+
+## _ Promise Techniques  <!>(need proper name)<>
+
+
+#### _ ... Chained In Series
+
+
+#### Uses - Parallel,  Wait For All
+
+<c>Promise.all(<v>promiseList<>)
+	.then(<v>resultList<> => <v>...<>)
+	.catch(error => <v>...<>);<>
+
+
+<c>Promise.all([<v>promise1<>, <v>promise2<>, <v>...<>])
+	.then(<v>...<>)
+	.catch(<v>...<>);<>
+
+
+Waits until all promises complete or one fails.
+
+<c><v>resultList<><> returns the fulfilled response from all promises.
+- Matches order in <c>all()<> list.
+
+
+
+#### Uses - Parallel, Wait For All Settled
+
+<c>Promise.allSettled(<v>promiseList<>)
+	.then(<v>resultList<> => <v>...<>)
+	.catch(error => <v>...<>);<>
+
+
+<c>Promise.allSettled([<v>promise1<>, <v>promise2<>, <v>...<>])
+	.then(<v>...<>)
+	.catch(<v>...<>);<>
+
+
+Waits until all promises complete.
+All promises will still be executed even if errors occur.
+<!>Not supported in all browsers.<>
+
+
+<c><v>resultList<><> returns a list of items, each with these properties:
+
+	Fulfilled item:
+
+		{status, fulfilled}
+
+		status === 'fulfilled'
+
+	Rejected item:
+
+		{status, reason}
+
+		status === 'rejected'
+
+- Matches order in <c>allSettled()<> list.
+
+
+
+#### Uses - Wait For First (Race)
+
+<c>Promise.race(<v>promiseList<>)
+	.then(<v>result<> => <v>...<>)
+	.catch(error => <v>...<>);<>
+
+
+<c>Promise.race([<v>promise1<>, <v>promise2<>, <v>...<>])
+	.then(<v>...<>)
+	.catch(<v>...<>);<>
+
+
+Waits until any promise completes or one fails.
+
+
+<c><v>result<><> returns the first item to complete.
+If an error occurs, processing stops and <c>.catch()<> is called.
+@
+@ Race
+
+
+
+## async, await
+
+Syntactic sugar for Promises.
+
+
+
+### Async
+
+<c>async function <v>functionName<>() <v>...<><>
+<c>async () => <v>...<><>
+
+
+Returns an implicit promise.
+
+Returned values are wrapped in a promise.
+Exceptions are wrapped in a promise rejection.
+
+
+
+### Await
+
+
+<c>await <v>functionName<>();<>
+
+
+Pauses an asyncronous function until the promise is fulfilled <#>(or settled?)<>.
+
+
+Can only be used inside an <c>async<> function.
+Only blocks the current function.
+
+Does not block calling functions
+- They receive a promise and go about their business.
+
+
+
+### _ ... Chained In Series
+
+
+
+### _ ... In Parallel
+
+
+
+
+# Document Model (DOM)
+@
+@ browser, html
+
+
+
+## Document - Details
+
+
+
+### Document - Get
+
+<cb>= document<>
+
+
+A system variable that references the DOM
+
+
+### Document - Get Page Title
+
+<cb>= document.title<>
+
+<!>Can we change/update this too?<>
+@
+@  .title
+
+
+
+### Document - Location - Move To
+
+<cb>document.getElementById(element_id).scrollIntoView();<>
+@
+@ .getElementById()
+
+
+
+### Document - Write
+
+<c>document.write("html");<>
+
+
+Will write to document at current spot.
+
+Writes to the doc while loading.
+Overwrites the doc after loading finished.
+@
+@ Insert, Append, .write
+
+
+
+## Document / Element - Bind Event
+
+<cb>document.addEventListener(<v>eventname<>, <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener(<v>eventname<>, <v>function1<>);<>
+@
+@ Events Listeners, Bind To
+
+
+
+### <!>Event Listener Function<>
+
+<cb>(event) => {
+	<v>...<>
+}<>
+
+
+Bind a javascript function to a document event.
+The function will be triggered when the events occurs.
+@
+@ .addEventListener(), javascript, js, Event Listener, function
+
+
+
+#### Event Listener - Target Element
+
+<cb>= <v>event<>.target<>
+
+
+Returns the element the event fired on.
+@
+@ .target
+
+
+
+#### Event Listener - Stop Propagation
+
+<cb><v>event<>.stopPropagation();<>
+
+
+By default, events are sent up the hierarchy of element parents.
+Call <c>.stopPropagation()<> to stop the event going any further.
+@
+@ .stopPropagation()
+
+
+
+### Document - Content Loaded Listener
+
+<cb>document.addEventListener('DOMContentLoaded', <v>function1<>);<>
+
+
+Fires once the document hasc completed loading.
+
+
+
+### Document / Element - Event - Click
+
+<cb>document.addEventListener('click', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('click', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Key Down
+
+<cb>document.addEventListener('keydown', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('keydown', <v>function1<>);<>
+
+Get Key:
+
+<cb>= <v>event<>.key<>
+
+Get Key Code <!>(Deprecated)<>:
+
+<cb>= <v>event<>.keyCode | <v>event<>.which<><>
+@
+@ keydown, .keyCode
+
+
+
+### Document / Element - Event - Key Press
+
+<cb>document.addEventListener('keypress', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('keypress', <v>function1<>);<>
+
+Get Key:
+
+<cb>= <v>event<>.key<>
+
+Get Key Code <!>(Deprecated)<>:
+
+<cb>= <v>event<>.keyCode | <v>event<>.which<><>
+
+Get Key
+@
+@ keypress, .keyCode
+
+
+
+### Document / Element - Event - Key Up
+
+<cb>document.addEventListener('keyup', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('keyup', <v>function1<>);<>
+
+Get Key:
+
+<cb>= <v>event<>.key<>
+
+Get Key Code:
+
+<cb>= <v>event<>.keyCode | <v>event<>.which<><>
+@
+@ keyup, .keyCode
+
+
+
+### Document / Element - Key Cheatsheet
+
+Returned by
+
+<cb>= <v>event<>.keyCode<>
+
+"Tab"
+"Enter"
+"Shift"
+"Control"
+"Alt"
+"Break"
+"Lock"
+"Escape"
+"Space"
+"Up"
+"Down"
+"End"
+"Home"
+"Left"
+"Up"
+"Right"
+"Down"
+"Delete"
+"Insert"
+"F1" - "F12"
+"Numlock"
+"Lock"
+@
+@ .key, keydown, keyup, keypress, up down
+
+
+### Document / Element - Key Codes - Cheatsheet
+
+<cb>= <v>event<>.keyCode | <v>event<>.which<><>
+
+By Key:
+
+	Arrow Up		<c>38<>
+	Arrow Down	<c>40<>
+	Arrow Left	<c>37<>
+	Arrow Right	<c>39<>
+
+	Space		<c>32<>
+	Tab			<c>9<>
+	Enter		<c>13<>
+	Escape		<c>27<>
+
+	F1 - F12		<c>112 - 123<>
+
+	Alt			<c>18<>
+	Control		<c>17<>
+	Shift			<c>16<>
+	Caps-Lock	<c>20<>
+
+	Home		<c>36<>
+	End			<c>35<>
+	Insert		<c>46<>
+	Delete		<c>46<>
+	Page Up		<c>33<>
+	Page Down	<c>34<>
+	Numlock		<c>144<>
+	Scroll-Lock	<c>145<>
+	Pause-Break	<c>19<>
+
+By Code:
+
+	<c>9<>			Tab
+	<c>13<>			Enter
+	<c>16<>			Shift
+	<c>17<>			Control
+	<c>18<>			Alt
+	<c>19<>			Pause-Break
+	<c>20<>			Caps-Lock
+	<c>27<>			Escape
+	<c>32<>			Space
+	<c>33<>			Page Up
+	<c>34<>			Page Down
+	<c>35<>			End
+	<c>36<>			Home
+	<c>37<>			Arrow Left
+	<c>38<>			Arrow Up
+	<c>39<>			Arrow Right
+	<c>40<>			Arrow Down
+	<c>46<>			Delete
+	<c>46<>			Insert
+	<c>112 - 123<>	F1 - F12
+	<c>144<>			Numlock
+	<c>145<>			Scroll-Lock
+@
+@ keyup, keydown, keypress, up down press, .keycode, speedsheet, keys
+
+
+
+### Document / Element - Event - Mouse Down
+
+<cb>document.addEventListener('mousedown', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('mousedown', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Mouse Move
+
+<cb>document.addEventListener('mousemove', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('mousemove', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Mouse Up
+
+<cb>document.addEventListener('mouseup', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('mouseup', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Touch Down
+
+<cb>document.addEventListener('touchdown', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('touchdown', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Touch Move
+
+<cb>document.addEventListener('touchmove', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('touchmove', <v>function1<>);<>
+
+
+
+### Document / Element - Event - Touch Up
+
+<cb>document.addEventListener('touchup', <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener('touchup', <v>function1<>);<>
+
+
+
+### Element - Event - Content Changed
+
+<cb><v>element1<>.addEventListener('input', <v>function1<>);<>
+
+
+Fires whenever the editable content of an element changes.
+
+
+Example:
+
+<!>Give example with input field<>
+
+
+
+## Element
+@
+@ Element-Only
+
+
+
+## Element - Dimensions
+
+
+
+### Element - Dimension - Height
+
+Content Height + Padding:
+
+<cb>= <v>element1<>.clientHeight<>
+
+Content Height + Padding + Border:
+
+<cb>= <v>element1<>.offsetHeight<>
+
+
+
+### Element - Dimension - Width
+
+Content Width + Padding:
+
+<cb>= <v>element1<>.clientWidth<>
+
+Content Width + Padding + Border:
+
+<cb>= <v>element1<>.offsetWidth<>
+
+
+
+## Element - Details
+
+
+
+### Element - Get By Id
+
+<cb>= document.getElementById(<v>elementId<>)<>
+@
+@ .getElementById()
+
+
+
+### Element - Get By Selector
+
+<cb>= document.querySelector(<v>selector<>)<>
+
+
+Returns the first match returned for the selector.
+The selector is any valid css selector.
+
+
+Example:
+
+<cb>\<div class="sidebar"><v>...<>\</div>
+
+<v>sidebarDiv<> = document.querySelector(".sidebar");<>
+@
+@ .querySelector()
+
+
+
+### Element - Hide
+
+<cb><v>element1<>.style.display = 'none';<>
+@
+@ visibility, style.display, .display, none
+
+
+
+### Element - Show
+
+<cb><v>element1<>.style.display = 'block';<>
+
+
+May require a different  for display if not a block element.
+@
+@ visibility, visible, style.display, .display, block
+
+
+
+### Element - Is Visible?
+
+<cb>= <v>element1<>.offsetParent !== null;<>
+@
+@ .offsetParent
+
+
+
+### Element - Get Class
+
+<cb>= <v>element1<>.className<>
+
+
+Returns: String
+
+
+Returns the class name.
+If more than one, classes are separated by spaces.
+@
+@ .className
+
+
+
+### Element - Get Class List
+
+<cb>= <v>element1<>.classList<>
+
+
+Returns: <!>Get return type<>
+
+
+Returns the class name.
+If more than one, classes are separated by spaces.
+@
+@ .classList, multiple, array
+
+
+
+### Element - Get Id
+
+<cb>= <v>element1<>.id<>
+@
+@ .id
+
+
+
+### Element - Get Inner Html
+
+<cb>= <v>element1<>.innerHTML<>
+
+
+Retrieves the current inner html of an element.
+@
+@ .innerHTML
+
+
+
+### Element - Set Inner Html
+
+<cb><v>element1<>.innerHTML = <v>new_html<><>
+
+
+Change the inner html by accessing this property.
+No need to escape the html.
+
+
+Example:
+
+<cb><#>\<!-- HTML: --><>
+\<div id="<v>content<>">\</div><>
+
+<cb><#>\<!-- Javascript: --><>
+\<script>
+
+	var <v>content<> = document.getElementById("<v>content<>");
+	<v>content<>.innerHTML = "\<h2>Content Header\</h2>" +
+			"\<p>Content text.\</p>";
+
+\</script><>
+<>
+@
+@ .innerHTML, change, update
+
+
+
+### Element - Get Text
+
+<cb>= <v>element1<>.textContent<>
+
+
+<!>Validate this works!<>
+
+
+Retrieves the element's text.
+@
+@ .innerText, .textContent, Inner
+
+
+
+### Element - Set Text
+
+<cb><v>element1<>.textContent = <v>text<><>
+
+
+<!>Validate this works!<>
+
+
+Changes the element's text.
+
+
+Example:
+
+<cb><#>\<!-- HTML: --><>
+\<div id="<v>content<>">\</div><>
+
+<cb><#>\<!-- Javascript: --><>
+\<script>
+
+	var <v>content<> = document.getElementById("<v>content<>");
+	<v>content<>.textContent = "<v>new text<>";
+
+\</script><><>
+@
+@ .innerText, .textContent, Inner, change, update
+
+
+
+### Element - Get Type
+
+<cb>= <v>element1<>.nodeName<>
+@
+@ .nodeName
+
+
+
+### Element - Get Value
+
+<cb>= <v>element1<>.value<>
+
+<!>What does this mean? what does the value return?<>
+
+<!>Can we update the value here too?<>
+
+Changes textbox
+@
+@ .value, text box, textbox, field, input, read
+
+
+
+### Element - Class - Add
+
+<cb><v>element1<>.classList.add(<v>class1<>);<>
+
+<cb><v>element1<>.classList.add(<v>class1<>, <v>class2<>, <v>...<>);<>
+@
+@ .add()
+
+
+
+### Element - Class - Remove
+
+<cb><v>element1<>.classList.remove(<v>class1<>);<>
+
+<cb><v>element1<>.classList.remove(<v>class1<>, <v>class2<>, <v>...<>);<>
+@
+@ .remove()
+
+
+
+### Element - Class - Has Class
+
+<cb><v>element1<>.classList.contains(<v>class1<>);<>
+
+@
+@ .contains()
+
+
+
+### Element - Html Attribute - Remove
+
+<cb><v>element1<>.removeAttribute("<v>html-attribute-name<>");<>
+
+
+Removes html attribute.
+Does not remove css attribute but you can delete <c>"style"<>.
+@
+@ .removeAttribute
+
+
+
+### Element - All Children
+
+<cb>= <v>element1<>.children<>
+@
+@ Children, .children
+
+
+
+### Element - First Child
+
+<cb>= <v>element1<>.firstChild<>
+
+<!>Diff betweeen .firstChild and .firstElementChild?
+.firstChild returns text (but confirm this).<>
+@
+@ Get, .firstChild, Children
+
+
+
+### Element - First Child Element
+
+<cb>= <v>element1<>.firstElementChild<>
+
+Returns the first element inside <c><v>element1<><>.
+Returns <c>null<> if none found.
+@
+@ Get, .firstChild, Children
+
+
+
+### Element - First Child By Selector
+
+<cb>= <v>element1<>.querySelector\(<v>selector<>)<>
+
+
+Returns the first match returned for the selector.
+The selector is any valid css selector.
+@
+@ Get, .querySelector, Matching Selector, Children
+
+
+
+### Element - Last Child
+
+<cb>= <v>element1<>.lastChild<>
+
+<!>Diff betweeen .lastChild and .lastElementChild?
+.lastChild returns text (but confirm this).<>
+@
+@ Get, .lastChild, Children
+
+
+
+### Element - Last Child Element
+
+<cb>= <v>element1<>.lastElementChild<>
+
+Returns the last element inside <c><v>element1<><>.
+Returns <c>null<> if none found.
+@
+@ Get, .lastElementChild(), Children
+
+
+
+### Element - Focus - Set Focus
+
+<cb><v>element1<>.focus()<>
+@
+@ .focus()
+
+
+
+### Element - Focus - Unset Focus
+
+<cb><v>element1<>.blur()<>
+@
+@ .blur()
+
+
+
+
+### Element - Scroll Into View
+
+<cb><v>element1<>.scrollIntoView();<>
+@
+@ .scrollIntoView(), move to
+
+
+
+### Element - Scroll To Top
+
+<cb><v>element1<>.scrollTop;<>
+@
+@ .scrollTop(), Beginning, move to
+
+
+
+### Element - Scroll To X, Y
+
+<cb><v>element1<>.scrollTo(<v>x<>, <v>y<>);<>
+@
+@ .scrollTo(), move to
+
+
+
+## Element - JavaScript Events
+@
+@ JS
+
+
+
+### Element - On Click
+
+<cb>onclick="<v>javascript<>"<>
+
+
+Fires when element is clicked.
+Clicking the margin will not trigger this event (will trigger on anything else).
+
+
+Example:
+
+<cb>\<button onclick="alert('Clicked 👍');"> Click Here </button>"><>
+@
+@ onclick
+
+
+
+### Element - On Double Click
+
+<cb>ondblclick="<v>javascript<>"<>
+
+
+Fires when element is double clicked.
+Clicking the margin will not trigger this event (will trigger on anything else).
+
+
+Example:
+
+<cb>\<button ondblclick="alert('Double Clicked 👍';"")> Double Click Here </button>"><>
+@
+@ ondblclick
+
+
+
+### Element - On Change
+
+<cb>onchange="<v>javascript<>"<>
+
+
+Use on dropdow lists, text boxes etc.
+
+Dropdowns - Fires when changed.
+Text boxes - Fires when enter pressed, lost focus.
+@
+@ onchange, input
+
+
+
+### Element - On Input
+
+<cb>oninput="<v>javascript<>"<>
+
+
+Use on text boxes.
+<!>Use on others?<>
+
+Text boxes - Fires when the value changes.
+@
+@ oninput, text input
+
+
+
+### Element - On Key Up
+
+<cb>onkeyup="<v>javascript<>"<>
+@
+@ Changed, onkeyup
+
+
+
+### Element - On Mouse Down
+
+<cb>onmousedown="<v>javascript<>"<>
+
+
+Fires when the mouse button is clicked down on the element.
+Clicking the margin will not trigger this event (will trigger on anything else).
+
+
+Example:
+
+<cb>\<button onmousedown="alert('Mouse Down 👍');"> Click Here </button>"><>
+@
+@ onmousedown
+
+
+
+### Element - On Mouse Up
+
+<cb>onmouseup="<v>javascript<>"<>
+
+
+Fires when the mouse button is released up on the element.
+Clicking the margin will not trigger this event (will trigger on anything else).
+
+
+Example:
+
+<cb>\<button onmouseup="alert('Mouse Up 👍');"> Click Here </button>"><>
+@
+@ onmouseup
+
+
+
+### Element - Link - Call JavaScript
+
+<cb>\<a href="javascript:<v>javascript<>"> <v>...<> \</a><>
+
+
+Example:
+
+<cb>\<a href="javascript:alert('Clicked 👍');" /><v> Show Alert <>\</a><>
+
+
+
+## Window / Page
+
+
+
+### Window - Get URL
+
+<cb>= location.href<>
+
+Using <c>window<> (optional):
+
+<cb>= window.location.href<>
+
+
+Returns: <c>string<>
+
+
+Example:
+
+<cb><v>url<> = location.href
+
+<#>// Returns Full URL
+//		"https://speedsheet.io/s/http?param=value"<><>
+@
+@ window.location.href, location.href, .href
+
+
+
+### Window - Get URL Path
+
+<cb>= location.path<>
+
+Using <c>window<> (optional):
+
+<cb>= window.location.path<>
+
+
+Returns: <c>string<>
+
+
+Example:
+
+<cb><v>path<> = location.path
+
+<#>// Returns
+//		"/sheet/http?param=value"
+// In
+//		"https://speedsheet.io/sheet/http?param=value"<><>
+@
+@ window.location.path, location.path, .path
+
+
+
+### Window - Get URL Parameters
+
+<cb>= location.search<>
+
+Using <c>window<> (optional):
+
+<cb>= window.location.search<>
+
+
+Returns: <c>string<>
+
+
+Example:
+
+<cb><v>parameters<> = location.search
+
+<#>// Returns
+//		"?param=value"
+// In
+//		"https://speedsheet.io/sheet/http?param=value"<><>
+@
+@ window.location.search
+
+
+
+### Window - Get URL Without Parameters
+
+<cb>= window.location.href.split('?')[0]<>
+
+
+Returns: <c>string<>
+
+
+Example:
+
+<cb><v>parameters<> = location.search
+
+<#>// Returns
+//		"https://speedsheet.io/sheet/http"
+// In
+//		"https://speedsheet.io/sheet/http?param=value"<><>
+@
+@ No
+
+
+
+### Window - Set URL
+
+Basic Form:
+
+<cb>history.replaceState ({}, '', <v>url<>);<>
+
+Full Form:
+
+<cb>history.replaceState ({page: <v>page_state<>}, <v>title<>, <v>url<>);<>
+
+Using <c>window<> (optional):
+
+<cb>window.history.replaceState ({page: <v>page_state<>}, <v>title<>, <v>url<>);<>
+
+
+Replaces the url with the updated url.
+No other changes are made.
+Set <v>title<> to '' to leave the title unchanged.
+@
+@ window.history.replaceState
+
+
+
+### Window - Set URL as New Page
+
+<cb>history.pushState ({}, '', <v>url<>);<>
+
+Full Form:
+
+<cb>history.pushState ({page: <v>page_state<>}, <v>title<>, <v>url<>);<>
+
+Using <c>window<> (optional):
+
+<cb>window.history.pushState ({page: <v>page_state<>}, <v>title<>, <v>url<>);<>
+
+
+Updates the url as if it is a new page.
+The back button will take you back to the previous state of the same page.
+Set <v>title<> to '' to leave the title unchanged.
+@
+@ window.history.pushState, history.pushState, .pushstate
+
+
+
+# Objects - General
+
+<!>Sort!!<>
+
+Dropdown Box / Selector	.options[index]			// Options
+	.selectedIndex				// Selected item index
+
+	.options[x].text 			// Index item label
+	.options[x].value 			// Index item value
+
+Text Box / Input	.value					// Text box value.
+
+	onChange				// triggers when enter pressed, when clicking away.
+
+
+
+# Objects - Location
+
+location
+
+location.href
+
+location.href = newUrl; 		// Forward the page to a new Url.
+
+
+
+
+# Objects - Window
+
+window.open();
+window.close();
+window.alert(text);	Opens a text box with the contained text.
+
+
+
+# Html - Forms
+
+Base Class	document.formName
+	document.forms.[formName]
+
+Properties	.action = url;
+	.method = "Post";
+
+Methods	.submit();
+
+
+
+# Functions - Standard
+
+Dates - Unix Time	= Date.now()				// Time since 1970-01-01 in milliseconds.
+
+
+
+# HTTP Commands
+@
+@ http-only
+
+
+### HTTP - Send Get
+
+<cb>await fetch(<v>url<>);<>
+
+<cb><v>response<> = await fetch(<v>url<>);<>
+
+<cb>fetch (<v>url<>)
+	.then(response => {<v>...<>});<>
+@
+@ Call
+
+
+
+### HTTP - Send Post
+
+<cb><v>response<> = await fetch(<v>url<>,
+		{method: "POST", <v>...<>})<>
+
+<cb>fetch (<v>url<>,
+		{method: "POST", <v>...<>)
+		.then(response => {<v>...<>});<>
+
+
+Example:
+
+<cb>fetch (<v>url<>, {
+		method: "POST",
+		headers: new Headers({'content-type': 'application/json'}),
+		body: JSON.stringify(data)})
+	.then(response => {
+		console.log ("Request sent.")
+	});<>
+@
+@ Call
+
+
+
+### HTTP - Send Put
+
+<cb>fetch (<v>url<>, {
+	method: "POST",
+	<v>...<>
+})<>
+@
+@ Call
+
+
+
+### HTTP - Send / Timeout
+
+<cb><v>abort<> = AbortController();						<#>//1<>
+
+<v>timeout_ms<> = <v>10000<>
+<v>timeout<> = setTimeout(							<#>//2<>
+	() => {<v>abort<>.abort()},
+	<v>timeout_ms<>);
+
+try {
+	await fetch(<v>url<>, {signal: <v>abort<>.signal});	<#>//3<>
+	clearTimeout(<v>timeout<>);						<#>//4<>
+}
+catch (<v>error<>) {
+	<v>...<>
+}<>
+
+
+<#>//1<>  -  Create <c><v>abort<><> (<c>AbortController<>). This signals <c>fetch<> to abort the request.
+
+<#>//2<>  -  Set up a timer to call <c><v>abort<><>.
+
+<#>//3<>  -  Tell <c>fetch()<> to listen to <c><v>abort<><> for an abort.
+
+<#>//4<>  -  If reached, everything is ok. Cancel the abort timer.
+<#>//4<>  -  If not reached, timer will expire and the abort is triggered. <c>fetch<> then throws <c>AbortError<>.
+
+
+
+### HTTP - Set Header
+
+<cb><cb>fetch (<v>url<>, {
+	headers: {
+		<v>name<>: <v>value<>,
+		<v>...<>
+	},
+})<><>
+
+<cb><cb>fetch (<v>url<>, {
+	headers: new Headers({
+		<v>name<>: <v>value<>,
+		<v>...<>
+	}),
+})<><>
+@
+@ Call
+
+
+
+### HTTP - Set Header - context-type
+
+<cb><cb>fetch (<v>url<>, {
+	headers: {'content-type': '<v>application/json<>'},
+})<><>
+@
+@ Call
+
+
+
+### HTTP - Request - Send JSON
+
+<cb>fetch (<v>url<>, {
+	body: JSON.stringify(data)
+})<>
+@
+@ as, body, data
+
+
+
+### HTTP - Response - Get Text
+
+<cb>= await <v>response<>.text()<>
+
+<cb>fetch (<v>url<>)
+.then(<v>response<> => {
+	<v>text<> = <v>response<>.text()
+}<>
+@
+@ as, body, data
+
+
+
+### HTTP - Response - Get Form Data
+
+<cb>= await <v>response<>.formData()<>
+
+<cb>fetch (<v>url<>)
+.then(<v>response<> => {
+	<v>formData<> = <v>response<>.formData()
+}<>
+@
+@ as, body, data
+@ resp.formdata(), response.formdata(), .formdata()
+
+
+
+### HTTP - Response - Get JSON
+
+<cb>= await <v>response<>.json()<>
+
+<cb>fetch (<v>url<>)
+.then(<v>response<> => {
+	<v>json<> = <v>response<>.json()
+}<>
+@
+@ as, body, data
+@ resp.json(), response.json(), .json()
+
+
+
+### HTTP - Response - Get Status Code
+
+<cb>= <v>response<>.status<>
+
+
+
+### HTTP - Response - Is OK?
+
+<cb>= <v>response<>.ok<>
+
+
+
+### HTTP - Response - Not OK?
+
+<cb>if (!<v>response<>.ok) {
+	<v>...<>
+}<>
+@
+@ has error, failed
+
+
+# URL Object
+
+
+
+### URL - Create
+
+<cb>= new URL(<v>url_string<>)<>
+
+<cb>= new URL(<v>url_subpath<>, <v>base_url<>)<>
+
+Window / Page URL:
+
+<cb>= newURL(location.href)<>
+
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+
+
+
+### URL - Get protocol
+
+<cb>= <v>url<>.protocol<><>
+
+
+Returns the <c>http:<>, <c>https:<>, etc.
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+@
+@ .protocol, http:, https:, file:
+
+
+
+### URL - Get host
+
+<cb>= <v>url<>.host<><>
+
+
+Returns the host name.
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+@
+@ .host
+
+
+
+### URL - Get Url Path Name
+
+<cb>= <v>url<>.pathname<><>
+
+
+Returns the full url path.
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+@
+@ .pathname
+
+
+
+### URL - Parameter - Get
+
+<cb>= <v>url<>.searchParams.get(<v>parameter_name<>)<>
+
+For Window \ Page:
+
+<cb>= (new URL(location.href)).get(<v>parameter_name<>)<>
+
+
+Example:
+
+<cb><v>url<> = new URL("https://speedsheet.io/s/http?search=search=text+to+search+for")
+<v>search<> = <v>url<>.searchParams.get('search');
+
+<#>\\ Returns 'text to search for'
+
+...(remainder of example)<>
+
+
+
+### URL - Parameter - Has Value?
+
+<cb>if (<v>url<>.searchParams.get(<v>parameter_name<>)) {
+	<v>...<>
+}<>
+
+For Window \ Page:
+
+<cb>if (new URL(location.href)).get(<v>parameter_name<>)) {
+	<v>...<>
+}<>
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+
+
+
+### URL - Parameter - Set
+
+<cb>= <v>url<>.searchParams.set(<v>parameter_name<>, <v>value<>)<>
+
+
+Example:
+
+<cb><v>url = new URL(location.href)
+url.setParams.set('search', 'text to search for')
+
+<#>// Sets
+//		"?search=text to search for"
+// In
+//		"https://speedsheet.io/sheet/http?search=text+to+search+for"<><>
+
+
+
+### URL - Parameters - Get
+
+<cb>= <v>url<>.search<>
+
+
+Returns the
+	<c>?<v>param1<>=<v>value1<>&...<>
+in
+	<c>http://<v>url.com<>?<v>param1<>=<v>value1<>&<v>...<><>
+
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+@
+@ .search
+
+
+
+### URL - Parameters - Get Key Values
+
+<cb>for (const [<v>key<>, <v>value<>] of <v>url<>.searchParams) {
+	<v>...<>
+}<>
+
+
+Example:
+
+<cb><v>url<> = new URL(<v>url_string<>);
+
+...(remainder of example)<>
+@
+@ .search
+
+
+
+# Index - Colours
+
+Color - Types	RGB, RGBA, Hex, Named
+
+Color - RGB	"rgb (0,0,0)" 				// Values from 0 to 255.
+
+Color - RGB Alpha	"rgba (0,0,0,0)" 			// Last digit alpha level.
+
+Colour - Names	aliceblue, antiquewhite, aqua, aquamarine, azure, beige, bisque, black, blanchedalmond, blue, blueviolet, brown, burlywood, cadetblue, chartreuse, chocolate, coral, cornflowerblue, cornsilk, crimson, cyan, darkblue, darkcyan, darkgoldenred, darkgray, darkgreen, darkkhaki, darkmagenta, darkolivegreen, darkorange, darkorchid, darkred, darksalmon, darkseagreen, darkslateblue, darkslategray, darkturquoise, darkviolet, deeppink, deepskyblue, dimgray, dodgerblue, firebrick, floralwhite, forestgreen, fuchsia, gainsboro, ghostwhite, gold, goldenrod, gray, green, greenyellow, honeydew, hotpink, indianred, indigo, ivory, khaki, lavender, lavenderblush, lawngreen, lemonchiffon, lightblue, lightcoral, lightcyan, lightgoldenrodyellow, lightgreen, lightgrey, lightpink, lightsalmon, lightseagreen, lightskyblue, lightslategray, lightsteelblue, lightyellow, lime, limegreen, linen, magenta, maroon, mediumaquamarine, mediumblue, mediumorchid, mediumpurple, mediumseagreen, mediumslateblue, mediumspringgreen, mediumturquoise, mediumvioletred, midnightblue, mintcream, mistyrose, moccasin, navajowhite, navy, oldlace, olive, olivedrab, orange, orangered, orchid, palegoldenrod, palegreen, paleturquoise, palevioletred, papayawhip, peachpuff, peru, pink, plum, powderblue, purple, red, rosybrown, royalblue, saddlebrown, salmon, sandybrown, seagreen, seashell, sienna, silver, skyblue, slateblue, slategray, snow, springgreen, steelblue, tan, teal, thistle, tomato, turquoise, violet, wheat, white, whitesmoke, yellow, yellowgreen
+
+
+
+# Index - Frameworks
+
+backbone.js	A model view architecture.
+jquery.js
+knockout.js	A data binding framework.
+
+
+
+# How To
+
+
+
+### Alert / Popup
+
+<cb>alert("<v>message<>");
+@
+@ Message box
+
+
+
+### Change the url
+
+<cb>window.history.pushState (“object or string”, “Title”, “/newUrl”); <>
+
+
+
+### Json - From String
+
+<cb>= JSON.parse(<v>jsonString<>)<>
+
+
+
+### Json - To String
+
+<cb>= JSON.stringify(<v>object1<>)<>
+
+
+
+### Media Query - Call Function on Change
+
+Define Listener:
+
+<cb>function <v>mediaQueryListener<>(<v>change<>) {
+
+	if(<v>change<>.matches) {
+		<#>// Switched to media break.<>
+	}
+	else {
+		<#>// Switched from media break.<>
+	}
+}<>
+
+Wire Up Listener:
+
+<cb>var <v>mediaQuery<> = window.matchMedia("<v>media-break<>");
+<v>mediaQuery<>.addEventListener("change", <v>mediaQueryListener<>);<>
+
+
+Example:
+
+<cb>function <v>mediaQueryListener<>(<v>change<>) {
+
+	if(<v>change<>.matches) {
+		console.log("Resolution now >= 576");
+	}
+	else {
+		console.log("Resolution now < 576");
+	}
+}
+
+var <v>mediaQuery<> = window.matchMedia("(min-width: 576px)");
+<v>mediaQuery<>.addEventListener("change", <v>mediaQueryListener);<>
+@
+@ responsive, @media, breakpoint, Media Query, .addEventListener(), "change" event, detect change
+
+
+
+### Page - Print
+
+<c>window.print()<>					<#>// Shows print dialog.<>
+
+
+
+### Print - To Console
+
+<c>console.log ("text");<>
+
+
+
+### Sleep
+
+<c>export const sleep = (duration) => new Promise((resolve) => setTimeout(resolve, duration))
+
+await sleep(<v>duration_in_milliseconds<>)<>
+
+
+Implement the function <c>sleep()<>, then call <c>sleep()<> with <c>await<>.
+
+
+
+### Timeout - Set
+
+<cb><v>timeout1<> = setTimeout(<v>callback1<>, <v>timeout_ms<>);<>
+
+With Callback Parameters:
+
+<cb><v>timeout1<> = setTimeout(<v>callback1<>, <v>timeout_ms<>, <v>parameter1<>, <v>parameter2<>);<>
+
+
+Calls <c><v>callback1()<><> after <v>timeout_ms<> milliseconds.
+
+
+Example:
+
+<cb><v>timeout1<> = setTimeout(console.log, 1000, "Timer done.");<>
+@
+@ setTimeout()
+
+
+
+### Timeout - Cancel
+
+<cb>clearTimeout(<v>timeout1<>);<>
+@
+@ clearTimeout(), clear
+
+
+
+# Glossary
+
+
+
+## Acronyms
+
+
+
+### AHAH
+Asynchronous HTML over HTTP
+
+
+
+### AJAX
+Asynchronous Javascript And XML
+
+
+
+### ECMA
+European Computer Manufacturers Association
+
+
+
+### ES
+ECMAScript
+
+
+
+### IIFE
+Immediately Invoked Function Expression
+
+
+
+### JS
+JavaScript (Duh!)
+
+
+
+## Terms
+
+
+
+### $
+A function mapped to <c>document.getElementById<>.
+
+<cb>$ = document.getElementById;<>
+
+This is by convention only.
+It is not compiler enforced.
+@
+@ Dollar Symbol
+
+
+
+### _
+
+The paramater passed into a function that takes only one paramater.
+
+<cb>const <v>some_function<> = _ => {<v>...<>};<>
+
+Same as:
+
+<cb>const <v>some_function<> = <v>param1<> => {<v>...<>};<>
+
+This is by convention only.
+It is not compiler enforced.
+
+
+Example:
+
+<cb>const <v>log_the_argument<> = _ => {
+	console.log("The Argument Is '" + _ + "'");
+};
+
+log_the_argument ("one");<>
+@
+@ Underscore Symbol
+
+
+
+### Anonymous Function
+A function that is defined without a name.
+
+These are typically created and passed in as parameters.
+
+
+
+### Apply
+Applies a function from one object on the data from another and the function takes parameters. The keyword 'this' references the other object. Parameters are passed through the parameter array.
+Form: object1.function1.apply (object2, [param1, param2])
+See also: call()
+
+
+
+### async Function
+A function that returns a promise.
+
+The contents of the function are returned as the resolve part of a promise.
+
+Async functions can use await.
+
+
+
+### await Keyword
+Pauses execution until a promise resolves.
+
+
+
+### Bind
+Copy a function from an object and bind it to another object.
+Form: object1.function1.bind (object2)
+
+
+
+### Call
+Applies a function from one object on the data from another. The keyword 'this' references the other object.
+Form: object1.function1.apply (object2)
+See also: apply()
+
+
+
+### Closure
+Reference a variable outside of a function after the outside is out of scope.
+eg. a function referencing a variable in the parent function after the inner function was returned from the outer function.
+
+
+
+### Constructor Function
+A special function used to construct an object.
+
+
+
+### Destructure
+ES6 feature that allows you to extract pieces of an array or object.
+
+
+
+### ECMAScript
+A scripting language specification created to standardize JavaScript. JavaScript is considered a dialect of EMAScript. Others are JScript, ActionScript, etc. Called ECMAScript because JavaScript had some legal issues in the beginning.
+
+
+
+### Environments
+Desktop - Electron
+Server - NodeJS
+Smart Phones - Cordova
+Web - Browser
+
+
+
+### Expression
+= boolean && value	// if true, returns value.
+
+
+
+### Fallback
+Provides support for a feature that isn't supported in the browser using a different set of APIs.
+
+
+
+### Gorilla
+Here is a gorilla  🦍
+
+
+
+### JavaScript Engine
+
+Single threaded
+
+
+
+### JavaScript - History
+
+1995 - Created
+1997 - ECMAScript
+1999 - ECMAScript 3
+
+	Browser Wars Ensued
+	No ES4
+
+2009 - ECMAScript 5) (ES5)
+
+	Around a long time. The largest browser supported version of JavaScript.
+
+2015 - ECMAScript 2015 (ES6)
+
+	Lots of major improvements.
+	Classes
+
+ES2016:
+
+ES2017:
+
+
+
+Versions on W3 Schools:
+<l>https://www.w3schools.com/js/js_versions.asp<>
+
+
+
+### Polyfill
+A polyfill (or polyfiller) is downloadable code which provides features that may not built into a web browser but are required to run the code. It implements technology that a developer expects the browser to provide natively, but isn't available in the current browser. This provides a more uniform API landscape and keeps code compatible for the future when the poly fill version can be removed without changing anything else. Typically implemented using prototypes.
+
+eg. A polyfiller would replace a Html 5 feature in a browser that didn't support Html 5.
+
+
+
+### Prototype
+A way to add functions to an object without having to create them every time (eg Constructor Function will regenerate a new function).
+
+
+
+### Radix / Base
+The number of digits used to represent a number.
+
+Radix 2		Binary (0, 1)
+Radix 8		Octal (0 to 7)
+Radix 10 	Decimal (0 to 10)
+Radix 16	Hex Numbers (0 - F)
+
+
+
+### Rest Parameters
+An indefinite number of parameters that can be passed into a function. Defined with three dots '...'. Must be last parameter in method list.
+Named because "rest of the parameters"
+
+
+
+### Source Map
+A mapping file for a minimized java script to allow a debugger to view the source code properly (in unminimized form).
+
+
+
+### this
+Used in objects to refer to the enclosing context.
+
+
+
+### Variable Scope
+In function, or in a parent function. Javascript will search parent chain looking for  variable.
+
+
+
+
+
+# Unsorted
+
+Lang - Import / Export
+
+Export - Directly	export function function1...
+		export class class1...
+
+Export - Named	export { function1, function2, var1, var2... }
+
+Import - All	import * from "file-name.mjs"				// Can't get this to work!
+
+Import - Module Functions	import {function1, function2...} from "file_name.mjs" 		// Destructured format.
+		import {function1, function2...} from "file_name"		// Extension should be .js for this and package.json needs "type":"module"
+
+Lang - Classes
+
+Create	let item1 = new Class1();
+
+Define	class Class1 {
+
+			constructor (param1, param2...) {
+				this.property1 = param1;
+				...
+			}
+		}
+
+Lang - Functions
+
+Note	Functions are Objects. They can be assigned to variables and passed.
+	Function Overloading not allowed.
+	Parameters are optional.
+	- Will have "undefined" value.
+
+Create (New)	let functionName = () => expression; 		// No parameters
+
+	let functionName = (param1...) => expression;
+
+		let functionName = (param1...) => {
+		Code...
+		return returnVal;
+	}
+
+	let functionName = (..., default_param = "default value") => {
+		Code...
+		return returnVal;
+	}
+
+Create (New 2)	let functionName = _ => ... 		// _ is a variable name.
+
+Create (Old)	function functionName (param1...) {
+		Code...
+		return returnVal;
+	}
+
+Assign	var var1 = functionName;
+	var result1 = var1 (param1...);
+
+Define	function functionName (param1…) {
+		Code...
+	}
+
+	- Defined at parse time. Must be declared before used.
+
+
+	var varFunc1 = function (params…) {
+		Code...
+	}
+
+	- Defined at runtime.
+
+	Rest Parameters	var varFunc1 = function (...paramList1) {			// An undefined number of items passed in as a list
+											// Must be last item in function parameters.
+
+		varFunc1 (param1, param2, param3...) 			// Calling. Pass in any number of parameters here.
+
+Return	function functionName () {
+		Code...
+		return [returnVal];
+	}
+
+Scope	function globalFunction () {
+
+		let parentVariable = value;
+
+		function localFunction (param1…) {
+			Code...
+			= parentVariable
+		}
+	}
+
+
+Errors
+
+<!>Reword Descriptions<>
+
+EvalError           An error in the eval() function has occurred.
+
+RangeError          Out of range number value has occurred.
+
+ReferenceError      An illegal reference has occurred.
+
+SyntaxError         A syntax error within code inside the eval() function has occurred.
+                    All other syntax errors are not caught by try/catch/finally, and will
+                    trigger the default browser error message associated with the error. 
+                    To catch actual syntax errors, you may use the onerror event.
+
+TypeError           An error in the expected variable type has occurred.
+
+URIError            An error when encoding or decoding the URI has occurred 
+                   (ie: when calling encodeURI()).
+
+
+
+### URL - Unsorted
+
+<!>Please Add<>
+
+
+append(name, value) – add the parameter by name,
+delete(name) – remove the parameter by name,
+get(name) – get the parameter by name,
+getAll(name) – get all parameters with the same name (that’s possible, e.g. ?user=John&user=Pete),
+has(name) – check for the existence of the parameter by name,
+set(name, value) – set/replace the parameter,
+sort() – sort parameters by name, rarely needed,
+…and it’s also iterable, similar to Map.
+
+
+From:
+
+<l>https://javascript.info/url<>
+
+
+
