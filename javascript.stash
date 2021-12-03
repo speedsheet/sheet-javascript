@@ -262,7 +262,7 @@ Example
 else if (<v>condition2<>) {
 	<v>...<>
 }
-else {{
+else {
 	<v>...<>
 }<>
 @
@@ -380,7 +380,7 @@ Includes arrays, strings, and maps.
 	break;
 	<v>...<>
 	continue;
-} while (<v>expression<>)
+} while (<v>expression<>)<>
 
 
 
@@ -410,26 +410,40 @@ Use inside <c>for<>, <c>while<> and <c>switch<> statements.
 
 
 if <v>booleanValue<> is true, returns <v>value<>.
+@
+@ &&
 
 
 
-### Operators - Equals
+### Operators - Equals - Abstract Equality
 
-	<c>==<> 						<#>#1<>
+	<c>==<>
 	<c>!=<>
 
 
-\#1  -  Will convert the types to one type and then compares.
+Compares the value of two items.
+
+Will convert the types to one type and then compares.
+
+
+<card><table><col>⚠️<><col>Not recommended.
+
+Use ===, !== instead.<><><>
+@
+@ ==, !=, double
 
 
 
-### Operators - Equals - Identity
+### Operators - Equals - Strict Equality
 
-	<c>===<> 						<#>#1<>
+	<c>===<>
 	<c>!==<>
 
-
-\#1  -  A strict comparison. No type conversion performed. Preferred over <c>==<>.
+Performs a strict comparison.
+No type conversion performed.
+Preferred over <c>==<>.
+@
+@ ===, !==, triple
 
 
 
@@ -443,6 +457,9 @@ if <v>booleanValue<> is true, returns <v>value<>.
 \#1  -  Tests for trueness. If <v>object!<> is null, false.
 
 <!>Get a concrete example of this.<>
+@
+@ &&, ||, !
+@ And, Or, Not
 
 
 
@@ -789,7 +806,11 @@ Starts With	if (string1.startsWith (compareString)) ...
 
 #### String - Comparison
 
+Is String 1 Equal To String 2:
+
 <cb><v>string1<> == <v>string2<><>
+
+Is String 1 Less Than String 2:
 
 <cb><v>string1<> \< <v>string2<><>
 
@@ -820,6 +841,79 @@ Returns true for null, "", " ", or all white spaces.
 <cb>= !<v>string1<><>
 
 Returns true for "", 0, null, undefined, false, NaN
+
+
+
+#### String - Is Equal?
+
+<cb><v>string1<> === <v>string2<><>
+
+
+Does a strict comparison between the two strings to see if they are equal.
+This is case sensitive.
+
+
+Example:
+
+<cb>let <v>a<> = "<v>aa<>";
+let <v>b<> = "<v>aa<>";
+
+if (<v>a<> === <v>b<>) {
+	console.log("a equals b.");
+}
+
+<#>// Prints: "a equals b."<><>
+
+Different Case:
+
+<cb>let <v>a<> = "<v>aa<>";
+let <v>b<> = "<v>AA<>";
+
+if (<v>a<> === <v>b<>) {
+	console.log("a equals b.");
+}
+else {
+	console.log("a is not equal to b.");
+}
+
+<#>// Prints: "a is not equal to b."<><>
+@
+@ equal to, ===
+
+
+
+#### String - Not Equal?
+
+<cb><v>string1<> !== <v>string2<><>
+
+
+Does a strict comparison between the two strings to see if they are equal.
+This is case sensitive.
+
+
+Example:
+
+<cb>let <v>a<> = "<v>aa<>";
+let <v>b<> = "<v>bb<>";
+
+if (<v>a<> !== <v>b<>) {
+	console.log("a is not equal to b.");
+}
+
+<#>// Prints: "a is not equal to b."<><>
+
+Different Case:
+
+<cb>let <v>a<> = "<v>aa<>";
+let <v>b<> = "<v>AA<>";
+
+if (<v>a<> !== <v>b<>) {
+	console.log("a is not equal to b.");
+}
+
+<#>// Prints: "a is not equal to b."<><>
+@
+@ is not equal to, equals, !==
 
 
 
@@ -1991,11 +2085,14 @@ Get Key:
 
 <cb>= <v>event<>.key<>
 
+<cb>if (<v>event<>.key === '<v>Escape<>')
+	<v>...<><>
+
 Get Key Code <!>(Deprecated)<>:
 
 <cb>= <v>event<>.keyCode | <v>event<>.which<><>
 @
-@ keydown, .keyCode
+@ keydown, .keyCode, on key down
 
 
 
@@ -2009,13 +2106,16 @@ Get Key:
 
 <cb>= <v>event<>.key<>
 
+<cb>if (<v>event<>.key === '<v>Escape<>')
+	<v>...<><>
+
 Get Key Code <!>(Deprecated)<>:
 
 <cb>= <v>event<>.keyCode | <v>event<>.which<><>
 
 Get Key
 @
-@ keypress, .keyCode
+@ keypress, .keyCode, on key press, onkeypress
 
 
 
@@ -2029,11 +2129,14 @@ Get Key:
 
 <cb>= <v>event<>.key<>
 
-Get Key Code:
+<cb>if (<v>event<>.key === '<v>Escape<>')
+	<v>...<><>
+
+Get Key Code <!>(Deprecated)<>:
 
 <cb>= <v>event<>.keyCode | <v>event<>.which<><>
 @
-@ keyup, .keyCode
+@ keyup, .keyCode, on key up
 
 
 
@@ -2041,7 +2144,7 @@ Get Key Code:
 
 Returned by
 
-<cb>= <v>event<>.keyCode<>
+<cb>= <v>event<>.key<>
 
 "Tab"
 "Enter"
@@ -2069,7 +2172,10 @@ Returned by
 @ .key, keydown, keyup, keypress, up down
 
 
+
 ### Document / Element - Key Codes - Cheatsheet
+
+Note: <!><c>keyCode<> and <c>which<> are deprecated.<>
 
 <cb>= <v>event<>.keyCode | <v>event<>.which<><>
 
@@ -2569,6 +2675,25 @@ Returns <c>null<> if none found.
 <cb><v>element1<>.scrollTo(<v>x<>, <v>y<>);<>
 @
 @ .scrollTo(), move to
+
+
+
+## Element - Input Box
+
+
+### Input Box - Get Value
+
+<cb>= <v>element1<>.value<>
+@
+@ text, .value
+
+
+
+### Input Box - Set Value
+
+<cb><v>element1<>.value = "<v>new value<>"<>
+@
+@ text, .value
 
 
 
@@ -3384,6 +3509,32 @@ Example:
 <cb>clearTimeout(<v>timeout1<>);<>
 @
 @ clearTimeout(), clear
+
+
+
+# What's The Difference?
+@
+@ what is
+
+
+
+### == vs ===
+
+Abstract Equality Operator <c>==<> :
+
+<*>Compares Values
+Automatically Converts Types Before Comparison (String -> Integer)
+Has Unexpected Outcomes (Due To Automatic Conversion)
+Not Recommended<>
+
+Strict Equality Operator <c>===<> :
+
+<*>Does Strict Comparison
+Will Not Automatically Convert.
+Preferred Method<>
+
+@
+@ equals, abstract equality operator, strict equality operator
 
 
 
