@@ -298,7 +298,7 @@ Ternary / Conditional Operator
 	continue;
 }<>
 @
-@ for-only
+@ for-only, loop
 
 
 
@@ -318,7 +318,7 @@ Ternary / Conditional Operator
 Loops through properties of an object.
 Do not use on arrays! Use for-of instead.
 @
-@ For Each, Foreach, for-only, for-in-only
+@ For Each, Foreach, for loop, for-only, for-in-only
 
 
 
@@ -338,7 +338,7 @@ Do not use on arrays! Use for-of instead.
 Loops through items of any iterable type.
 Includes arrays, strings, and maps.
 @
-@ For Each, Foreach, for-only, for-of-only
+@ For Each, Foreach, for loop, for-only, for-of-only
 
 
 
@@ -401,6 +401,44 @@ Use inside <c>for<>, <c>while<> and <c>switch<> statements.
 
 
 # Operators
+
+
+
+### Arithmetic Operators
+
+<in-2><table><col><c><v>a<> + <v>b<>		<><>
+<col><c><v>a<> - <v>b<><><>
+<col><c><v>a<> * <v>b<><><>
+<col><c><v>a<> / <v>b<><><>
+<col> <>
+<col><c><v>a<> % <v>b<><><><col>Modulo ( 7 % 3 = 1)<>
+<col><c><v>a<> ** <v>b<><><><col>To The Power of<>
+<col> <>
+<col><c><v>a<>++<><><><col>Increment<>
+<col><c><v>a<>--<><><><col>Decrement<><><>
+@
+@ +, -, /, *, %, **, ++, --
+@ power, modulo, modulus, plus, minus, divide, multiply, increment, decrement
+
+
+
+### Arithmetic Assignment Operators
+
+Assign:
+
+<in-2><table><col><c><v>a<> = <v>value<><><><><>
+
+Calculate and update variable:
+
+<in-2><table><col><c><v>a<> += <v>value<>		<><>
+<col><c><v>a<> -= <v>value<><><>
+<col><c><v>a<> *= <v>value<><><>
+<col><c><v>a<> /= <v>value<><><>
+<col> <>
+<col><c><v>a<> %= <v>value<><><><col>Modulo<>
+<col><c><v>a<> **= <v>value<><><><col>To The Power of<><><>
+@
+@ =, +=, -=, *=, /=, %=, **=, =+, =-, =*, =/, =%, =**
 
 
 
@@ -493,17 +531,12 @@ Preferred over <c>==<>.
 
 
 
-# Data Types
-
-
-
-## Assignment
+# Variables
 @
-@ Create, Insantiate, Declarations, New, variable
+@ var-only, vars-only, variable-only, variables-only
 
 
-
-### Assign - Without Keyword
+### Variable - Assign - Without Keyword
 
 <cb><v>varableName<> = <v>value<>;<>
 
@@ -512,10 +545,12 @@ Scope: Global
 
 
 Assign without <c>let<> or <c>var<> keyword.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Assign - Let
+### Variable - Assign - Let
 
 <cb>let <v>varableName<> = <v>value<>;<>
 
@@ -526,10 +561,12 @@ Scope: Block
 Preferred.
 Most limited scope.
 Confines scope to the block.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Assign - Var
+### Variable - Assign - Var
 
 <cb>var <v>varableName<> = <v>value<>;<>
 
@@ -539,10 +576,12 @@ Scope: Local
 
 Will declare the variable before running the script.
 It will have value 'Undefined' until code reaches assignment.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Assign Scope - Global
+### Variable - Assign Scope - Global
 
 <cb><v>varableName<> = <v>value<>;<>
 
@@ -556,18 +595,22 @@ Assign without <c>let<> or <c>var<> keyword to create a global variable.
 
 
 Use <c>var<> for a local variable.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Assign Scope - Block
+### Variable - Assign Scope - Block
 
 <cb>let <v>varableName<> = <v>value<>;<>
 
 Use <c>let<> for a block level variable.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Assign - Constant
+### Variable - Assign - Constant
 
 <cb>const <v>CONSTANT_NAME<> = <v>value<>;<>
 
@@ -575,10 +618,12 @@ Use <c>let<> for a block level variable.
 Scope: Block
 
 Declares a variable as a constant and can not be changed.
+@
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-### Destructure - From Iterable
+### Variable - Destructure - From Iterable
 
 <cb>[ <v>item1<>, <v>item2<>, <v>...<> ] = <v>itemList<>;<>
 
@@ -594,7 +639,7 @@ Return items 3 and Onwards. Return in new array:
 
 
 
-### Destructure - From Object
+### Variable - Destructure - From Object
 
 <cb>let {<v>property1<>, <v>property2<>, <v>...<>} = <v>object1<>;<>
 
@@ -632,11 +677,7 @@ let {<v>value3<>: <v>subitem3<>} = <v>item1<>;				<#>// Extract with Rename<>
 
 
 
-## Types
-
-
-
-### Type - Get
+### Variable Type - Get
 
 <cb>= typeof(<v>value1<>)<>
 
@@ -662,18 +703,55 @@ Example:
 
 
 
-## Types - Detailed
+# Data Types
 
 
+### Standard Types
 
-### Type - NaN
+Primitives:
 
-<cb>= NaN<>
+<card><table><col><c>null<>		<><col><c>null<><><col>Null Value<>
+<col> <>
+<col><c>undefined<><><col><><col>A Declared But Unassigned Variable<>
+<col> <>
+<col><c>boolean<><><col><c>true | false<><><col>True or False<>
+<col> <>
+<col><c>bigint<><><col><c><v>42<>n<><><col>Integer of Arbitrary Precision<>
+<col> <>
+<col><c>number<><><col><c><v>42<>
+<v>42.1<>
+NaN
+Infinity<><><col>Floating Point Number<>
+<col> <>
+<col><c>string<><><col><c>'<v>A String<>'<><><col>Immutable String<>
+<col><><col><c>"<v>A String<>"<><>
+<col> <>
+<col><c>Symbol<><><col><><col>Immutable Unique Value (atom) / Object Key<><><>
 
+Others:
 
-Not a number.
+<card><table><col><c>Object<>		<><col>A Value in Memory Referenced By an Identifier<><><>
 @
-@ not a number
+@ Standard
+
+
+
+### Additional Types
+
+<card><table><col><c>Date<>			<><col>A Value in Memory Referenced By an Identifier<><><>
+
+
+
+### Collection Types
+
+<card><table><col>Array<><col><c>[]<><><col>Ordered List of Items<>
+<col>Associative Array<><col><c>{}<><><col>Dictionary of Key, Value Pairs<>
+<col>Map<><col><c>Map()<><><col>Ordered Dictionary of Key, Value Pairs<>
+<col>Set<><col><c>Set()<><><col>Set of Items<><><>
+
+
+
+# Types
 
 
 
@@ -712,64 +790,276 @@ Returns <c>true<> when <c><v>value<><> is any value but undefined.
 
 
 
-### Booleans
+# BigInt
+
+<cb>= <v>42<>n<>
+
+Type: <c>bigint<>
+
+
+Arbitrary Precision Integer
+
+Define a big int by appending <c>n<> to the end of the integer.
+@
+@ bigint-only, bigints-only, big ints, n
+
+
+
+# Boolean
 
 <cb>= true
 = false<>
 
-
-
-### Date
-
-<cb>= Date()<>
-
-Get Unix Time	date1.getTime() 		// Unix time since 1970-01-01 in milliseconds
+Type: <c>boolean<>
+@
+@ bool-only, bools-only, boolean-only, booleans-only
 
 
 
-### Date Operations
+# Date
+
+<cb>= new Date()<>
+
+<cb>= new Date(<v>year<>, <v>month<>, <v>day<>, <v>hour<>, <v>minute<>, <v>second<>)<>
+@
+@ date()
+@ date-only, dates-only, datetime
+@ Create, Insantiate, Declarations, New, variable
 
 
 
-#### Date - Get Hours
+### Date - Create Date
+
+<cb>= new Date(<v>year<>, <v>month<>, <v>day<>)<>
+
+
+
+### Date - Create Date Time
+
+<cb>= new Date(<v>year<>, <v>month<>, <v>day<>, <v>hour<>, <v>minute<>, <v>second<>)<>
+
+
+
+### Date - Create Now
+
+<cb>= new Date()<>
+@
+@ today
+
+
+
+# Date Properties
+@
+@ date(), datetime
+@ date-only, dates-only
+
+
+
+### Date - Get Date
+
+<cb>= <v>date1<>.getDate()<>
+@
+@ date.getDate(), .getDate()
+
+
+
+### Date - Get Day of Week
+
+<cb>= <v>date1<>.getDay()<>
+@
+@ date.getDay(), .getDay()
+
+
+
+### Date - Get Hours
 
 <cb>= <v>date1<>.getHours()<>
+@
+@ date.getHours(), .getHours()
 
 
 
-#### Date - Get Minutes
+### Date - Get Milliseconds
+
+<cb>= <v>date1<>.getMilliseconds()<>
+@
+@ date.getMilliseconds(), .getMilliseconds()
+
+
+
+### Date - Get Minutes
 
 <cb>= <v>date1<>.getMinutes()<>
+@
+@ date.getMinutes(), .getMinutes()
 
 
 
-#### Date - Get Seconds
+### Date - Get Month
+
+<cb>= <v>date1<>.getMonth()<>
+
+Range: 0 to 11.
+
+<#>(Why JavaScript, Why‽‽)<>
+@
+@ date.getMonth(), .getMonth()
+
+
+
+### Date - Get Seconds
 
 <cb>= <v>date1<>.getSeconds()<>
+@
+@ date.getSeconds(), .getSeconds()
 
 
 
-#### Date - Get Unix Time / Epoch Time
+### Date - Get Year
+
+<cb>= <v>date1<>.getFullYear()<>
+@
+@ date.getFullYear(), .getFullYear()
+@ date.getYear(), .getYear()
+
+
+
+### Date - Get Unix Time / Epoch Time
 
 <cb>= <v>date1<>.getTime()<>
 
 Returns Unix time in milliseconds since 1970-01-01.
+@
+@ date.gettime(), .gettime()
 
 
 
-### Number
+# Date Operations
+@
+@ date(), datetime
+@ date-only, dates-only
 
+
+
+### Date - Get Difference in Seconds
+
+<cb>= <v>date1<> - <v>date2<><>
+@
+@ minus, subtract
+
+
+
+### Date - From String
+
+<cb>= new Date('<v>date string<>')<>
+
+<cb>= new Date('<v>yyyy<>/<v>mm<>/<v>dd<> <v>hh<>:<v>mm<>:<v>ss<>')<>
+@
+@ convert, parse text
+@ convert, conversion, to, string()
+
+
+
+### Date - To String
+
+<cb>= String(<v>date<>)<>
+
+<cb>= new Date('<v>yyyy<>/<v>mm<>/<v>dd<> <v>hh<>:<v>mm<>:<v>ss<>')<>
+@
+@ convert, parse text, string()
+@ convert, conversion, from, string()
+
+
+
+### Date - To YYYY-MM-DD HH:MM:SS
+
+Use Function:
+
+<cb>function to_yyyymmdd_hhmmss(<v>date<>) {
+
+    to_2_digits = value => String(value).padStart(2, '0')
+
+    return (<v>date<>.getFullYear() + '-' +
+        to_2_digits(<v>date<>.getMonth() + 1) + '-' +
+        to_2_digits(<v>date<>.getDate()) + ' ' +
+        to_2_digits(<v>date<>.getHours()) + ':' +
+        to_2_digits(<v>date<>.getMinutes()) + ':' +
+        to_2_digits(<v>date<>.getSeconds()));
+}<>
+
+Usage:
+
+<cb>console.log(to_yyyymmdd_hhmmss(new Date()));<>
+
+There is no easy built in way to format dates.
+
+Use the function above to print a formatted date.
+@
+@ format, convert yyyymmdd, hhmmss
+
+
+
+# Number
+
+<cb>= <v>42<><>
+
+<cb>= <v>11.123<><>
 
 Type: <c>number<>
+
+
+Floating point number.
+Double-precision 64-bit IEEE754
 @
 @ Float, Integer
+# number-only, numbers-only
 
 
 
-#### Number Operations
+### Number - NaN
+
+<cb>= NaN<>
 
 
-##### Number - To String
+Not a number.
+@
+@ not a number
+
+
+
+### Number - Positive Infinity
+
+<cb>= Infinity<>
+
+
+
+### Number - Negative Infinity
+
+<cb>= -Infinity<>
+@
+@ -infinity
+
+
+
+# Number Operations
+@
+@ Float, Integer
+# number-only, numbers-only
+
+
+
+### Number - To Integer
+
+<cb>= Math.floor(<v>value<>)<>
+@
+@ round, math.floor()
+@ convert, conversion
+
+
+
+### Number - To String
+
+<cb>String(<v>number1<>)<>
 
 <cb>= <v>number1<>.toString()<>
 
@@ -777,10 +1067,13 @@ Type: <c>number<>
 
 
 <c><v>radix<><> can be any value between 2 and 32.
+@
+@ .tostring()
+@ convert, conversion, from, cast
 
 
 
-### Strings
+# Strings
 
 <cb>='<v>A String<>'<>
 
@@ -788,23 +1081,25 @@ Type: <c>number<>
 
 <cb>="Join " + "Strings " + "Together"<>
 
-
 Type: <c>string<>
 
+
+Immutable String.
+
+Characters are stored in 2 bytes (16-bits).
 Single or double quotes are fine.
+@
+@ string-only, strings-only, str-only
 
 
 
-Is Empty	if (! string1) {...
-Starts With	if (string1.startsWith (compareString)) ...
+# String Operations
+@
+@ string-only, strings-only, str-only
 
 
 
-### String Operations
-
-
-
-#### String - Comparison
+### String - Comparison
 
 Is String 1 Equal To String 2:
 
@@ -816,19 +1111,23 @@ Is String 1 Less Than String 2:
 
 
 
-#### String - Ends With
+### String - Contains
+
+<cb>= <v>string1<>.includes(<v>match<>)<>
+@
+@ .includes()
+
+
+
+### String - Ends With
 
 <cb>= <v>string1<>.endsWith(<v>ending<>)<>
+@
+@ .endsWith()
 
 
 
-#### String - Starts With
-
-<cb>= <v>string1<>.startsWith(<v>start<>)<>
-
-
-
-#### String - Is Blank?
+### String - Is Blank?
 
 <cb>= <v>string1<> == null || <v>string1<>.trim() === ''<>
 
@@ -836,7 +1135,7 @@ Returns true for null, "", " ", or all white spaces.
 
 
 
-#### String - Is Empty?
+### String - Is Empty?
 
 <cb>= !<v>string1<><>
 
@@ -844,7 +1143,7 @@ Returns true for "", 0, null, undefined, false, NaN
 
 
 
-#### String - Is Equal?
+### String - Is Equal?
 
 <cb><v>string1<> === <v>string2<><>
 
@@ -882,7 +1181,7 @@ else {
 
 
 
-#### String - Not Equal?
+### String - Not Equal?
 
 <cb><v>string1<> !== <v>string2<><>
 
@@ -917,39 +1216,31 @@ if (<v>a<> !== <v>b<>) {
 
 
 
-#### String - Is Null?
+### String - Is Null?
 
 <cb>= <v>string1<> === null<>
 
 
 
-#### String - Not Empty?
+### String - Not Empty?
 
 <cb>= (<v>string1<> !== null && <v>string1<> !== '')<>
 
 
 
-#### String - Not Null?
+### String - Not Null?
 
 <cb>= <v>string1<> !== null<>
 
 
 
-#### String - Is String?
+### String - Is String?
 
 <cb>= typeof(<v>value<>) === "string"<>
 
 
 
-#### String - Length
-
-<cb>= <v>string1<>.length<>
-@
-@ Size, Count
-
-
-
-#### String - Get Character
+### String - Get Character
 
 <cb>= <v>string1<>.charAt(<v>position<>)<>
 
@@ -962,33 +1253,72 @@ Example:
 
 
 
-#### String - Repeat
+### String - Iterate Over Characters
+
+<cb>for (<v>character<> of <v>string1<>) {
+	<v>...<>
+}<>
+
+<cb>[...<v>string1].forEach(<v>character<> => { <v>...<> } )
+
+
+
+### String - Join
+
+<cb>= <v>separator<>.join(<v>stringArray<>)<>
+@
+@ .join()
+
+
+### String - Length
+
+<cb>= <v>string1<>.length<>
+@
+@ Size, Count
+
+
+
+### String - Repeat
 
 <cb>= <v>string1<>.repeat(<v>count<>)<>
 
 
 
-#### String - Pad Start / Pad Left
+### String - Pad Start
 
 <cb>= <v>string1<>.padStart(<v>length<>)<>
 
 <cb>= <v>string1<>.padStart(<v>length<>, <v>padding<>)<>
+
+
+Pads a string on the left side.
 @
 @ Right Justify, Left, .padstart()
 
 
 
-#### String - Pad End / Pad Right
+### String - Pad End
 
 <cb>= <v>string1<>.padEnd(<v>length<>)<>
 
 <cb>= <v>string1<>.padEnd(<v>length<>, <v>padding<>)<>
+
+
+Pads a string on the right side.
 @
 @ Left Justify, Right, End, padEnd()
 
 
 
-#### String - Substring
+### String - Starts With
+
+<cb>= <v>string1<>.startsWith(<v>start<>)<>
+@
+@ .startsWith()
+
+
+
+### String - Substring
 
 <cb>= <v>string1<>.slice(<v>start<>, <v>end_plus_1<>)<>
 
@@ -1014,7 +1344,7 @@ console.log(<v>string1<>.substring(<v>1<>, <v>3<>));
 
 
 
-#### String - Substring - Left
+### String - Substring - Left
 
 <cb>= <v>string1<>.slice(0, <v>end_plus_1<>)<>
 
@@ -1039,7 +1369,8 @@ console.log(<v>string1<>.substring(0, <v>3<>));
 @ start, beginning, partial
 
 
-#### String - Substring - Right
+
+### String - Substring - Right
 
 <cb>= <v>string1<>.slice(<v>start<>)<>
 
@@ -1070,23 +1401,7 @@ console.log(<v>string1<>.substring(<v>3<>));
 
 
 
-#### String - Trim
-
-<cb>= <v>string1<>.trim()<>
-@
-@ .trim(), .strip(), remove, whitespaces, white spaces
-
-
-
-#### String - Case - Upper
-
-<cb>= <v>string1<>.toUpperCase()<>
-@
-@ uppercase, .touppercase()
-
-
-
-#### String - Case - Lower
+### String - To Lower Case
 
 <cb>= <v>string1<>.toLowerCase()<>
 @
@@ -1094,33 +1409,50 @@ console.log(<v>string1<>.substring(<v>3<>));
 
 
 
-#### String - Iterate Over Characters
+### String - To Upper Case
 
-<cb>for (<v>character<> of <v>string1<>) {
-	<v>...<>
-}<>
-
-<cb>[...<v>string1].forEach(<v>character<> => { <v>...<> } )
+<cb>= <v>string1<>.toUpperCase()<>
+@
+@ uppercase, .touppercase()
 
 
 
-#### String - From Integer
+### String - Trim
+
+<cb>= <v>string1<>.trim()<>
+@
+@ .trim(), .strip(), remove, whitespaces, white spaces
+
+
+
+### String - From Any Type
+
+<cb>= String(<v>value<>)<>
+
+Converts any type into a string.
+@
+@ integer, float, date
+@ convert, conversion, to, string()
+
+
+
+### String - To Integer
 
 <cb>= parseInt(<v>string1<>)<>
 @
-@ parseint(), parse
+@ parseint(), parse, from
 
 
 
-#### String - From Float
+### String - To Float
 
 <cb>= parseFloat(<v>string1<>)<>
 @
-@ parsefloat(), parse
+@ parsefloat(), parse, from
 
 
 
-### Iterable
+# Iterable
 
 A generalization of arrays.
 
@@ -1128,14 +1460,7 @@ e.g.	Array, String
 
 
 
-### Arrays, Sets, Objects, Maps
-
-Article on Arrays, Sets, Objects, Maps
-<l>https://codeburst.io/array-vs-set-vs-map-vs-object-real-time-use-cases-in-javascript-es6-47ee3295329b<>
-
-
-
-### Array
+# Array
 
 <cb>= []<>
 
@@ -1150,13 +1475,13 @@ Article on Arrays, Sets, Objects, Maps
 
 
 
-### Array - Operations
+# Array Operations
 @
 @ arrays, array-only, arrays-only, list
 
 
 
-#### Array - Append
+### Array - Append
 
 <cb><v>array1<>.push(<v>value<>);<>
 @
@@ -1164,7 +1489,7 @@ Article on Arrays, Sets, Objects, Maps
 
 
 
-#### Array - Append Array
+### Array - Append Array
 
 <cb><v>array1<>.concat(<v>array2<>);<>
 
@@ -1175,7 +1500,7 @@ Adds one or more arrays onto an existing array.
 @ put, add, addall, concatenate, extend, combine
 
 
-#### Array - Get
+### Array - Get
 
 <cb>= <v>array1<>[<v>index<>]<>
 
@@ -1185,7 +1510,7 @@ Adds one or more arrays onto an existing array.
 
 
 
-#### Array - Get First
+### Array - Get First
 
 <cb>= <v>array1<>[0]<>
 
@@ -1195,7 +1520,7 @@ Adds one or more arrays onto an existing array.
 
 
 
-#### Array - Get Last
+### Array - Get Last
 
 <cb>= <v>array1<>[<v>array1<>.length - 1]<>
 @
@@ -1203,7 +1528,7 @@ Adds one or more arrays onto an existing array.
 
 
 
-#### Array - Includes
+### Array - Includes
 
 <cb>= <v>array1<>.includes(<v>value<>)<>
 @
@@ -1211,7 +1536,7 @@ Adds one or more arrays onto an existing array.
 
 
 
-#### Array - Is Array
+### Array - Is Array
 
 <cb>= Array.isArray(<v>array1<>)<>
 
@@ -1224,7 +1549,7 @@ Can not use <c>typeof<> because it returns <c>Object<> which might be something 
 
 
 
-#### Array - Iterate
+### Array - Iterate
 
 <cb><v>array1<>.forEach(<v>item<> => {<v>...<>});<>
 
@@ -1243,7 +1568,7 @@ Item With Index Value:
 
 
 
-#### Array - Length
+### Array - Length
 
 <cb>= <v>array1<>.length<>
 @
@@ -1251,7 +1576,7 @@ Item With Index Value:
 
 
 
-#### Array - Update
+### Array - Update
 
 <cb><v>array1<>[<v>index<>] = <v>value<>;<>
 
@@ -1266,10 +1591,7 @@ Example:
 
 
 
-
-
-
-### Associative Array
+# Associative Array
 
 <cb>= {}<>
 
@@ -1279,11 +1601,11 @@ Example:
 
 
 
-### Associative Array  - Operations
+# Associative Array Operations
 
 
 
-#### Associative Array - Add / Update
+### Associative Array - Add / Update
 
 <cb><v>array1<>["<v>key1<>"]
 
@@ -1293,7 +1615,7 @@ Keys must be strings.
 
 
 
-#### Associative Array - Contains?
+### Associative Array - Contains?
 
 <!>Contains value?<>
 
@@ -1306,13 +1628,13 @@ Keys must be strings.
 
 
 
-#### Associative Array - Get Keys
+### Associative Array - Get Keys
 
 <cb>= Object.keys(<v>array1</Y);<>
 
 
 
-#### Associative Array - Get Value
+### Associative Array - Get Value
 
 <cb>= <v>array1<>["<v>key1<>"]<>
 @
@@ -1320,13 +1642,13 @@ Keys must be strings.
 
 
 
-#### Associative Array - Size
+### Associative Array - Size
 
 <cb>= Object.keys(<v>array1</Y).length<>
 
 
 
-#### Associative Array - Iterate
+### Associative Array - Iterate
 
 <cb>for (var <v>key<> in <v>array1) {
 	<v>...<>
@@ -1334,7 +1656,7 @@ Keys must be strings.
 
 
 
-### Map
+# Map
 
 
 Maps are name value pairs that can be iterated over in insert order.
@@ -1347,13 +1669,13 @@ Maps are name value pairs that can be iterated over in insert order.
 
 
 
-### Map - Operations
+# Map Operations
 @
 @ map-only, maps-only, dictionary-only, dictionaries-only
 
 
 
-#### Map - Set
+### Map - Set
 
 <cb><v>map1<>.set(<v>key<>, <v>value<>);<>
 
@@ -1364,13 +1686,13 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Get
+### Map - Get
 
 <cb>= <v>map1<>.get(<v>key<>);<>
 
 
 
-#### Map - Delete
+### Map - Delete
 
 <cb><v>map1<>.delete(<v>key<>)<>
 @
@@ -1378,7 +1700,7 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Contains?
+### Map - Contains?
 
 <cb>= <v>map1<>.has(<v>value<>)<>
 
@@ -1387,13 +1709,13 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Clear
+### Map - Clear
 
 <cb><v>map1<>.clear()<>
 
 
 
-#### Map - Size
+### Map - Size
 
 <cb>= <v>map1<>.size<>
 @
@@ -1401,31 +1723,31 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Copy
+### Map - Copy
 
 <cb><v>map2<> = new Map(<v>map1<>)<>
 
 
 
-#### Map - Merge
+### Map - Merge
 
 <cb><v>map3<> = new Map([...<v>map1<>, ...<v>map2<>])<>
 
 
 
-#### Map - Get Keys
+### Map - Get Keys
 
 <cb>= <v>map1<>.keys()<>
 
 
 
-#### Map - Get Values
+### Map - Get Values
 
 <cb>= <v>map1<>.values()<>
 
 
 
-#### Map - Iterate Over Keys
+### Map - Iterate Over Keys
 
 <cb>for (let <v>key<> of <v>map2<>.keys()) {
 	<v>...<>
@@ -1433,7 +1755,7 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Iterate Over Values
+### Map - Iterate Over Values
 
 <cb>for (let <v>key<> of <v>map2<>.values()) {
 	<v>...<>
@@ -1441,7 +1763,7 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Iterate Over Keys and Values
+### Map - Iterate Over Keys and Values
 
 <cb>for (let [<v>key<>, <v>value<>] of <v>map2<>) {
 	<v>...<>
@@ -1449,54 +1771,105 @@ Adds or updates the key to the given value.
 
 
 
-#### Map - Iterate Over Key Values With forEach
+### Map - Iterate Over Key Values With forEach
 
 <cb><v>map1<>.forEach ((<v>value<>, <v>key<>) => { <v>...<> })<>
 
 
 
-### Set
+# Set
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+<cb>= new Set()<>
 
-	var set1 = new Set();
-	var set1 = new Set(array1);
+Usage:
 
-set1.add (value1);
-
-var value1 = map1.get (keyObject);
-
-Contains?	if (set1.has(value2)) {...
-
-Clear / Empty	set1.clear();
-
-Length	= set1. ... ?
+<cb>var <v>set1<> = new Set();
+var <v>set1<> = new Set(<v>array1<>);<>
+@
+@ new set()
+@ set-only, sets-only
 
 
 
+# Set Operations
+@
+@ new set()
+@ set-only, sets-only
 
-### Object
+
+### Set - Add
+
+<cb><v>set1<>.add(<v>value1<>);<>
+@
+@ insert, put, update, modify ,change, .add()
+
+
+
+### Set - Contains?
+
+<cb>= <v>set1<>.has(<v>value<>)<>
+
+Usage
+
+<cb>if (<v>set1<>.has(<v>value<>)<>) {<v>...<><>
+@
+@ .has()
+@ has, check, exists, in, includes
+@ item, value, element
+
+
+
+### Set - Remove
+
+<cb><v>set1<>.delete(<v>value<>);<>
+
+Deletes <c>value<> from the set.
+@
+@ .delete()
+@ item, value, element
+
+
+
+### Set - Remove All
+
+<cb><v>set1<>.clear();<>
+@
+@ .clear()
+@ clear, delete
+@ items, values, elements
+
+
+
+### Set - Size
+
+<cb>= <v>set1<>.size<>
+@
+@ count, length, .size
+
+
+
+# Object
 
 <cb>= new Object()<>
 @
-@ object-only
+@ object-only, objects-only
 @ create, define, instantiate, new
 
 
 
-### Object - Operations
+# Object Operations
 @
-@ object-only
+@ object-only, objects-only
 
 
 
-#### Object - From JSON
+### Object - From JSON
 
 <cb>= JSON.parse(<v>jsonString<>)<>
 
 
 
-#### Object - To JSON
+### Object - To JSON
 
 <cb>= JSON.strigify(<v>object1<>)<>
 
@@ -1504,7 +1877,7 @@ Length	= set1. ... ?
 
 # Exceptions
 
-<!>Test Test Test<>
+(<m>Test Test Test<>)
 
 
 
@@ -1637,7 +2010,96 @@ Validate	isValid = streamable1.every (item => validationExpression) 	// Must ret
 
 
 
+# Functions
+@
+@ function-only, functions-only, func-only, funcs-only
+
+
+## Function - Basics
+
+<cb><v>function1<> = () => <v>expression<>;<>
+
+<cb><v>function2<> = <v>parameter<> => <v>expression<>;<>
+
+<cb><v>function3<> = (<v>param1<>, <v>param2<>) => {
+	<v>...<>
+	return <v>value<>;
+}<>
+
+<cb>function <v>function4<>(<v>param1<>, <v>param2<>) {
+	<v>...<>
+	return <v>value<>;
+}<>
+
+
+
+## Functions - Definitions
+
+
+
+### Function - Define
+
+<cb>function <v>function1<>(<v>parameter1<>) {
+	<v>...<>
+	return <v>value<>;
+}<>
+
+
+Defines a function.
+
+
+
+### Function - Define / Double Arrow
+
+<cb>() => {<v>...<>}<>
+
+Usage:
+
+<cb><v>function1<> = () => <v>...<>;
+
+<v>function1<> = (<v>parameter1<>) => {<v>...<>}
+
+<v>function1<> = (<v>parameter1<>) => {
+	<v>...<>;
+	return <v>value<>}<>
+
+
+Defines a function.
+@
+@ () => {}
+@ double arrow, fat arrow
+
+
+
+### Function - Define / Double Arrow, Single Statement, Implicit Return
+
+<cb>() => <v>expression<>;<>
+
+Usage:
+
+<cb><v>function1<> = (<v>parameter1<>) => <v>expression<>;<>
+
+
+Defines a single statement function.
+
+Return is not required.
+The evaluated value is returned automatically.
+Must be a single statement to have an implicit return.
+
+
+Example:
+
+<cb>let <v>square<> = <v>value<> => <v>value<> * <v>value<>;
+
+let <v>squared<> = <v>square<>(<v>10<>);<>
+@
+@ () => {}
+@ double arrow, fat arrow
+
+
+
 # Promise
+
 
 
 ## Basics
@@ -1958,6 +2420,26 @@ Does not block calling functions
 
 ### _ ... In Parallel
 
+
+
+# Modules
+
+
+### Export Function, Class, Variable
+
+<cb>export <v>itemName<><>
+
+Usage:
+
+<cb>export <v>variable1<>, <v>variable2<>, <v>...<>;
+
+export <v>CONSTANT_1<>, <v>CONSTANT_2<>, <v>...<>;
+
+export <v>function1<>() {<v>...<>};
+
+export <v>Class1<> {<v>...<>};<>
+
+Exports a class, function, or variable so it can be used by external modules.
 
 
 
@@ -3475,9 +3957,13 @@ var <v>mediaQuery<> = window.matchMedia("(min-width: 576px)");
 
 ### Sleep
 
-<c>export const sleep = (duration) => new Promise((resolve) => setTimeout(resolve, duration))
+Define:
 
-await sleep(<v>duration_in_milliseconds<>)<>
+<cb>const <v>sleep<> = (<v>duration<>) => new Promise((<v>resolve<>) => setTimeout(<v>resolve<>, <v>duration<>))<>
+
+Use:
+
+<cb>await sleep(<v>duration_in_milliseconds<>)<>
 
 
 Implement the function <c>sleep()<>, then call <c>sleep()<> with <c>await<>.
@@ -3675,6 +4161,13 @@ ES6 feature that allows you to extract pieces of an array or object.
 
 
 
+### Double Arrow
+A short syntax for defining a function.
+
+<cb>(<v>param<>) => {<v>...<>}<>
+
+
+
 ### ECMAScript
 A scripting language specification created to standardize JavaScript. JavaScript is considered a dialect of EMAScript. Others are JScript, ActionScript, etc. Called ECMAScript because JavaScript had some legal issues in the beginning.
 
@@ -3695,6 +4188,15 @@ Web - Browser
 
 ### Fallback
 Provides support for a feature that isn't supported in the browser using a different set of APIs.
+
+
+
+### Fat Arrow
+Alternate name for Double Arrow.
+
+Double Arrow, a short syntax for defining a function.
+
+<cb>(<v>param<>) => {<v>...<>}<>
 
 
 
@@ -3778,142 +4280,6 @@ Used in objects to refer to the enclosing context.
 
 ### Variable Scope
 In function, or in a parent function. Javascript will search parent chain looking for  variable.
-
-
-
-
-
-# Unsorted
-
-Lang - Import / Export
-
-Export - Directly	export function function1...
-		export class class1...
-
-Export - Named	export { function1, function2, var1, var2... }
-
-Import - All	import * from "file-name.mjs"				// Can't get this to work!
-
-Import - Module Functions	import {function1, function2...} from "file_name.mjs" 		// Destructured format.
-		import {function1, function2...} from "file_name"		// Extension should be .js for this and package.json needs "type":"module"
-
-Lang - Classes
-
-Create	let item1 = new Class1();
-
-Define	class Class1 {
-
-			constructor (param1, param2...) {
-				this.property1 = param1;
-				...
-			}
-		}
-
-Lang - Functions
-
-Note	Functions are Objects. They can be assigned to variables and passed.
-	Function Overloading not allowed.
-	Parameters are optional.
-	- Will have "undefined" value.
-
-Create (New)	let functionName = () => expression; 		// No parameters
-
-	let functionName = (param1...) => expression;
-
-		let functionName = (param1...) => {
-		Code...
-		return returnVal;
-	}
-
-	let functionName = (..., default_param = "default value") => {
-		Code...
-		return returnVal;
-	}
-
-Create (New 2)	let functionName = _ => ... 		// _ is a variable name.
-
-Create (Old)	function functionName (param1...) {
-		Code...
-		return returnVal;
-	}
-
-Assign	var var1 = functionName;
-	var result1 = var1 (param1...);
-
-Define	function functionName (param1…) {
-		Code...
-	}
-
-	- Defined at parse time. Must be declared before used.
-
-
-	var varFunc1 = function (params…) {
-		Code...
-	}
-
-	- Defined at runtime.
-
-	Rest Parameters	var varFunc1 = function (...paramList1) {			// An undefined number of items passed in as a list
-											// Must be last item in function parameters.
-
-		varFunc1 (param1, param2, param3...) 			// Calling. Pass in any number of parameters here.
-
-Return	function functionName () {
-		Code...
-		return [returnVal];
-	}
-
-Scope	function globalFunction () {
-
-		let parentVariable = value;
-
-		function localFunction (param1…) {
-			Code...
-			= parentVariable
-		}
-	}
-
-
-Errors
-
-<!>Reword Descriptions<>
-
-EvalError           An error in the eval() function has occurred.
-
-RangeError          Out of range number value has occurred.
-
-ReferenceError      An illegal reference has occurred.
-
-SyntaxError         A syntax error within code inside the eval() function has occurred.
-                    All other syntax errors are not caught by try/catch/finally, and will
-                    trigger the default browser error message associated with the error. 
-                    To catch actual syntax errors, you may use the onerror event.
-
-TypeError           An error in the expected variable type has occurred.
-
-URIError            An error when encoding or decoding the URI has occurred 
-                   (ie: when calling encodeURI()).
-
-
-
-### URL - Unsorted
-
-<!>Please Add<>
-
-
-append(name, value) – add the parameter by name,
-delete(name) – remove the parameter by name,
-get(name) – get the parameter by name,
-getAll(name) – get all parameters with the same name (that’s possible, e.g. ?user=John&user=Pete),
-has(name) – check for the existence of the parameter by name,
-set(name, value) – set/replace the parameter,
-sort() – sort parameters by name, rarely needed,
-…and it’s also iterable, similar to Map.
-
-
-From:
-
-<l>https://javascript.info/url<>
 
 
 
