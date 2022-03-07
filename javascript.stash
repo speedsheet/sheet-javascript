@@ -1871,7 +1871,7 @@ Deletes <c>value<> from the set.
 
 ### Object - To JSON
 
-<cb>= JSON.strigify(<v>object1<>)<>
+<cb>= JSON.stringify(<v>object1<>)<>
 
 
 
