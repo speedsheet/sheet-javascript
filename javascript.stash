@@ -189,6 +189,15 @@ Use camelCase.
 Use TiteCase.
 
 
+### Convention - Private Functions, Methods, Properties
+
+There is no official convention.
+
+I recommend add a leading underscore to the name '_'.
+
+<cb>function _<v>privateFunction1<>()<v>...<><>
+
+
 # Symbol Lookup
 
 <c>{<v>...<>}<>				Code Block
@@ -536,81 +545,53 @@ Preferred over <c>==<>.
 @ var-only, vars-only, variable-only, variables-only
 
 
-### Variable - Assign - Without Keyword
+### Variables - Basics
 
-<cb><v>varableName<> = <v>value<>;<>
+<card><table><col>Global<><col>-<><col><c><v>var1<> = <v>value<>;<><>
+<col>Local<#><super>1<><><><col><c>var<><><col><c>var <v>var1<> = <v>value<>;<><>
+<col>Block<><col><c>let<><><col><c>let <v>var1<> = <v>value<>;<><>
+<col>Block Constant	<><col><c>const<>	<><col><c>const <v>CONST_1<> = <v>value<>;<><><><>
+
+
+1 - Preferred
+@
+@ assignment
+
+
+
+### Variable - Assign - Global
+
+<cb><v>variable1<> = <v>value<>;<>
 
 
 Scope: Global
 
 
-Assign without <c>let<> or <c>var<> keyword.
+Assign without <c>let<> or <c>var<> keyword to create a global variable.
 @
-@ Create, Insantiate, Declarations, New, variable
+@ Create, Insantiate, Declarations, New
 
 
 
-### Variable - Assign - Let
+### Variable - Assign - Block / Let
 
-<cb>let <v>varableName<> = <v>value<>;<>
+<cb>let <v>variable1<> = <v>value<>;<>
 
 
 Scope: Block
 
 
+Use <c>let<> for a block level variable.
+
 Preferred.
 Most limited scope.
 Confines scope to the block.
 @
-@ Create, Insantiate, Declarations, New, variable
+@ Create, Insantiate, Declarations, New
 
 
 
-### Variable - Assign - Var
-
-<cb>var <v>varableName<> = <v>value<>;<>
-
-
-Scope: Local
-
-
-Will declare the variable before running the script.
-It will have value 'Undefined' until code reaches assignment.
-@
-@ Create, Insantiate, Declarations, New, variable
-
-
-
-### Variable - Assign Scope - Global
-
-<cb><v>varableName<> = <v>value<>;<>
-
-
-Assign without <c>let<> or <c>var<> keyword to create a global variable.
-
-
-### Assign Scope - Local
-
-<cb>var <v>varableName<> = <v>value<>;<>
-
-
-Use <c>var<> for a local variable.
-@
-@ Create, Insantiate, Declarations, New, variable
-
-
-
-### Variable - Assign Scope - Block
-
-<cb>let <v>varableName<> = <v>value<>;<>
-
-Use <c>let<> for a block level variable.
-@
-@ Create, Insantiate, Declarations, New, variable
-
-
-
-### Variable - Assign - Constant
+### Variable - Assign - Block / Const
 
 <cb>const <v>CONSTANT_NAME<> = <v>value<>;<>
 
@@ -619,7 +600,25 @@ Scope: Block
 
 Declares a variable as a constant and can not be changed.
 @
-@ Create, Insantiate, Declarations, New, variable
+@ Create, Insantiate, Declarations, New
+@ constant
+
+
+
+### Variable - Assign - Local / Var
+
+<cb>var <v>varableName<> = <v>value<>;<>
+
+
+Scope: Local
+
+
+Use <c>var<> for a local level variable.
+
+Will declare the variable before running the script.
+It will have value 'Undefined' until code reaches assignment.
+@
+@ Create, Insantiate, Declarations, New
 
 
 
@@ -700,6 +699,26 @@ Example:
 @
 @ Typeof, type of, To String
 @ instanceof, isinstance, type is
+
+
+### Variable Type - Compare
+
+<cb>= typeof(<v>value<>) == '<v>type<>'<>
+
+
+
+### Variable Type - Compare Instance Of
+
+<cb>= <v>value<> instanceof <v>Type<><>
+
+<cb>= <v>value<> instanceof Object<>
+
+
+Compares the <c>value<> to see if it is of type <c>Type<>
+
+Internally, it searches the prototype chain of <c>value<> to see if <c>Type<> exists.
+@
+@ instanceof
 
 
 
@@ -833,10 +852,34 @@ Type: <c>boolean<>
 <cb>= new Date(<v>year<>, <v>month<>, <v>day<>)<>
 
 
+Returns a date to the given year, month, day but with hour, minute and second = 0.
+
+
+Unit Ranges:
+
+<table><col>Year<><col>-271,821 - 271,822<>
+<col>Month<><col>1 - 12<>
+<col>Day<><col>0 - (<v>Last-Day-Of-Month<> - 1)<>
+
+
 
 ### Date - Create Date Time
 
 <cb>= new Date(<v>year<>, <v>month<>, <v>day<>, <v>hour<>, <v>minute<>, <v>second<>)<>
+
+
+Returns a new date.
+
+
+Unit Ranges:
+
+<table><col>Year<><col>-271,821 - 271,822<>
+<col>Month<><col>1 - 12<>
+<col>Day<><col>0 - (<v>Last-Day-Of-Month<> - 1)<>
+<col>Hour<><col>0 - 23<>
+<col>Minute<><col>0 - 59<>
+<col>Second<><col>0 - 59<>
+<col>Microseconds<><col>0 - 999,999<><>
 
 
 
@@ -845,6 +888,22 @@ Type: <c>boolean<>
 <cb>= new Date()<>
 @
 @ today
+
+
+
+### Date - Current Epoch Time / Unix Time
+
+<cb>= Date.now()<>
+
+Returns the current epoch time (time in milliseconds from January 1st, 1970).
+
+Example:
+
+<cb>console.log(Date.now())
+
+<#>// Prints: 981003600000<><>
+@
+@ epoch time
 
 
 
@@ -915,22 +974,33 @@ Range: 0 to 11.
 
 
 
+### Date - Get Time
+
+<cb>= <v>date1<>.getTime()<>
+
+Returns the date's epoch time (time in seconds from January 1st, 1970).
+
+
+Example:
+
+<cb><v>date1<> = new Date(2001, 0, 1)
+<v>time1<> = date1.getTime()
+
+console.log(<v>time1<>)
+
+<#>// Prints: 981003600000<><>
+@
+@ date.getTime(), .getTime()
+@ epoch, unix, seconds
+
+
+
 ### Date - Get Year
 
 <cb>= <v>date1<>.getFullYear()<>
 @
 @ date.getFullYear(), .getFullYear()
 @ date.getYear(), .getYear()
-
-
-
-### Date - Get Unix Time / Epoch Time
-
-<cb>= <v>date1<>.getTime()<>
-
-Returns Unix time in milliseconds since 1970-01-01.
-@
-@ date.gettime(), .gettime()
 
 
 
@@ -949,6 +1019,24 @@ Returns Unix time in milliseconds since 1970-01-01.
 
 
 
+### Date - From Epoch Time / Unix Time
+
+<cb>= new Date(<v>epochTime<>)<>
+
+
+Returns a new date from the epoch time in milliseconds.
+
+
+<cb><v>epochTime<> = <v>978325200000<>;
+
+<v>date1<> = new Date(<v>epochTime<>);
+
+console.log(<v>date1<>);<>
+@
+@ create, to, convert, datetime, time
+
+
+
 ### Date - From String
 
 <cb>= new Date('<v>date string<>')<>
@@ -964,10 +1052,27 @@ Returns Unix time in milliseconds since 1970-01-01.
 
 <cb>= String(<v>date<>)<>
 
-<cb>= new Date('<v>yyyy<>/<v>mm<>/<v>dd<> <v>hh<>:<v>mm<>:<v>ss<>')<>
+Returns the date as a string.
+
+
+Example:
+
+<cb><v>date_1<> = Date();
+
+<v>formatted<> = String(<v>date_1<>);<>
 @
 @ convert, parse text, string()
 @ convert, conversion, from, string()
+
+
+
+### Date - To String / ISO Format
+
+<cb>= <v>date_1<>.toISOString()<>
+
+Returns the date
+@
+@ date.toISOString(), .toISOString()
 
 
 
@@ -1471,13 +1576,13 @@ e.g.	Array, String
 <cb>= new Array(<v>value1<>, <v>value2<>, <v>...<>)<>
 @
 @ arrays, array-only, arrays-only, list
-@ create, define, instantiate, new
+@ create, define, instantiate, new, []
 
 
 
 # Array Operations
 @
-@ arrays, array-only, arrays-only, list
+@ arrays, array-only, arrays-only, list, []
 
 
 
@@ -1485,6 +1590,7 @@ e.g.	Array, String
 
 <cb><v>array1<>.push(<v>value<>);<>
 @
+@ array.push(), .push()
 @ put, add, item, value
 
 
@@ -1497,6 +1603,7 @@ e.g.	Array, String
 
 Adds one or more arrays onto an existing array.
 @
+@ array.concat(), .concat()
 @ put, add, addall, concatenate, extend, combine
 
 
@@ -1532,6 +1639,7 @@ Adds one or more arrays onto an existing array.
 
 <cb>= <v>array1<>.includes(<v>value<>)<>
 @
+@ array.includes(), .includes()
 @ has, check, exists, in, includes, contains, item, element
 
 
@@ -1545,6 +1653,7 @@ Adds one or more arrays onto an existing array.
 
 Can not use <c>typeof<> because it returns <c>Object<> which might be something else.
 @
+@ array.isarray(), .isarray()
 @ typeof
 
 
@@ -1558,13 +1667,14 @@ Item With Index Value:
 <cb><v>array1<>.forEach(<v>item<>, <v>index<> => {<v>...<>});<>
 
 
-<!>Does not do this (not returned in order):<>
+<!>Do not do this (not returned in order):<>
 
 <cb>for(<v>item<> in <v>array1<>) {
 	<v>...<>
 }<>
 @
-@ .foreach(), for each, over, loop through
+@ array.foreach(), .foreach()
+@ for each, over, loop through
 
 
 
@@ -1572,6 +1682,7 @@ Item With Index Value:
 
 <cb>= <v>array1<>.length<>
 @
+@ array.length, .length
 @ size, count
 
 
@@ -1607,7 +1718,7 @@ Example:
 
 ### Associative Array - Add / Update
 
-<cb><v>array1<>["<v>key1<>"]
+<cb><v>array1<>["<v>key1<>"]<>
 
 Keys must be strings.
 @
@@ -1630,7 +1741,9 @@ Keys must be strings.
 
 ### Associative Array - Get Keys
 
-<cb>= Object.keys(<v>array1</Y);<>
+<cb>= Object.keys(<v>array1<>);<>
+@
+@ object.keys(), .keys()
 
 
 
@@ -1644,13 +1757,15 @@ Keys must be strings.
 
 ### Associative Array - Size
 
-<cb>= Object.keys(<v>array1</Y).length<>
+<cb>= Object.keys(<v>array1<>).length<>
+@
+@ object.keys().length, .keys().length, .length
 
 
 
 ### Associative Array - Iterate
 
-<cb>for (var <v>key<> in <v>array1) {
+<cb>for (var <v>key<> in <v>array1<>) {
 	<v>...<>
 }<>
 
@@ -1682,6 +1797,7 @@ Maps are name value pairs that can be iterated over in insert order.
 
 Adds or updates the key to the given value.
 @
+@ map.set(), .set()
 @ add, insert, put, update
 
 
@@ -1689,6 +1805,8 @@ Adds or updates the key to the given value.
 ### Map - Get
 
 <cb>= <v>map1<>.get(<v>key<>);<>
+@
+@ map.get(), .get()
 
 
 
@@ -1696,6 +1814,7 @@ Adds or updates the key to the given value.
 
 <cb><v>map1<>.delete(<v>key<>)<>
 @
+@ map.delete(), .delete()
 @ remove
 
 
@@ -1706,12 +1825,16 @@ Adds or updates the key to the given value.
 
 <cb>if (<v>map1<>.has(<v>value<>)) {
 	<v>...<><>
+@
+@ map.has(), .has()
 
 
 
 ### Map - Clear
 
 <cb><v>map1<>.clear()<>
+@
+@ map.clear(), .clear()
 
 
 
@@ -1719,6 +1842,7 @@ Adds or updates the key to the given value.
 
 <cb>= <v>map1<>.size<>
 @
+@ map.size, .size
 @ length, count
 
 
@@ -1738,12 +1862,16 @@ Adds or updates the key to the given value.
 ### Map - Get Keys
 
 <cb>= <v>map1<>.keys()<>
+@
+@ map.keys(), .keys()
 
 
 
 ### Map - Get Values
 
 <cb>= <v>map1<>.values()<>
+@
+@ map.values(), .values()
 
 
 
@@ -1801,7 +1929,8 @@ var <v>set1<> = new Set(<v>array1<>);<>
 
 <cb><v>set1<>.add(<v>value1<>);<>
 @
-@ insert, put, update, modify ,change, .add()
+@ set.add(), .add()
+@ insert, put, update, modify ,change
 
 
 
@@ -1813,7 +1942,7 @@ Usage
 
 <cb>if (<v>set1<>.has(<v>value<>)<>) {<v>...<><>
 @
-@ .has()
+@ set.has(), .has()
 @ has, check, exists, in, includes
 @ item, value, element
 
@@ -1825,7 +1954,7 @@ Usage
 
 Deletes <c>value<> from the set.
 @
-@ .delete()
+@ set.delete(), .delete()
 @ item, value, element
 
 
@@ -1834,7 +1963,7 @@ Deletes <c>value<> from the set.
 
 <cb><v>set1<>.clear();<>
 @
-@ .clear()
+@ set.clear(), .clear()
 @ clear, delete
 @ items, values, elements
 
@@ -1844,34 +1973,8 @@ Deletes <c>value<> from the set.
 
 <cb>= <v>set1<>.size<>
 @
-@ count, length, .size
-
-
-
-# Object
-
-<cb>= new Object()<>
-@
-@ object-only, objects-only
-@ create, define, instantiate, new
-
-
-
-# Object Operations
-@
-@ object-only, objects-only
-
-
-
-### Object - From JSON
-
-<cb>= JSON.parse(<v>jsonString<>)<>
-
-
-
-### Object - To JSON
-
-<cb>= JSON.stringify(<v>object1<>)<>
+@ set.size, .size
+@ count, length
 
 
 
@@ -1908,6 +2011,8 @@ Throw:
 Throw String:
 
 <cb>throw '<v>Exception message.<>'<>
+@
+@ error()
 
 
 
@@ -1915,6 +2020,7 @@ Throw String:
 
 <cb>= <v>error<>.name<>
 @
+@ error.name, .name
 @ type
 
 
@@ -1923,90 +2029,47 @@ Throw String:
 
 <cb>= <v>error<>.message<>
 @
+@ error.message, .message
 @ text
 
 
 
-# Objects
+# Import / Export
 
 
-### Classes
+### Export - Export From Definition
 
-Everytihing is an object in JavaScript.
-Strictly speaking there are no classes.
+<cb>export function <v>function1<>() {<v>...<>}<>
 
-
-
-### Object - Define
-
-<cb>= {
-	<v>property1<>: <v>"value 1"<>,
-	<v>property2<>: <v>value2<>,
-};<>
-@
-@ New, Create, Definition
+<cb>export class <v>Class1<> {<v>...<>}<>
 
 
 
-### Object - Define - Constructor Function
+### Export - Export Names
 
-Define:
-
-<cb>function <v>ObjectName<> (<v>param1<>, <v>param2<>, <v>...<>) {		<#>// 1<>
-
-	this.<v>property1<> = <v>value1<>;					<#>// 2<>
-	this.<v>property2<> = <v>value2<>;
-
-	this.<v>method1<> = function(){
-		<v>...<>
-	}
-												<#>// 3<>
-}<>
-
-New Instance:
-
-<cb>= new <v>ObjectName<> (<v>param1<>, <v>param2<>);				<#>// 4<><>
-
-
-1  -  TitleCase by convention.
-
-2  -  Use <c>this<> to access the the object content.
-
-3  -  No return required.
-
-4  -  Uses <c>new<> keyword.
+<cb>export {<v>function1<>, <v>function2<>, <v>variable1<>, <v>variable2<>, <v>...<>}<>
 
 
 
+### Import - All
 
-### Object - Unsorted!
+<cb>import * from "<v>file_name<>.mjs"<>
+
+Can't get this to work!
 
 
-Object - Function - Append	Object1.prototype.newMethod1 = function(){			// Use to prevent replication of functions in constructor function.
-		code...
-		this....
-	}
 
-Object - Function - Call With Other Object Data
+### Import - Module Functions
 
-	object1.function1.call (object2) 				// Calls function1 but 'this' references object2.
+<cb>import {function1, function2...} from "<v>file_name<>"<>
 
-	object1.function1.apply (object2, [param1, param2]) 		// As for call but use when the function takes parameters.
+Extension should be .js for this and package.json needs "type":"module"
 
-Object - Function - Bind	Create a copy of a function in one object but references another. The 'this' reference will reference the new object inside the function.
 
-	newFunction1 = object1.function1.bind (object2); 		// Performs as function1 but references object2.
 
-Lang - Streams
+### Import - Module Functions / Destructured Format
 
-Filter	filteredArray = streamable1.filter (item => filterEpression) 	// Returns element if filterEpression returns true.
-
-Find - First Match	firstMatch = streamable1.find (item => findEpression) 		// Returns first match to return true from expression.
-
-Iterate	streamable1.forEach (item => code...);				// Reference value using 'item' variable.
-		streamable1.forEach ((item, index) => code...);			// Reference value index using 'index' variable.
-
-Validate	isValid = streamable1.every (item => validationExpression) 	// Must return true for every element. Returns true or false.
+<cb>import {function1, function2...} from "<v>file_name<>.mjs"
 
 
 
@@ -2098,8 +2161,251 @@ let <v>squared<> = <v>square<>(<v>10<>);<>
 
 
 
-# Promise
+# Objects
 
+<cb>= new Object()<>
+@
+@ object-only, objects-only
+@ create, defin
+e, instantiate, new
+
+### Object - Define
+
+<cb>= {
+	<v>property1<>: <v>"value 1"<>,
+	<v>property2<>: <v>value2<>,
+	<v>method1<>: function() {<v>...<>},
+};<>
+@
+@ New, Create, Definition
+
+
+
+### Object - Define - Constructor Function
+
+Define:
+
+<cb>function <v>ObjectName<> (<v>param1<>, <v>param2<>, <v>...<>) {		<#>// 1<>
+
+	this.<v>property1<> = <v>value1<>;					<#>// 2<>
+	this.<v>property2<> = <v>value2<>;
+
+	this.<v>method1<> = function(){
+		<v>...<>
+	}
+												<#>// 3<>
+}<>
+
+New Instance:
+
+<cb>= new <v>ObjectName<> (<v>param1<>, <v>param2<>);				<#>// 4<><>
+
+
+1  -  TitleCase by convention.
+
+2  -  Use <c>this<> to access the the object content.
+
+3  -  No return required.
+
+4  -  Uses <c>new<> keyword.
+
+
+
+# Object - Operations
+
+
+
+### Object - Duplicate
+
+<cb>= Object.assign({}, <v>object1<>)<>
+@
+@ copy, clone
+
+
+
+### Object - Method - Call
+
+<cb><v>object1<>.<v>method1<>();<>
+
+
+Example:
+
+<cb>let <v>user1<> = {
+	<v>id<>: 42,
+	<v>name<>: "your_name_here",
+
+	<v>idAndName<>: function() {
+		return this.<v>id<> + " " + this.<v>name<>;
+	}
+}
+
+let <v>idAndName<> = <v>user1<>.<v>idAndName<>();
+
+console.log(<v>idAndName<>);<>
+@
+@ function
+
+
+
+### Object - Property - Get
+
+<cb>= <v>object1<>.<v>property1<><>
+
+
+Example:
+
+<cb>let <v>user1<> = {<v>name<>: "<v>your_name_here<>"};
+
+let name = <v>user1<>.<v>name<>;
+
+console.log(<v>name<>);<>
+
+
+
+### Object - Property - Set
+
+<cb><v>object1<>.<v>property1<> = <v>value<><>
+
+
+Example:
+
+<cb>let <v>user1<> = {<v>name<>: "<v>blank<>"};
+
+<v>user1<>.<v>name<> = "<v>your_name_here<>";
+
+console.log(<v>user1<>.<v>name<>);<>
+
+
+
+### Object - To String
+
+<cb>= JSON.stringify(<v>object1<>)<>
+
+
+
+# Classes
+
+Classes define templates for creating objects.
+
+
+## Class - Basics
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	constructor(<v>param1<>, <v>param2<>) {
+
+		this.<v>property1<> = <v>param1<>;
+		this.<v>property2<> = <v>param2<>;
+	}
+
+	<v>method1<>(<v>param1<>, <v>param2<>) {
+		return <v>value<>;
+	}
+
+	<v>method2<>() {
+
+		<v>value<> = this.<v>property1<>;
+		this.<v>proprty1<> = <v>new_value<>;
+
+		this.<v>method1<>(<v>...<>);
+	}
+}<>
+
+Static Properties, Methods:
+
+<cb>class <v>ClassWithStatics<> {
+
+	static <v>staticProperty1<> = <v>value<>;
+
+	static <v>staticMethod1<>(<v>param1<>, <v>param2<>) {
+		return <v>value<>;
+	}
+
+	static {
+		<#>// Initialization block<>
+	}
+
+	<v>...<>
+}<>
+
+
+Create:
+
+<cb><v>item1<> = new <v>Class1<>(<v>param1<>, <v>param2<>);<>
+
+
+
+# Enums
+
+Enums do not exist in JavaScript. Use an object or class instead.
+
+
+
+### Enums - Using Objects
+
+Define:
+
+<cb>const <v>Shape<> = {
+
+	<v>circle<>: '<v>circle<>',
+	<v>square<>: '<v>square<>',
+	<v>triangle<>: '<v>triangle<>',
+
+	isValid: (<v>value<>) => {
+		return Object.values(<v>Shape<>).includes(<v>value<>);
+	}
+}<>
+
+Assign:
+
+<cb>var <v>shape1<> = Shape.circle<>
+
+Compare:
+
+<cb>= <v>shape1<> === Shape.circle<>
+
+Is Valid:
+
+<cb>= Shape.isValid(<v>shape1<>)<>
+
+
+
+### Enums - Using Classes
+
+Define:
+
+<cb>class <v>Shape<> {
+
+	static <v>circle<> = new Shape('<v>circle<>');
+	static <v>square<> = new Shape('<v>square<>');
+	static <v>triangle<> = new Shape('<v>triangle<>');
+
+	constructor(<v>name<>) {
+		this.<v>name<> = <v>name<>;
+	}
+
+	toString() {
+		return 'Shape.' + this.<v>name<>;
+	}
+}<>
+
+Assign:
+
+<cb>var <v>shape1<> = Shape.circle<>
+
+Compare:
+
+<cb>= <v>shape1<> === Shape.circle<>
+
+Is Valid:
+
+<cb>= <v>shape1<> instanceof <v>Shape<><>
+
+
+
+# Promise
 
 
 ## Basics
@@ -2493,15 +2799,7 @@ Overwrites the doc after loading finished.
 
 
 
-## Document / Element - Bind Event
-
-<cb>document.addEventListener(<v>eventname<>, <v>function1<>);<>
-
-<cb><v>element1<>.addEventListener(<v>eventname<>, <v>function1<>);<>
-@
-@ Events Listeners, Bind To
-
-
+# Events
 
 ### <!>Event Listener Function<>
 
@@ -2517,7 +2815,7 @@ The function will be triggered when the events occurs.
 
 
 
-#### Event Listener - Target Element
+### Event Listener - Target Element
 
 <cb>= <v>event<>.target<>
 
@@ -2528,7 +2826,7 @@ Returns the element the event fired on.
 
 
 
-#### Event Listener - Stop Propagation
+### Event Listener - Stop Propagation
 
 <cb><v>event<>.stopPropagation();<>
 
@@ -2537,6 +2835,31 @@ By default, events are sent up the hierarchy of element parents.
 Call <c>.stopPropagation()<> to stop the event going any further.
 @
 @ .stopPropagation()
+
+
+
+# Document / Element - Events
+@
+@ add event listener
+
+
+### Document / Element - Bind Event
+
+<cb>document.addEventListener(<v>eventname<>, <v>function1<>);<>
+
+<cb><v>element1<>.addEventListener(<v>eventname<>, <v>function1<>);<>
+@
+@ Events Listeners, Bind To, add event listener
+
+
+
+### Document / Element - Remove Event
+
+<cb>document.removeEventListener(<v>eventname<>, <v>function1<>);<>
+
+<cb><v>element1<>.removeEventListener(<v>eventname<>, <v>function1<>);<>
+@
+@ Events Listeners, Bind To, remove event listener, .removeEventListener()
 
 
 
@@ -3509,41 +3832,42 @@ Dates - Unix Time	= Date.now()				// Time since 1970-01-01 in milliseconds.
 <cb>fetch (<v>url<>)
 	.then(response => {<v>...<>});<>
 @
-@ Call
+@ Call, fetch()
 
 
 
 ### HTTP - Send Post
 
 <cb><v>response<> = await fetch(<v>url<>,
-		{method: "POST", <v>...<>})<>
+		{method: 'POST', <v>...<>})<>
 
 <cb>fetch (<v>url<>,
-		{method: "POST", <v>...<>)
+		{method: 'POST', <v>...<>)
 		.then(response => {<v>...<>});<>
 
 
 Example:
 
 <cb>fetch (<v>url<>, {
-		method: "POST",
+		method: 'POST',
 		headers: new Headers({'content-type': 'application/json'}),
 		body: JSON.stringify(data)})
 	.then(response => {
-		console.log ("Request sent.")
+		console.log ('Request sent.')
 	});<>
 @
-@ Call
+@ Call, fetch, method:, json
 
 
 
 ### HTTP - Send Put
 
 <cb>fetch (<v>url<>, {
-	method: "POST",
+	method: 'PUT',
 	<v>...<>
 })<>
 @
+@ fetch(), method:
 @ Call
 
 
@@ -3574,7 +3898,8 @@ catch (<v>error<>) {
 
 <#>//4<>  -  If reached, everything is ok. Cancel the abort timer.
 <#>//4<>  -  If not reached, timer will expire and the abort is triggered. <c>fetch<> then throws <c>AbortError<>.
-
+@
+@ AbortController(), abortcontroller.abort(), setTimetout()
 
 
 ### HTTP - Set Header
@@ -3593,6 +3918,7 @@ catch (<v>error<>) {
 	}),
 })<><>
 @
+@ fetch(), headers:, Headers()
 @ Call
 
 
@@ -3603,6 +3929,7 @@ catch (<v>error<>) {
 	headers: {'content-type': '<v>application/json<>'},
 })<><>
 @
+@ headers:
 @ Call
 
 
@@ -3613,6 +3940,7 @@ catch (<v>error<>) {
 	body: JSON.stringify(data)
 })<>
 @
+@ fetch()
 @ as, body, data
 
 
@@ -3626,6 +3954,7 @@ catch (<v>error<>) {
 	<v>text<> = <v>response<>.text()
 }<>
 @
+@ response.text(), .text()
 @ as, body, data
 
 
@@ -3639,8 +3968,8 @@ catch (<v>error<>) {
 	<v>formData<> = <v>response<>.formData()
 }<>
 @
-@ as, body, data
 @ resp.formdata(), response.formdata(), .formdata()
+@ as, body, data
 
 
 
@@ -3653,20 +3982,24 @@ catch (<v>error<>) {
 	<v>json<> = <v>response<>.json()
 }<>
 @
-@ as, body, data
 @ resp.json(), response.json(), .json()
+@ as, body, data
 
 
 
 ### HTTP - Response - Get Status Code
 
 <cb>= <v>response<>.status<>
+@
+@ response.status, .status
 
 
 
 ### HTTP - Response - Is OK?
 
 <cb>= <v>response<>.ok<>
+@
+@ response.ok, .ok
 
 
 
@@ -3676,11 +4009,277 @@ catch (<v>error<>) {
 	<v>...<>
 }<>
 @
+@ response.ok, .ok
 @ has error, failed
 
 
-# URL Object
 
+# JSON
+
+
+### JSON - JSON to Object
+
+<cb>= JSON.parse(<v>jsonString<>)<>
+@
+@ JSON.parse(), .parse(), from
+
+
+
+### JSON - Object To JSON
+
+<cb>= JSON.stringify(<v>object1<>)<>
+@
+@ JSON.stringify(), .stringify(), from
+
+
+
+# Local Storage
+
+Stores key value pairs.
+
+They are stored by the browser.
+A maximum 5 MB of data can be saved.
+Data does not expire, even between sessions.
+
+Storage is bound to protocol + domain + port.
+
+<cb>https://speedsheet.io:80<>
+@
+@ localstorage
+
+
+
+### Local Storage - Set
+
+<cb>localStorage.setItem(<v>key<>, <v>value<>);<>
+
+
+Creates or updates a value in local storage.
+
+
+Stores values as strings only.
+Non string values are converted to a string first.
+Use <c>JSON.stringify()<> and JSON.parse() to store non string values.
+
+
+Example:
+
+<cb>localStorage.setItem("<v>name<>", "<v>your_name_here<>");<>
+@
+@ localStorage.setItem(), .setItem()
+@ add, new, create, put, key, value
+
+
+
+### Local Storage - Get Key By Index
+
+<cb>localStorage.key(<v>index<>);<>
+
+
+Returns the key for a given index from the local storage.
+@
+@ localStorage.key(), .key()
+@ retrieve, item, value
+
+
+
+### Local Storage - Get Value
+
+<cb>localStorage.getItem(<v>key<>);<>
+
+
+Returns the value of an item from local storage.
+
+Returns strings only.
+Returns null if the key doesn't exist.
+
+
+Example:
+
+<cb>localStorage.setItem("<v>name<>", "<v>your_name_here<>");
+
+let <v>name<> = localStorage.getItem("<v>name<>");
+
+console.log(<v>name<>);<>
+@
+@ localStorage.getItem(), .getItem()
+@ retrieve, item, value, by key
+
+
+
+### Local Storage - Has Key
+
+<cb>= localStorage.getItem(<v>key<>) !== null<>
+
+
+Test not equal to null.
+
+If null is returned, the key has not been set.
+
+
+
+### Local Storage - Remove
+
+<cb>localStorage.removeItem(<v>key<>);<>
+
+
+Removes an item from local storage.
+
+
+Example:
+
+<cb>localStorage.removeItem("<v>name<>");<>
+@
+@ localStorage.removeItem(), .removeItem()
+@ delete, remove from, one, single, item, value, by key
+
+
+
+### Local Storage - Clear
+
+<cb>localStorage.clear();<>
+
+Removes all key value pairs from local storage.
+@
+@ localstorage.clear(), .clear()
+
+
+
+### Local Storage - Size
+
+<cb>= localStorage.length<>
+
+
+Returns the number of items stored in local storage.
+@
+@ localstorage.length
+
+
+
+# Session Storage
+
+Stores key value pairs.
+
+They are stored by the browser session.
+A maximum 5 MB of data can be saved.
+Session storage is cleared when the browser is closed.
+
+Storage is bound to protocol + domain + port.
+
+<cb>https://speedsheet.io:80<>
+@
+@ sessionstorage
+
+
+
+### Session Storage - Set
+
+<cb>sessionStorage.setItem(<v>key<>, <v>value<>);<>
+
+
+Creates or updates a value in session storage.
+
+
+Stores values as strings only.
+Non string values are converted to a string first.
+Use <c>JSON.stringify()<> and JSON.parse() to store non string values.
+
+
+Example:
+
+<cb>sessionStorage.setItem("<v>name<>", "<v>your_name_here<>");<>
+@
+@ sessionStorage.setItem(), .setItem()
+@ add, new, create, put, key, value
+
+
+
+### Session Storage - Get Key By Index
+
+<cb>sessionStorage.key(<v>index<>);<>
+
+
+Returns the key for a given index from the session storage.
+@
+@ sessionStorage.key(), .key()
+@ retrieve, item, value
+
+
+
+### Session Storage - Get Value
+
+<cb>sessionStorage.getItem(<v>key<>);<>
+
+
+Returns the value of an item from session storage.
+
+Returns strings only.
+Returns null if the key doesn't exist.
+
+
+Example:
+
+<cb>sessionStorage.setItem("<v>name<>", "<v>your_name_here<>");
+
+let <v>name<> = sessionStorage.getItem("<v>name<>");
+
+console.log(<v>name<>);<>
+@
+@ sessionStorage.getItem(), .getItem()
+@ retrieve, item, value, by key
+
+
+
+### Session Storage - Has Key
+
+<cb>= sessionStorage.getItem(<v>key<>) !== null<>
+
+
+Test not equal to null.
+
+If null is returned, the key has not been set.
+
+
+
+### Session Storage - Remove
+
+<cb>sessionStorage.removeItem(<v>key<>);<>
+
+
+Removes an item from session storage.
+
+
+Example:
+
+<cb>sessionStorage.removeItem("<v>name<>");<>
+@
+@ sessionStorage.removeItem(), .removeItem()
+@ delete, remove from, one, single, item, value, by key
+
+
+
+### Session Storage - Clear
+
+<cb>sessionStorage.clear();<>
+
+Removes all key value pairs from session storage.
+@
+@ sessionstorage.clear(), .clear()
+
+
+
+### Session Storage - Size
+
+<cb>= sessionStorage.length<>
+
+
+Returns the number of items stored in session storage.
+@
+@ sessionstorage.length
+
+
+
+# URL Object
 
 
 ### URL - Create
@@ -3856,26 +4455,40 @@ Example:
 
 # Index - Colours
 
-Color - Types	RGB, RGBA, Hex, Named
 
-Color - RGB	"rgb (0,0,0)" 				// Values from 0 to 255.
+### Color - Types
 
-Color - RGB Alpha	"rgba (0,0,0,0)" 			// Last digit alpha level.
-
-Colour - Names	aliceblue, antiquewhite, aqua, aquamarine, azure, beige, bisque, black, blanchedalmond, blue, blueviolet, brown, burlywood, cadetblue, chartreuse, chocolate, coral, cornflowerblue, cornsilk, crimson, cyan, darkblue, darkcyan, darkgoldenred, darkgray, darkgreen, darkkhaki, darkmagenta, darkolivegreen, darkorange, darkorchid, darkred, darksalmon, darkseagreen, darkslateblue, darkslategray, darkturquoise, darkviolet, deeppink, deepskyblue, dimgray, dodgerblue, firebrick, floralwhite, forestgreen, fuchsia, gainsboro, ghostwhite, gold, goldenrod, gray, green, greenyellow, honeydew, hotpink, indianred, indigo, ivory, khaki, lavender, lavenderblush, lawngreen, lemonchiffon, lightblue, lightcoral, lightcyan, lightgoldenrodyellow, lightgreen, lightgrey, lightpink, lightsalmon, lightseagreen, lightskyblue, lightslategray, lightsteelblue, lightyellow, lime, limegreen, linen, magenta, maroon, mediumaquamarine, mediumblue, mediumorchid, mediumpurple, mediumseagreen, mediumslateblue, mediumspringgreen, mediumturquoise, mediumvioletred, midnightblue, mintcream, mistyrose, moccasin, navajowhite, navy, oldlace, olive, olivedrab, orange, orangered, orchid, palegoldenrod, palegreen, paleturquoise, palevioletred, papayawhip, peachpuff, peru, pink, plum, powderblue, purple, red, rosybrown, royalblue, saddlebrown, salmon, sandybrown, seagreen, seashell, sienna, silver, skyblue, slateblue, slategray, snow, springgreen, steelblue, tan, teal, thistle, tomato, turquoise, violet, wheat, white, whitesmoke, yellow, yellowgreen
+<cb>RGB, RGBA, Hex, Named<>
 
 
 
-# Index - Frameworks
+### Color - RGB
 
-backbone.js	A model view architecture.
-jquery.js
-knockout.js	A data binding framework.
+<cb>= rgb(<v>red<>,<v>green<>,<v>blue<>)<>
+
+Values from 0 to 255.
+@
+@ rgb()
+
+
+
+### Color - RGB Alpha
+
+<cb>= rgba(0,0,0,0)<>
+
+Values from 0 to 255.
+@
+@ rgba()
+
+
+
+### Colour - Names
+
+<cb>aliceblue, antiquewhite, aqua, aquamarine, azure, beige, bisque, black, blanchedalmond, blue, blueviolet, brown, burlywood, cadetblue, chartreuse, chocolate, coral, cornflowerblue, cornsilk, crimson, cyan, darkblue, darkcyan, darkgoldenred, darkgray, darkgreen, darkkhaki, darkmagenta, darkolivegreen, darkorange, darkorchid, darkred, darksalmon, darkseagreen, darkslateblue, darkslategray, darkturquoise, darkviolet, deeppink, deepskyblue, dimgray, dodgerblue, firebrick, floralwhite, forestgreen, fuchsia, gainsboro, ghostwhite, gold, goldenrod, gray, green, greenyellow, honeydew, hotpink, indianred, indigo, ivory, khaki, lavender, lavenderblush, lawngreen, lemonchiffon, lightblue, lightcoral, lightcyan, lightgoldenrodyellow, lightgreen, lightgrey, lightpink, lightsalmon, lightseagreen, lightskyblue, lightslategray, lightsteelblue, lightyellow, lime, limegreen, linen, magenta, maroon, mediumaquamarine, mediumblue, mediumorchid, mediumpurple, mediumseagreen, mediumslateblue, mediumspringgreen, mediumturquoise, mediumvioletred, midnightblue, mintcream, mistyrose, moccasin, navajowhite, navy, oldlace, olive, olivedrab, orange, orangered, orchid, palegoldenrod, palegreen, paleturquoise, palevioletred, papayawhip, peachpuff, peru, pink, plum, powderblue, purple, red, rosybrown, royalblue, saddlebrown, salmon, sandybrown, seagreen, seashell, sienna, silver, skyblue, slateblue, slategray, snow, springgreen, steelblue, tan, teal, thistle, tomato, turquoise, violet, wheat, white, whitesmoke, yellow, yellowgreen
 
 
 
 # How To
-
 
 
 ### Alert / Popup
@@ -3889,18 +4502,6 @@ knockout.js	A data binding framework.
 ### Change the url
 
 <cb>window.history.pushState (“object or string”, “Title”, “/newUrl”); <>
-
-
-
-### Json - From String
-
-<cb>= JSON.parse(<v>jsonString<>)<>
-
-
-
-### Json - To String
-
-<cb>= JSON.stringify(<v>object1<>)<>
 
 
 
@@ -3970,7 +4571,7 @@ Implement the function <c>sleep()<>, then call <c>sleep()<> with <c>await<>.
 
 
 
-### Timeout - Set
+### Timeout - Set Delayed Action
 
 <cb><v>timeout1<> = setTimeout(<v>callback1<>, <v>timeout_ms<>);<>
 
@@ -3986,7 +4587,7 @@ Example:
 
 <cb><v>timeout1<> = setTimeout(console.log, 1000, "Timer done.");<>
 @
-@ setTimeout()
+@ setTimeout(), delayed, timer, action, call
 
 
 
@@ -4021,6 +4622,91 @@ Preferred Method<>
 
 @
 @ equals, abstract equality operator, strict equality operator
+
+
+# Reserved Words
+
+### Reserved Words - Summary
+
+A reserved word is a keyword that has special meaning or purpose to JavaScript.
+It can not be used as the name of variable, function or anything else.
+
+<in-2><table><col><c>abstract<><>
+<col><c>arguments<><>
+<col><c>await<><><col>(Future Use)<>
+<col><c>boolean<><>
+<col><c>break<><>
+<col><c>byte<><>
+<col><c>case<><>
+<col><c>catch<><>
+<col><c>char<><>
+<col><c>class<><><col>(Future Use)<>
+<col><c>const<><>
+<col><c>continue<><>
+<col><c>debugger<><>
+<col><c>default<><>
+<col><c>delete<><>
+<col><c>do<><>
+<col><c>double<><>
+<col><c>else<><>
+<col><c>enum<><><col>(Future Use)<>
+<col><c>eval<><>
+<col><c>export<><><col>(Future Use)<>
+<col><c>extends<><><col>(Future Use)<>
+<col><c>false<><>
+<col><c>final<><>
+<col><c>finally<><>
+<col><c>float<><>
+<col><c>for<><>
+<col><c>function<><>
+<col><c>goto<><>
+<col><c>if<><>
+<col><c>implements<><>
+<col><c>import<><><col>(Future Use)<>
+<col><c>in<><>
+<col><c>instanceof<><>
+<col><c>int<><>
+<col><c>interface<><>
+<col><c>let<><><col>(Future Use)<>
+<col><c>long<><>
+<col><c>native<><>
+<col><c>new<><>
+<col><c>null<><>
+<col><c>package<><>
+<col><c>private<><>
+<col><c>protected<><>
+<col><c>public<><>
+<col><c>return<><>
+<col><c>short<><>
+<col><c>static<><>
+<col><c>super<><><col>(Future Use)<>
+<col><c>switch<><>
+<col><c>synchronized<><>
+<col><c>this<><>
+<col><c>throw<><>
+<col><c>throws<><>
+<col><c>transient<><>
+<col><c>true<><>
+<col><c>try<><>
+<col><c>typeof<><>
+<col><c>var<><>
+<col><c>void<><>
+<col><c>volatile<><>
+<col><c>while<><>
+<col><c>with<><>
+<col><c>yield<><><><>
+@
+@ abstract, arguments, await, boolean, break,
+@ byte, case, catch, char, class, const, continue,
+@ debugger, default, delete, do, double, else,
+@ enum, eval, export, extends, false, final,
+@ finally, float, for, function, goto, if,
+@ implements, import, in, instanceof, int, 
+@ interface, let, long, native, new, null, 
+@ package, private, protected, public, return, 
+@ short, static, super, switch, synchronized, 
+@ this, throw, throws, transient, true, try, 
+@ typeof, var, void, volatile, while, with, yield
 
 
 
@@ -4145,6 +4831,13 @@ See also: apply()
 
 
 
+### Classes
+
+Everytihing is an object in JavaScript.
+Strictly speaking there are no classes.
+
+
+
 ### Closure
 Reference a variable outside of a function after the outside is out of scope.
 eg. a function referencing a variable in the parent function after the inner function was returned from the outer function.
@@ -4178,6 +4871,20 @@ Desktop - Electron
 Server - NodeJS
 Smart Phones - Cordova
 Web - Browser
+
+
+
+### Epoch
+The time at Unix Time 0.
+
+January 1st, 1970 at 00:00:00 UTC.
+@
+@ unix time
+
+
+
+### Epoch Time / Unix Time
+The time that has passed in seconds since the Unix epoch (January 1st, 1970).
 
 
 
