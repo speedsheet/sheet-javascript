@@ -116,7 +116,15 @@ This is an interactive <b>JavaScript<> cheat sheet. Covers the core JavaScript p
 
 ### Comments
 
-<cb><#>// comments.<><>
+<cb><#>// Comment<><>
+
+
+
+### Comments - Multiline
+
+<cb><#>/*
+	Multiline Comments
+*/<><>
 
 
 
@@ -134,7 +142,7 @@ function <v>someFunction1<>() {
 
 
 
-### Multiline
+### Multiline Statements
 
 <cb>\\<>
 
@@ -241,16 +249,6 @@ Not Required but use '<c>;<>' command separator for clarity.
 
 
 
-### Functions
-
-Double Arrow
-
-<cb>() => {<v>...<>}<>
-
-<cb>(<v>param1<>, <v>param2<>, <v>...<>) => {<v>...<>}<>
-
-
-
 ### Operator Overloading
 
 Strictly Speaking Not Supported.
@@ -311,11 +309,13 @@ Use camelCase.
 Use camelCase.
 
 
+
 ### Convention - Constructor Function Name
 
 <cb>function <v>ConstructorFunctionName<>()<v>...<><>
 
 Use TiteCase.
+
 
 
 ### Convention - Private Functions, Methods, Properties
@@ -538,7 +538,7 @@ Ternary / Conditional Operator
 	continue;
 }<>
 @
-@ for-only, loop, for-loop-only
+@ for-only, loop, for-loop-only, in range
 
 
 
@@ -635,6 +635,24 @@ Includes arrays, strings, and maps.
 <cb>continue;<>
 
 Use inside <c>for<> and <c>while<> statements.
+
+
+
+### Continue Loop With Label
+
+<cb><v>label_name<>:
+<v>...<>
+continue <v>label_name<>;<>
+
+
+Creates a loop where continue returns to the label.
+
+
+Label Format (Denote with ':'):
+
+<cb><v>name<>:<>
+@
+@ :
 
 
 
@@ -781,12 +799,49 @@ Preferred over <c>==<>.
 
 
 
+### Object Operators
+
+<in-2><table><col><c><v>a<>.<v>method1<>()<><><col>Chain Operator<>
+<col><c><v>a<>?.<v>method1<>()<><><col>Optional Chain Operator<super><#>1<><><><><>
+
+1 - Chains operations together unless a nullish value is returned (<c>null<> or <c>undefined<>). Then it returns <c>undefined<>.
+@
+@ ., ?., optional chain, dot, nullish
+
+
+
+### Operators - Nullish Coalescing
+
+<cb>= <v>value1<> ?? <v>value2<><>
+
+
+Returns <c><v>value1<><> unless it is <c>null<> or <c>undefined<>.
+Then it returns <c><v>value2<><>.
+
+This is a special case of the <c>||<> operator.
+
+
+Examples:
+
+<cb>console.log('<v>value-1<>' ?? '<v>value-2<>');
+
+<#>// Prints: 'value-1'<><>
+
+<cb>console.log(null ?? '<v>value-2<>');
+
+<#>// Prints: 'value-2'<><>
+@
+@ ??
+
+
+
 ### Operators - Return Value
 
 <cb>= <v>boolean1<> && <v>value<><>
 
 
-if <v>boolean1<> is true, returns <v>value<>.
+if <c><v>boolean1<><> is <c>true<>, returns <c><v>value<><>.
+Otherwise returns <c>false<>.
 @
 @ &&
 
@@ -812,6 +867,7 @@ if <v>boolean1<> is true, returns <v>value<>.
 <card><table><col>Boolean Literal		<><col><c>= true | false<><>
 <col> <>
 <col>Null Literal<><col><c>= null<><>
+<col>Undefined Literal<><col><c>= undefined<><>
 <col> <>
 <col>Number Literal<><col><c>= <v>42<><><>
 <col>Number Literal<><col><c>= <v>42.1<><><>
@@ -831,6 +887,11 @@ if <v>boolean1<> is true, returns <v>value<>.
 <col>String Literal<><col><c>= '<v>A String<>'<><>
 <col>String Literal<><col><c>= "<v>A String<>"<><>
 <col>Template String Literal<><col><c>= `<v>A String with a <>${<v>value<>}`<><><><>
+
+<card><table><col>Object Literal			<><col><c>= {
+    <v>property1<>: <v>value<>,
+    <v>method1<>: () => <v>...<>
+}<><><><>
 
 
 1 - Preferred form for octals.
@@ -911,6 +972,15 @@ Prefer the first form. The second can be unknowingly converted as a normal decim
 
 
 
+### Object Literal
+
+<cb>= {
+    <v>property1<>: <v>value<>,
+    <v>method1<>: () => <v>...<>
+}<>
+
+
+
 ### Regular Expression Literal
 
 <cb>= /<v>pattern<>/
@@ -959,6 +1029,12 @@ Supports Multiple Lines
 multiple lines!<>`<>
 @
 @ ``
+
+
+
+### Undefined Literal
+
+<cb>= undefined<>
 
 
 
@@ -1074,7 +1150,7 @@ Return items 3 and Onwards. Return in new array:
 
 <cb>let {<v>property1<>, <v>property2<>, <v>...<>} = <v>object1<>;<>
 
-Rename Variables:
+Destructure With:
 
 <cb>let {<v>property1<>: <v>variable1<>, <v>property2<>: <v>variable2<>, <v>...<>} = <v>object1<>;		<#>// 1<><>
 
@@ -1087,8 +1163,7 @@ Extracts object properties into individual variables.
 
 
 1  <s>-<>  Use when variable names are different from property names.
-
-2  <s>-<>  Used when no let. Prevents compiler from getting confused with class creation syntax.
+2  <s>-<>  Used when variables already exist (no let). Prevents compiler from getting confused with class creation syntax.
 
 
 Example:
@@ -1131,6 +1206,7 @@ Example:
 @
 @ Typeof, type of, To String
 @ instanceof, isinstance, type is
+
 
 
 ### Variable Type - Compare
@@ -1192,13 +1268,13 @@ Re-declarable!<>
 
 ### Standard Types
 
+<card><table><col><c>null<>	<><col><c>			<><><col>Null Value<>
+<col> <>
+<col><c>undefined<><><col><><col>A Declared But Unassigned Variable<><><>
+
 Primitives:
 
-<card><table><col><c>null<>		<><col><c>null<><><col>Null Value<>
-<col> <>
-<col><c>undefined<><><col><><col>A Declared But Unassigned Variable<>
-<col> <>
-<col><c>boolean<><><col><c>true | false<><><col>True or False<>
+<card><table><col><c>boolean<><><col><c>true | false	<><><col>True or False<>
 <col> <>
 <col><c>bigint<><><col><c><v>42<>n<><><col>Integer of Arbitrary Precision<>
 <col> <>
@@ -1210,11 +1286,11 @@ Infinity<><><col>Floating Point Number<>
 <col><c>string<><><col><c>'<v>A String<>'<><><col>Immutable String<>
 <col><><col><c>"<v>A String<>"<><>
 <col> <>
-<col><c>Symbol<><><col><><col>Immutable Unique Value (atom) / Object Key<><><>
+<col><c>symbol<><><col><><col>Immutable Unique Value (atom) / Object Key<><><>
 
 Others:
 
-<card><table><col><c>Object<>		<><col>A Value in Memory Referenced By an Identifier<><><>
+<card><table><col><c>Object<>		<><col>		<><col>A Value in Memory Referenced By an Identifier<><><>
 @
 @ Standard
 
@@ -1492,6 +1568,37 @@ console.log(<v>time1<>);
 
 
 
+### Date - Add / Subtract
+
+<cb><v>date1<>.set<v>Unit<>(<v>date1<>.get<v>Unit<>() + <v>difference<>);<>
+
+
+Change a unit of time by a given amount.
+
+Negative values will be factored correctly.
+
+
+Add 10 Seconds:
+
+<cb>let <v>date1<> = new Date();
+
+<v>date1<>.setSeconds(<v>date1<>.getSeconds() + <v>10<>);
+
+console.log(<v>date1<>);<>
+
+Remove 10 Days:
+
+<cb>let <v>date1<> = new Date();
+
+<v>date1<>.setDate(<v>date1<>.getDate() - <v>10<>);
+
+console.log(<v>date1<>);<>
+@
+@ value, minus, change, update
+@ seconds, minutes, hours, date, days, month, year
+
+
+
 ### Date - Get Difference in Seconds
 
 <cb>= <v>date1<> - <v>date2<><>
@@ -1630,6 +1737,34 @@ Returns the date
 @ from, convert, conversion
 @ convert-only, conversion-only
 @ from-date, date-to, to-iso
+
+
+
+### Date - Date To YYYY-MM-DD
+
+Use Function:
+
+<cb>function to_yyyymmdd(<v>date<>) {
+
+    to2Digits = value => String(value).padStart(2, '0')
+
+    return (<v>date<>.getFullYear() + '-' +
+        to2Digits(<v>date<>.getMonth() + 1) + '-' +
+        to2Digits(<v>date<>.getDate()));
+}<>
+
+Usage:
+
+<cb>console.log(to_yyyymmdd(new Date()));<>
+
+There is no easy built in way to format dates.
+
+Use the function above to print a formatted date.
+@
+@ format, yyyymmdd
+@ from, convert, conversion
+@ from-date, date-to, to-yyyymmdd, to-yyyy-mm-dd
+@ convert-only, conversion-only
 
 
 
@@ -2266,7 +2401,7 @@ Converts any type into a string.
 <cb>= parseInt(<v>string1<>)<>
 @
 @ parseint(), parse
-@ from, convert, conversion
+@ from, convert, conversion, number
 @ convert-only, conversion-only
 @ from-string, string-to, to-integer
 
@@ -2277,7 +2412,7 @@ Converts any type into a string.
 <cb>= parseFloat(<v>string1<>)<>
 @
 @ parsefloat(), parse
-@ from, convert, conversion
+@ from, convert, conversion, number
 @ convert-only, conversion-only
 @ from-string, string-to, to-float
 
@@ -2331,6 +2466,9 @@ Out of bounds indexes return <c>undefined<>.
 
 <cb>= <v>array1<>[0]<>
 
+Returns the first element in the array.
+
+Returns <c>undefined<> if length is 0.
 <c><v>index<><> is zero based.
 @
 @ item, value
@@ -2340,6 +2478,11 @@ Out of bounds indexes return <c>undefined<>.
 ### Array - Get Last
 
 <cb>= <v>array1<>[<v>array1<>.length - 1]<>
+
+Returns the last element in the array.
+
+Returns <c>undefined<> if length is 0.
+<c><v>index<><> is zero based.
 @
 @ item, value
 
@@ -2435,8 +2578,11 @@ console.log(<v>array1<>);
 
 <cb><v>array1<>.splice(<v>index<>, 1);<>
 
+Returns: Deleted Item
 
-Deletes the item at the index location.
+
+Deletes the item at the index location from the array.
+Returns the deleted item.
 @
 @ array.splice(), .splice()
 @ remove
@@ -2448,8 +2594,11 @@ Deletes the item at the index location.
 
 <cb><v>array1<>.splice(<v>index<>, <v>count<>);<>
 
+Returns: Deleted Items
 
-Deletes <c><v>count<><> number of items starting at the index location.
+
+Deletes <c><v>count<><> number of items from the array starting at the index location.
+Returns the deleted item.
 @
 @ array.splice(), .splice()
 @ remove
@@ -2480,6 +2629,8 @@ or
 ### Array - Find Index
 
 <cb>= <v>array1<>.indexOf(<v>item<>)<>
+
+Returns the index of the matching item.
 @
 @ array.indexof(), .indexof()
 @ item, value
@@ -2495,6 +2646,8 @@ Usage:
 <cb>let <v>testFunction<> = (<v>value<>) => <v>true_false_expression<>;
 
 = <v>array1<>.findIndex(<v>testFunction<>)<>
+
+Returns the index of the matching item.
 @
 @ array.findIndex(), .findIndex()
 @ item, value
@@ -2510,6 +2663,8 @@ Usage:
 <cb>let <v>testFunction<> = (<v>value<>) => <v>true_false_expression<>;
 
 = <v>array1<>.find(<v>testFunction<>)<>
+
+Returns the actual matching item.
 @
 @ array.find(), .find()
 @ item, value
@@ -2802,7 +2957,7 @@ console.log(<v>itemMap<>);<>
 <cb>= {"<v>key1<>":<v>value1<>, "<v>key2<>":<v>value2<>, <v>...<>}<>
 @
 @ dictionary
-@ associative-array-only, associative-only
+@ associative-array-only, associative-only, {}
 
 
 
@@ -3040,6 +3195,17 @@ Deletes <c>value<> from the set.
 
 
 
+### Set - Delete All
+
+<cb><v>set1<>.clear(<v>value<>);<>
+
+Deletes all values from the set.
+@
+@ set.clear(), .clear()
+@ items, values, remove, clear
+
+
+
 ### Set - Get Values
 
 <cb>= <v>set1<>.values()<>
@@ -3055,7 +3221,7 @@ Returns an iterable of all the values.
 
 <cb>= <v>set1<>.has(<v>value<>)<>
 
-Usage
+Usage:
 
 <cb>if (<v>set1<>.has(<v>value<>)) {<v>...<><>
 @
@@ -3085,6 +3251,14 @@ console.log(<v>intersection<>);
 <#>// Prints: Set [ 3, 4 ]<><>
 @
 @ conjunction
+
+
+
+### Set - Iterate
+
+<cb>for (const <v>item<> in <v>set1<>) {
+	<v>...<>
+}<>;
 
 
 
@@ -3481,6 +3655,7 @@ for (const [<v>name<>, <v>value<>] of <v>url<>.searchParams) {
 }
 catch (<v>error<>) {
 	<v>...<>
+	<v>...<> = <v>error<>.message;
 }
 finally {
 	<v>...<>
@@ -3654,11 +3829,11 @@ printValues('<v>one<>');
 
 <#>// Prints: value 1 = one, value 2 = [empty]<><>
 @
-@ values
+@ values, optional, initialized
 
 
 
-### Function - Define / Double Arrow
+### Function - Define / Arrow Function
 
 <cb>() => {<v>...<>}<>
 
@@ -3676,11 +3851,11 @@ Usage:
 Defines a function.
 @
 @ () => {}
-@ double arrow, fat arrow
+@ double arrow, fat arrow, anonymous, lambda, lamda
 
 
 
-### Function - Define / Double Arrow, Single Statement, Implicit Return
+### Function - Define / Arrow Function, Implicit Return
 
 <cb>() => <v>expression<>;<>
 
@@ -3703,7 +3878,26 @@ Example:
 let <v>squared<> = <v>square<>(<v>10<>);<>
 @
 @ () => {}
-@ double arrow, fat arrow
+@ double arrow, fat arrow, anonymous, lambda, lamda, single statement
+
+
+
+### Function - Define / Arrow Function, Closure
+
+<cb>() => {<v>...<> <v>localVariable1<> <v>...<> }<>
+
+Usage:
+
+<cb>let <v>variable1<> = <v>...<>
+
+<v>function1<> = () => <v>...<> <v>variable1<> <v>...<>;<>
+
+
+Arrow functions support closure.
+Any variable in scope of the function can be referenced by the function, even if the function is called later.
+@
+@ () => {}
+@ double arrow, fat arrow, anonymous, lambda, lamda
 
 
 
@@ -3725,7 +3919,7 @@ let <v>squared<> = <v>square<>(<v>10<>);<>
 
 
 
-### Object - Define With Methods
+### Object - Define Methods
 
 <cb>= {
 	<v>method1<>: function() {<v>...<>},
@@ -3743,7 +3937,7 @@ Adds callable methods to the object
 
 
 
-### Object - Define With Properties
+### Object - Define Properties
 
 <cb>= {
 	<v>property1<>: <v>value1<>,
@@ -3752,6 +3946,41 @@ Adds callable methods to the object
 @
 @ add, fields
 
+
+
+### Object - Define - Constructor Function
+
+Define:
+
+<cb>function <v>ObjectName<>(<v>param1<>, <v>param2<>, <v>...<>) {		<#>// 1<>
+
+	this.<v>property1<> = <v>value1<>;					<#>// 2<>
+	this.<v>property2<> = <v>value2<>;
+
+	this.<v>method1<> = function(){
+		<v>...<>
+	}
+												<#>// 3<>
+}<>
+
+New Instance:
+
+<cb>= new <v>ObjectName<>(<v>param1<>, <v>param2<>);				<#>// 4<><>
+
+
+1  -  TitleCase by convention.
+
+2  -  Use <c>this<> to access the the object content.
+
+3  -  No return required.
+
+4  -  Uses <c>new<> keyword.
+
+
+
+## Object - Accessor Methods
+@
+@ accessors
 
 
 ### Object - Define Getter Method
@@ -3794,37 +4023,7 @@ Defines an object method as a setter property.
 
 
 
-### Object - Define - Constructor Function
-
-Define:
-
-<cb>function <v>ObjectName<>(<v>param1<>, <v>param2<>, <v>...<>) {		<#>// 1<>
-
-	this.<v>property1<> = <v>value1<>;					<#>// 2<>
-	this.<v>property2<> = <v>value2<>;
-
-	this.<v>method1<> = function(){
-		<v>...<>
-	}
-												<#>// 3<>
-}<>
-
-New Instance:
-
-<cb>= new <v>ObjectName<>(<v>param1<>, <v>param2<>);				<#>// 4<><>
-
-
-1  -  TitleCase by convention.
-
-2  -  Use <c>this<> to access the the object content.
-
-3  -  No return required.
-
-4  -  Uses <c>new<> keyword.
-
-
-
-# Object - Operations
+## Object - Operations
 @
 @ object-only, objects, objects-only
 
@@ -3985,7 +4184,7 @@ Parameters:
 
 Classes define templates for creating objects.
 @
-@ class-only, classes-only
+@ class-only, classes-only, cls-only
 
 
 ## Class - Basics
@@ -3994,32 +4193,63 @@ Define:
 
 <cb>class <v>Class1<> {
 
-	constructor(<v>param1<>, <v>param2<>) {
+	<v>property1<> = <v>value<>;
 
+	constructor(<v>param1<>) {
 		this.<v>property1<> = <v>param1<>;
-		this.<v>property2<> = <v>param2<>;
 	}
 
 	<v>method1<>(<v>param1<>, <v>param2<>) {
 		return <v>value<>;
 	}
 
-	<v>method2<>() {
+	<v>method2<>(<v>newValue<>) {
 
-		<v>value<> = this.<v>property1<>;
-		this.<v>proprty1<> = <v>new_value<>;
+		<#>// Access:<>
 
-		this.<v>method1<>(<v>...<>);
+		this.<v>property1<> = <v>newValue<>;
+		this.<v>method1<>(<v>newValue<>);
 	}
 }<>
 
-Static Properties, Methods:
+Create:
 
-<cb>class <v>ClassWithStatics<> {
+<cb><v>item1<> = new <v>Class1<>(<v>param1<>, <v>param2<>);
+
+<v>item1<>.method1(<v>...<>);
+
+<v>...<> = <v>item1<>.<v>property1<><>
+
+
+Define Private:
+
+<cb>class <v>Class1<> {
+
+	#<v>privateProperty1<> = <v>value<>;
+
+	constructor(<v>param1<>) {
+		this.<v>privateProperty1<> = <v>param1<>;
+	}
+
+	<v>#privateMethod1<>() {<v>...<>}
+
+	<v>method2<>(<v>newValue<>) {
+
+		<#>// Access:<>
+
+		this.#<v>privateProprty1<> = <v>newValue<>;
+		this.#<v>privateMethod1<>();
+	}
+}<>
+
+
+Define Static:
+
+<cb>class <v>Class1<> {
 
 	static <v>staticProperty1<> = <v>value<>;
 
-	static <v>staticMethod1<>(<v>param1<>, <v>param2<>) {
+	static <v>staticMethod1<>(<v>param1<>) {
 		return <v>value<>;
 	}
 
@@ -4027,13 +4257,20 @@ Static Properties, Methods:
 		<#>// Initialization block<>
 	}
 
-	<v>...<>
+	<#>// Accessing:<>
+
+	<v>method2<>(<v>newValue<>) {
+
+		<v>Class1<>.<v>staticProperty1<> = <v>newValue<>;
+		<v>Class1<>.<v>staticMethod1<>();
+	}
 }<>
 
+Access:
 
-Create:
+<cb><v>Class1<>.method1(<v>...<>);
 
-<cb><v>item1<> = new <v>Class1<>(<v>param1<>, <v>param2<>);<>
+<v>...<> = <v>Class1<>.<v>property1<><>
 
 
 
@@ -4045,12 +4282,15 @@ Create:
 
 ### Class - Define
 
+Define:
+
 <cb>class <v>Class1<> {
+
+	<v>property1<> = <v>initialValue<>;
 
 	constructor(<v>param1<>, <v>param2<>) {
 
 		this.<v>property1<> = <v>param1<>;
-		this.<v>property2<> = <v>param2<>;
 	}
 
 	<v>method1<>(<v>param1<>, <v>param2<>) {
@@ -4067,9 +4307,15 @@ Create:
 	}
 }<>
 
+Instantiate:
+
+<cb>let <v>item1<> = new Class1(<v>param1<>, <v>param2<>);<>
+
 
 
 ### Class - Define Constructor
+
+Define:
 
 <cb>class <v>Class1<> {
 
@@ -4078,6 +4324,10 @@ Create:
 		<v>...<>
 	}
 }<>
+
+Instantiate:
+
+<cb>let <v>item1<> = new Class1(<v>param1<>, <v>param2<>);<>
 
 
 Defines the constructor for the class.
@@ -4088,6 +4338,8 @@ Defines the constructor for the class.
 
 ### Class - Define Method
 
+Define:
+
 <cb>class <v>Class1<> {
 
 	<v>method1<>(<v>param1<>, <v>param2<>) {
@@ -4096,27 +4348,185 @@ Defines the constructor for the class.
 	}
 }<>
 
+Access Within Class:
+
+<cb>= this.<v>method1<>(<v>...<>)<>
+
+Access Outside Class:
+
+<cb>= <v>item1<>.<v>method1<>(<v>...<>);<>
+
 
 Defines a method for the class.
+
+Access the method inside the class with <c>this<>.
+Access outside the method using the instance name.
+@
+@ instance, this.
 
 
 
 ### Class - Define Property
 
+Define:
+
 <cb>class <v>Class1<> {
 
-	constructor(<v>param1<>) {
-
-		this.<v>property1<> = <v>param1<>;
-	}
+	<v>property1<> = <v>param1<>;
 }<>
+
+Access Within Class:
+
+<cb>= this.<v>property1<>
+
+this.<v>property1<> = <v>...<><>
+
+Access Outside Class:
+
+<cb>= <v>instance1<>.<v>property1<>
+
+<v>instance1<>.<v>property1<> = <v>...<><>
 
 
 Defines a class property.
 
+Define instance properties inside the <c>constructor()<> method.
+@
+@ instance, this.
 
 
-### Class - Define Getter Method
+
+## Class - Define Private
+@
+@ new, create, statics
+
+
+### Class - Define Private Method
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	#<v>method1<>() {
+
+		return <v>value<>;
+	}
+}<>
+
+Access Within Class:
+
+<cb>= this.#<v>method1<>(<v>...<>)<>
+
+Access Outside Class:
+
+<cb><#>// Not possible.<><>
+
+
+Defines a private method for the class by adding the <c>#<> hash prefix to the name.
+
+Access the method inside the class by using <c>this<>.
+Not accessible outside the class instance.
+@
+@ \#
+
+
+
+### Class - Define Private Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	#<v>property1<>;
+	#<v>property2<> = <v>initialValue<>;
+}<>
+
+Access Within Class:
+
+<cb>= this.#<v>property1<>
+
+this.#<v>property1<> = <v>...<><>
+
+Access Outside Class:
+
+<cb><#>// Not possible.<><>
+
+
+Define a private property by adding the <c>#<> hash prefix to the name.
+
+Access the property within the class by using <c>this<>.
+Not accessible outside the class instance.
+@
+@ \#
+
+
+
+## Class - Define Static
+@
+@ new, create, statics
+
+
+### Class - Define Static Method
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	static <v>method1<>() {
+
+		return <v>value<>;
+	}
+}<>
+
+Access:
+
+<cb>= <v>Class1<>.method1(<v>param1<>, <v>param2<>);<>
+
+
+Defines a static method for the class.
+
+Use the <c>static<> modifier keyword to define a static method.
+Access the method using the class name (never with <c>this<> or the instance name.
+
+
+
+### Class - Define Static Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	static <v>property1<> = <v>initialValue<>;
+}<>
+
+Access:
+
+<cb>= <v>Class1<>.<v>property1<><>
+
+
+Defines a static property.
+
+Access the property using the class name (never with <c>this<> or the instance name.
+
+
+
+### Class - Define Static Initialization Block
+
+<cb>class <v>Class1<> {
+
+	static {
+		<#>// Place static initialization code here.<>
+	}
+}<>
+
+
+
+## Class - Define Accessor Methods
+@
+@ accessors
+
+
+### Class - Define Getter
 
 <cb>get <v>property1<>() {
 		return <v>value<>;
@@ -4142,7 +4552,7 @@ Defines a class method as a getter property.
 
 
 
-### Class - Define Setter Method
+### Class - Define Setter
 
 <cb>set <v>property1<>(<v>value<>) {
 		<v>...<>
@@ -4433,7 +4843,7 @@ Define the promise with a closure to pass parameters.
 
 ### Calling
 
-<c><v>newPromise1<>
+<cb><v>newPromise1<>
 	.then(<v>...<>)
 	.catch(<v>...<>)
 	.finally(<v>...<>)<>
@@ -4444,10 +4854,10 @@ Define the promise with a closure to pass parameters.
 
 #### Calling - .then()
 
-<c><v>promise1<>.then(<v>fulfilled_handler_function<>)<>
+<cb><v>promise1<>.then(<v>fulfilled_handler_function<>)<>
 
 
-<c><v>promise1<>.then (fulfilled => {
+<cb><v>promise1<>.then (fulfilled => {
 		<v>...<>
 		})<>
 
@@ -4462,10 +4872,10 @@ The result is passed to that function.
 
 #### Calling - .catch()
 
-<c><v>promise1<>.catch(<v>error_handler_function<>)<>
+<cb><v>promise1<>.catch(<v>error_handler_function<>)<>
 
 
-<c><v>promise1<>.catch(error => {
+<cb><v>promise1<>.catch(error => {
 		<v>...<>
 		})<>
 
@@ -4477,10 +4887,10 @@ The result is passed to that function.
 
 #### Calling - .finally()
 
-<c><v>promise1<>.catch(<v>final_function<>)<>
+<cb><v>promise1<>.catch(<v>final_function<>)<>
 
 
-<c><v>promise1<>.finally(()) => {
+<cb><v>promise1<>.finally(()) => {
 		<v>...<>
 		})<>
 
@@ -4496,12 +4906,12 @@ Called once the promise is settled (either fulfilled or rejected).
 
 #### Uses - Parallel,  Wait For All
 
-<c>Promise.all(<v>promiseList<>)
+<cb>Promise.all(<v>promiseList<>)
 	.then(<v>resultList<> => <v>...<>)
 	.catch(error => <v>...<>);<>
 
 
-<c>Promise.all([<v>promise1<>, <v>promise2<>, <v>...<>])
+<cb>Promise.all([<v>promise1<>, <v>promise2<>, <v>...<>])
 	.then(<v>...<>)
 	.catch(<v>...<>);<>
 
@@ -4515,12 +4925,12 @@ Waits until all promises complete or one fails.
 
 #### Uses - Parallel, Wait For All Settled
 
-<c>Promise.allSettled(<v>promiseList<>)
+<cb>Promise.allSettled(<v>promiseList<>)
 	.then(<v>resultList<> => <v>...<>)
 	.catch(error => <v>...<>);<>
 
 
-<c>Promise.allSettled([<v>promise1<>, <v>promise2<>, <v>...<>])
+<cb>Promise.allSettled([<v>promise1<>, <v>promise2<>, <v>...<>])
 	.then(<v>...<>)
 	.catch(<v>...<>);<>
 
@@ -4550,12 +4960,12 @@ All promises will still be executed even if errors occur.
 
 #### Uses - Wait For First (Race)
 
-<c>Promise.race(<v>promiseList<>)
+<cb>Promise.race(<v>promiseList<>)
 	.then(<v>result<> => <v>...<>)
 	.catch(error => <v>...<>);<>
 
 
-<c>Promise.race([<v>promise1<>, <v>promise2<>, <v>...<>])
+<cb>Promise.race([<v>promise1<>, <v>promise2<>, <v>...<>])
 	.then(<v>...<>)
 	.catch(<v>...<>);<>
 
@@ -4580,8 +4990,9 @@ Syntactic sugar for Promises.
 
 ### Async
 
-<c>async function <v>functionName<>() <v>...<><>
-<c>async () => <v>...<><>
+<cb>async function <v>functionName<>() <v>...<><>
+
+<cb>async () => <v>...<><>
 
 
 Returns an implicit promise.
@@ -4594,7 +5005,7 @@ Exceptions are wrapped in a promise rejection.
 ### Await
 
 
-<c>await <v>functionName<>();<>
+<cb>await <v>functionName<>();<>
 
 
 Pauses an asyncronous function until the promise is fulfilled <#>(or settled?)<>.
@@ -4608,11 +5019,27 @@ Does not block calling functions
 
 
 
-### _ ... Chained In Series
+### Async / Await - Call In Series
+
+<cb>await <v>function1<>();
+await <v>function2<>();
+await <v>function3<>();<>
+
+Just call one after the other and await each of them.
+@
+@ chained
 
 
 
-### _ ... In Parallel
+### Async / Await - Call In Parallel
+
+<cb>const (<v>return1<>, <v>return2<>, <v>return3<>) = await Promise.all([
+	<v>function1<>(),
+	<v>function2<>(),
+	<v>function3<>()
+]);<>
+@
+@ promise.all()
 
 
 
@@ -4630,7 +5057,7 @@ Does not block calling functions
 Prints to the console.
 @
 @ console.log(), .log()
-@ text
+@ text, show
 
 
 
@@ -4643,7 +5070,7 @@ Prints to the console.
 Prints to the console.
 @
 @ console.error(), .error()
-@ errors
+@ errors, log
 
 
 
@@ -4656,7 +5083,7 @@ Prints to the console.
 Prints to the console.
 @
 @ console.warn(), .warn()
-@ warnings
+@ warnings, log
 
 
 
@@ -4667,7 +5094,7 @@ Prints to the console.
 Prints a formatted object or element to the console.
 @
 @ console.dir(), .dir()
-@ element, object
+@ element, object, log
 
 
 
@@ -4688,6 +5115,7 @@ Tip: Wrap a variable in <c>{}<> to print the name and value to the console.
 Prints the current stack trace.
 @
 @ console.trace(), .trace()
+@ log, show
 
 
 
@@ -4704,6 +5132,7 @@ Prints in seconds as a float.
 Includes sub second time as decimal place.
 @
 @ console.time(), .time(), console.timeend(), .timeend()
+@ log, show
 
 
 
@@ -4716,7 +5145,7 @@ Prints an error message to the console when the assertion fails.
 The expression should return true / false.
 @
 @ console.assert(), .assert()
-@ assertion
+@ assertion, log, show
 
 
 
@@ -5299,7 +5728,7 @@ Fires a custom event.
 Prevents the default behaviour for an event.
 @
 @ event.preventDefault(), .preventDefault()
-@ intercept, cancel, prevent, default
+@ intercept, cancel, prevent, default, block, disable
 
 
 
@@ -5807,7 +6236,7 @@ Retrieves the current inner html of an element.
 
 <cb>= <v>element1<>.style<>
 @
-@ set, get
+@ set, get, css
 
 
 
@@ -5820,7 +6249,7 @@ References a particular style of the element.
 There is no way to get or set all properties as a string.
 Each property must be referenced individually.
 @
-@ properties
+@ properties, css
 
 
 
@@ -5829,7 +6258,7 @@ Each property must be referenced individually.
 <cb>= <v>element1<>.style.backgroundColor<>
 @
 @ style.backgroundColor, .backgroundColor
-@ colour
+@ colour, css
 
 
 
@@ -5838,7 +6267,7 @@ Each property must be referenced individually.
 <cb>= <v>element1<>.style<>.color<>
 @
 @ style.color, .color
-@ foreground, colour
+@ foreground, colour, css
 
 
 
@@ -6212,6 +6641,18 @@ The selector is any valid css selector.
 
 
 
+### Element - Class - Toggle
+
+<cb><v>element1<>.classList.toggle(<v>class1<>);<>
+
+<cb><v>element1<>.classList.toggle(<v>class1<>, <v>class2<>, <v>...<>);<>
+
+Toggles class on and off on the element (added and removed).
+@
+@ .classList.toggle(), .toggle()
+
+
+
 ### Element - Class - Has Class
 
 <cb><v>element1<>.classList.contains(<v>class1<>);<>
@@ -6292,7 +6733,30 @@ May require a different  for display if not a block element.
 
 
 
+## Element - Checkbox
+
+
+### Input Box - Get Checked
+
+<cb>= <v>element1<>.checked<>
+
+Returns: <c>boolean<>
+@
+@ text, .checked, value
+
+
+
+### Input Box - Set Check
+
+<cb><v>element1<>.checked = true | false<>
+@
+@ text, .checked, value
+
+
+
 ## Element - Input Box
+@
+@ inputbox, input-box-only
 
 
 ### Input Box - Get Value
@@ -6432,6 +6896,12 @@ Example:
 
 
 
+### Form Element - On Submit Function
+
+<cb>\<form onsubmit"<v>function1()<>" ><>
+
+
+
 ## Window
 
 
@@ -6523,6 +6993,7 @@ Returns Full URL:
 <cb>"<v>https://speedsheet.io/sheet/http?param=value<>"<><>
 @
 @ window.location.href, location.href, .href
+@ current
 
 
 
@@ -7139,6 +7610,66 @@ var <v>mediaQuery<> = window.matchMedia("(min-width: 576px)");
 
 
 
+### Operating System - Get
+
+<cb>= navigator.platform<>
+
+Returns: String
+
+
+Returns a string identifying the operating system and platform.
+
+
+Examples:
+
+<cb>HP-UX
+
+FreeBSD
+FreeBSD i386			<#>x86 (IA-32)<>
+FreeBSD amd64			<#>AMD x86-64<>
+
+Linux
+Linux aarch64
+Linux armv5tejl
+Linux armv6l
+Linux armv7l
+Linux armv8l			<#>Android<>
+Linux i686
+Linux i686 on x86_64
+Linux i686 X11			<#>X11<>
+Linux ppc64
+Linux x86_64
+Linux x86_64 X11		<#>X11<>
+
+Mac68K
+MacPPC
+MacIntel				<#>Includes Apple Silicon Macs<>
+
+SunOS
+
+Pocket PC
+Windows
+Win16					<#>Windows 3.1<>
+Win32					<#>Windows 95+<>
+WinCE<>
+
+<cb>Android
+Linux armv8l			<#>Android<>
+
+iPhone
+iPod
+iPad
+iPhone Simulator		<#>XCode Simulator<>
+iPod Simulator			<#>XCode Simulator<>
+iPad Simulator			<#>XCode Simulator<><>
+
+<cb>WebTV OS<>
+
+@
+@ os, navigator.platform, .platform
+
+
+
 ### Page - Print (To Printer)
 
 <cb>window.print()<>
@@ -7154,6 +7685,57 @@ Shows print dialog.
 <cb>console.log('<v>text<>');<>
 @
 @ console.log(), .log(), text
+
+
+
+### Random - Get Value
+
+<cb>= Math.random()<>
+
+Returns a value between 0 and 1.
+
+Range: 0 \<= value < 1
+
+
+Example:
+
+<cb>let <v>random1<> = Math.random();
+
+<#>// Returns 0.38336132177866733<><>
+
+
+
+### Random - Get Integer
+
+<cb>function randomInt(<v>min<>, max) {
+	<v>min<> = Math.ceil(<v>min<>);
+	<v>max<> = Math.floor(<v>max<>);
+	return Math.floor(Math.random() * (<v>max<> - <v>min<> + 1)) + <v>min<>;
+}<>
+
+<cb>let <v>random1<> = randomInt(<v>min<>, <v>max<>);<>
+
+Returns a value between min and max.
+This is not built in, so use the function above.
+
+Range: <c><v>min<> \<= value \<= <v>max<><>
+
+
+Example:
+
+<cb>function randomInt(<v>min<>, max) {
+	<v>min<> = Math.ceil(<v>min<>);
+	<v>max<> = Math.floor(<v>max<>);
+	return Math.floor(Math.random() * (<v>max<> - <v>min<> + 1)) + <v>min<>;
+}
+
+let <v>random1<> = randomInt(<v>1<>, <v>10<>);
+
+<#>// Returns 3<><>
+@
+@ minimum, maximum
+
+
 
 
 
@@ -7191,7 +7773,7 @@ Example:
 <cb><v>timeout1<> = setTimeout(console.log, 1000, "Timer done.");<>
 @
 @ setTimeout(), delayed, timer, action, call
-@ timeout-only
+@ timeout-only, async event, create, start
 
 
 
@@ -7230,6 +7812,55 @@ Preferred Method<>
 
 
 
+# HTML Element Types
+@
+@ elements, html-element-types-only, element-types-only
+
+
+
+### HTML Element - Basic Element
+
+<cb>HTMLElement<>
+
+The base element for all HTML elements.
+
+
+MDN Doc: <l "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement<>
+@
+@ htmlelement
+
+
+
+### HTML Element - Anchor
+
+<cb>HTMLAnchorElement<>
+
+MDN Doc: <l "https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement">HTMLAnchorElement<>
+@
+@ HTMLAnchorElement, \<a>, href
+
+
+
+### HTML Element - Button
+
+<cb>HTMLButtonElement<>
+
+MDN Doc: <l "https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">HTMLButtonElement<>
+@
+@ HTMLButtonElement, \<button>
+
+
+
+### HTML Element - Input
+
+<cb>HTMLInputElement<>
+
+MDN Doc: <l "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement">HTMLInputElement<>
+@
+@ HTMLButtonElement, \<button>
+
+
+
 # Symbol Lookup
 
 <c>{<v>...<>}<>				Code Block
@@ -7243,6 +7874,28 @@ Preferred Method<>
 @
 @ {, }, {}, [, ], [], #
 @ square, brackets, braces
+
+
+
+### Symbol :
+
+Label:
+
+<cb><v>LabelName<>:<>
+@
+@ colon
+
+
+
+### Symbol - this
+
+Used in objects to refer to the enclosing context.
+
+<cb>this<>
+
+
+<cb>this.<v>method_1<>();
+= this.<v>property_2<><>
 
 
 
@@ -7333,14 +7986,9 @@ It can not be used as the name of variable, function or anything else.
 
 
 
-# Glossary
+# Acronyms
 @
-@ glossary-only
-
-
-## Acronyms
-@
-@ acronyms-only, acronym-only
+@ acronyms-only, acronym-only, glossary
 
 
 ### AHAH
@@ -7373,8 +8021,9 @@ JavaScript (Duh!)
 
 
 
-## Terms
-@ terms-only
+# Terms
+@
+@ term-only, terms-only, glossary
 
 
 ### $
@@ -7482,15 +8131,24 @@ ES6 feature that allows you to extract pieces of an array or object.
 
 
 
-### Double Arrow
-A short syntax for defining a function.
+### Double Arrow / Fat Arrow
+A short syntax for defining an arrow function (anonymous function).
 
-<cb>(<v>param<>) => {<v>...<>}<>
+<cb>(<v>param<>) => {<v>...<>}<>=
+@
+@ fat arrow, =>
 
 
 
 ### ECMAScript
 A scripting language specification created to standardize JavaScript. JavaScript is considered a dialect of EMAScript. Others are JScript, ActionScript, etc. Called ECMAScript because JavaScript had some legal issues in the beginning.
+
+
+
+### ECMAScript Versions
+
+See Wikipedia:
+<l>https://en.wikipedia.org/wiki/ECMAScript#Versions<>
 
 
 
@@ -7523,15 +8181,6 @@ The time that has passed in seconds since the Unix epoch (January 1st, 1970).
 
 ### Fallback
 Provides support for a feature that isn't supported in the browser using a different set of APIs.
-
-
-
-### Fat Arrow
-Alternate name for Double Arrow.
-
-Double Arrow, a short syntax for defining a function.
-
-<cb>(<v>param<>) => {<v>...<>}<>
 
 
 
@@ -7584,10 +8233,17 @@ vs Shadow DOM
 
 
 
-### Polyfill
-A polyfill (or polyfiller) is downloadable code which provides features that may not built into a web browser but are required to run the code. It implements technology that a developer expects the browser to provide natively, but isn't available in the current browser. This provides a more uniform API landscape and keeps code compatible for the future when the poly fill version can be removed without changing anything else. Typically implemented using prototypes.
+### Nullish
+Any value that is <c>null<> or <c>undefined<>.
 
-eg. A polyfiller would replace a Html 5 feature in a browser that didn't support Html 5.
+
+
+### Polyfill
+A polyfill is code that implements some feature that is missing in some browsers so a web page can run correctly.
+
+Older browsers often do not support or have implementations important features added into JavaScript since their release. To get around this, developers can include polyfill code in their javascript to fill the gaps.
+
+eg. A polyfiller would replace a HTML 5 feature in a browser that didn't support HTML 5.
 
 
 
@@ -7627,8 +8283,10 @@ A mapping file for a minimized java script to allow a debugger to view the sourc
 
 
 
-### this
-Used in objects to refer to the enclosing context.
+### Transpile
+Converts source code into a different form of source code.
+
+In JavaScript, it is very common to compile a never version of JavaScript into an older version for compatability. New features will be converted and implemented using the older code only (eg Transpiling EcmaScript 2015 into EcmaScript 3).
 
 
 
