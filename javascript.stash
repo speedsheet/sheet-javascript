@@ -525,7 +525,7 @@ Ternary / Conditional Operator
 
 <cb>for (<v>initialize<>; <v>continue_expression<>; <v>update<>) {<>
 
-<cb>for (const <v>i<> = 0; i < <v>array1<>.length; <v>i<>++) {
+<cb>for (const <v>i<> = 0; i \< <v>array1<>.length; <v>i<>++) {
 	<v>...<>
 	<v>...<> = <v>array1<>[i]
 	<v>...<>
@@ -536,6 +536,16 @@ Ternary / Conditional Operator
 	break;
 	<v>...<>
 	continue;
+}<>
+@
+@ for-only, loop, for-loop-only, in range
+
+
+
+### For - For In Range
+
+<cb>for (const <v>i<> = <v>start<>; i \< <v>end_plus_one<>; <v>i<>++) {
+	<v>...<>
 }<>
 @
 @ for-only, loop, for-loop-only, in range
@@ -2111,6 +2121,20 @@ if (<v>a<> !== <v>b<>) {
 
 
 
+### Sting - Find
+
+<cb>= <v>value<>.indexOf(<v>search_value<>)<>
+
+
+Returns the index of the search string.
+
+Returns -1 for no match.
+@
+@ indexof, index of, substring, location
+@ string.indexof() .indexof()
+
+
+
 ### String - Get Character
 
 <cb>= <v>string1<>.charAt(<v>position<>)<>
@@ -2237,6 +2261,9 @@ Returns: <c>Array<> of <c>Strings<>
 Splits a string into an array.
 
 
+No Match: Returns an array of 1 element containing the full string.
+
+
 Examples:
 
 <cb>let <v>string1<> = "<v>ab/cd<>";
@@ -2264,6 +2291,48 @@ console.log(split[0]);
 //    \<empty string><><>
 @
 @ .split()
+
+
+
+### String - Split First n Elements
+
+<cb>= <v>string1<>.split(<v>splitString<>, <v>count<>);<>
+
+Returns: <c>Array<> of <c>Strings<>
+
+
+Splits a string into an array. Returns the first number of elements.
+
+
+Examples:
+
+<cb>const <v>original<> = "one two three";
+const <v>first<> = <v>original<>.split(" ", 1);
+
+<#>// Returns [ "one" ]<><>
+
+<cb>const <v>original<> = "one two three";
+const <v>firstAndSecond<> = <v>original<>.split(" ", 2);
+
+<#>// Returns [ "one", "two" ]<><>
+@
+@ .split()
+
+
+
+### String - Split Once
+
+Use Function:
+
+<cb>function splitOnce(<v>value<>, <v>on<>) {
+	const <v>index<> = <v>value<>.indexOf(<v>on<>);
+    if (<v>index<> === -1) return [<v>value<>, ""];
+	return [<v>value<>.slice(0, <v>index<>), <v>value<>.slice(<v>index<> + <v>on<>.length)];
+}<>
+
+<cb>= splitOnce(<v>value<>, <v>on<>)<>
+@
+@ .split(), in two, two parts
 
 
 
@@ -3692,6 +3761,14 @@ Throw String:
 @
 @ error.message, .message
 @ text
+
+
+
+### Exception - Get Stack Trace
+
+<cb>= <v>error<>.stack<>
+@
+@ error.stack, .stack
 
 
 
@@ -5532,6 +5609,15 @@ console.log(<v>decoded<>);
 A system variable that references the DOM
 
 
+
+### Document - Get Body
+
+<cb>= document.body<>
+@
+@ document.body
+
+
+
 ### Document - Get Page Title
 
 <cb>= document.title<>
@@ -5744,6 +5830,152 @@ By default, events are sent up the hierarchy of element parents.
 Call <c>.stopPropagation()<> to stop the event going any further.
 @
 @ event.stopPropagation(), .stopPropagation()
+
+
+
+## Event - Key Events
+@
+@ keyboard, key-only
+
+
+### Key Event - Get Key
+
+<cb>= <v>event<>.key<>
+
+Usage:
+
+<cb>function <v>eventHandler<>(<v>event<>) {
+
+	if (<v>event<>.key === '<v>a<>')
+		<v>...<>
+	}
+}<>
+
+
+Tests the value of a key when a key event fires.
+@
+@ fires, keypress, key press
+@ find, test, check
+
+
+
+### Key Event - Test Modifier Key
+
+<cb>= <v>event<>.<v>modifier<><>
+
+Usage:
+
+<cb>function <v>eventHandler<>(<v>event<>) {
+
+	if (<v>event<>.<v>modifier<> && <v>event<>.key === '<v>a<>')
+		<v>...<>
+	}
+}<>
+
+
+Tests if a modifier key is pressed.
+
+
+Returns true if pressed.
+@
+@ fires, keypress, key press
+@ .ctrlkey, .shiftkey, .metakey, .altkey
+
+
+
+### Key Event - Modifier - Alt Key
+
+<cb>= <v>event<>.altKey<>
+@
+@ .altkey, altKey
+@ modifier keys
+
+
+
+### Key Event - Modifier - Command Key
+
+<cb>= <v>event<>.metaKey<>
+@
+@ meta key, metakey, .metakey
+@ modifier keys
+
+
+
+### Key Event - Modifier - Control Key
+
+<cb>= <v>event<>.ctrlKey<>
+@
+@ .ctrlKey
+@ modifier keys
+
+
+
+### Key Event - Modifier - Shift Key
+
+<cb>= <v>event<>.shiftKey<>
+@
+@ .shiftKey
+@ modifier keys
+
+
+
+### Key Event - On Enter
+
+<cb>\<script>
+
+	function <v>onEnter<>(event){
+		if (event.key !== 'Enter') return;
+
+		<#>// Code here...<>
+	}
+
+\</script><>
+
+Add Listener:
+
+<cb>\<input type="text" onkeypress="<v>onEnter<>(event)" /><>
+
+or
+
+<cb>document.getElementById("<v>id<>").addEventListener("onkeypress", <v>onEnter<>);<>
+
+
+Triggers an action when enter is pressed.
+
+
+Note: This will fire every keystroke but will run code only when that key is Enter.
+@
+@ fires, keypress, key press
+
+
+
+### Key Event - On Escape
+
+<cb>\<script>
+
+	function <v>onEscape<>(event){
+		if (event.key !== 'Escape') return;
+
+		<#>// Code here...<>
+	}
+
+\</script><>
+
+Add Listener:
+
+<cb>\<input type="text" onkeypress="<v>onEscape<>(event)" /><>
+
+or
+
+<cb>document.getElementById("<v>id<>").addEventListener("onkeypress", <v>onEscape<>);<>
+
+
+Triggers an action when enter is pressed.
+
+
+Note: This will fire every keystroke but will run code only when that key is Escape.
+@
+@ fires, keypress, key press
 
 
 
@@ -6423,22 +6655,9 @@ Includes All Text<>
 
 
 
-## Element - Operations
+## Element - Get
 @
-@ ops
-
-
-
-### Elements - Get All By Class Name
-
-<cb>= document.getElementsByClassName('<v>class<>')<>
-
-Returns an array of elements containing the class name.
-
-Returns an empty array if none found.
-@
-@ .getElementsByClassName(), document.getElementsByClassName()
-@ find, name
+@ find
 
 
 
@@ -6452,19 +6671,6 @@ Returns <c>null<> if not found.
 @
 @ .getElementById(), document.getElementById()
 @ find, name
-
-
-
-### Element - Get All By Tag
-t
-<cb>= document.getElementsByTagName('<v>tag<>')<>
-
-Returns an array of elements of the given tag type.
-
-Returns an empty array if none found.
-@
-@ .getElementsByTagName(), document.getElementsByTagName()
-@ find, name, type
 
 
 
@@ -6496,11 +6702,35 @@ Find Id 'sidebar':
 <v>sidebarElement<> = document.querySelector('#<v>sidebar<>');<>
 @
 @ document.querySelector(), .querySelector()
-@ find by class, find by element type, by tag
+@ by class, find by element type, by tag
 
 
 
-### Element - Get All By Selector
+### Elements - Get All By Class Name
+
+<cb>= document.getElementsByClassName('<v>class<>')<>
+
+Returns an array of elements containing the class name.
+
+Returns an empty array if none found.
+@
+@ .getElementsByClassName(), document.getElementsByClassName()
+
+
+
+### Elements - Get All By Name
+
+<cb>= document.getElementsByName('<v>name<>')<>
+
+Returns an array of elements with the given name value.
+
+Returns an empty array if none found.
+@
+@ .getElementsByName(), document.getElementsByName()
+
+
+
+### Elements - Get All By Selector
 
 <cb>= document.querySelectorAll('<v>selector<>')
 
@@ -6521,7 +6751,42 @@ Example:
 <v>sections<> = document.querySelectorAll('<v>section<>');<>
 @
 @ document.querySelectorAll(), .querySelectorAll()
-@ find
+
+
+
+### Elements - Get All By Tag name
+t
+<cb>= document.getElementsByTagName('<v>tag<>')<>
+
+Returns an array of elements of the given tag type.
+
+Returns an empty array if none found.
+@
+@ .getElementsByTagName(), document.getElementsByTagName()
+
+
+
+## Element - Operations
+@
+@ ops
+
+
+
+### Element - Remove Attribute
+
+<cb>= <v>element1<>.removeAttribute('<v>name<>');<>
+
+
+Deletes an attribute from an element.
+
+
+Safe to call if the attribute does not exist. 
+Does nothing if the attribute is missing.
+
+Does not remove css attributes but you can delete <c>"style"<>.
+@
+@ element.removeAttribute(), .removeAttribute()
+@ delete, clear
 
 
 
@@ -6662,18 +6927,6 @@ Toggles class on and off on the element (added and removed).
 
 
 
-### Element - Html Attribute - Remove
-
-<cb><v>element1<>.removeAttribute("<v>html-attribute-name<>");<>
-
-
-Removes html attribute.
-Does not remove css attribute but you can delete <c>"style"<>.
-@
-@ .removeAttribute()
-
-
-
 ### Element - Focus - Set Focus
 
 <cb><v>element1<>.focus()<>
@@ -6733,33 +6986,80 @@ May require a different  for display if not a block element.
 
 
 
-## Element - Checkbox
+## Element - Input Checkbox
+@
+@ checkbox-only, checkbox, check box
 
 
-### Input Box - Get Checked
+### Input Checkbox - Clear Check
+
+<cb><v>element1<>.checked = true | false<>
+
+Get the element by id and set the checked value.
+@
+@ .checked, value, true, false
+
+
+
+### Input Checkbox - Get Checked
 
 <cb>= <v>element1<>.checked<>
 
 Returns: <c>boolean<>
 @
-@ text, .checked, value
+@ .checked, value
 
 
 
-### Input Box - Set Check
+### Input Checkbox - Set Check
 
 <cb><v>element1<>.checked = true | false<>
+
+Get the element by id and set the checked value.
+@
+@ .checked, value, true, false
+
+
+
+## Element - Input Radio
+@
+@ radiobutton
+
+
+### Input Radio - Get Checked Value
+
+<cb>= document.querySelector('input[name="' + <v>name<> + '"]:checked').value;<>
+
+Usage:
+
+<cb>= document.querySelector('input[name="' + <v>name<> + '"]:checked')?.value ?? <v>default_value<>;<>
+
+Returns: <c>string<>
+
+
+The selector will return <c>null<> if there are no checked values.
+@
+@ .checked, value
+
+
+
+### Input Radio - Set Check
+
+<cb><v>element1<>.checked = true<>
+
+
+Find the correct element by id or whatever method and set the <b>.checked<> property to true.
 @
 @ text, .checked, value
 
 
 
-## Element - Input Box
+## Element - Input Text Box
 @
 @ inputbox, input-box-only
 
 
-### Input Box - Get Value
+### Input Text Box - Get Value
 
 <cb>= <v>element1<>.value<>
 @
@@ -6767,7 +7067,7 @@ Returns: <c>boolean<>
 
 
 
-### Input Box - Set Value
+### Input Text Box - Set Value
 
 <cb><v>element1<>.value = "<v>new value<>"<>
 @
@@ -6971,6 +7271,9 @@ The back button will NOT take the user back to the previous state.
 @ window-only, windows-only, page-only, document
 
 
+## Window / Page - Properties
+
+
 ### Window - Get Full URL
 
 <cb>= location.href<>
@@ -7164,6 +7467,51 @@ The back button will take you back to the previous state of the same page.
 Set <v>title<> to '' to leave the title unchanged.
 @
 @ window.history.pushState, history.pushState, .pushstate
+
+
+
+## Window / Page - Operations
+
+
+### Window - Open
+
+<cb>= window.open("<v>url<>")<>
+
+Usage:
+
+<cb>let <v>new_window<> = window.open("<v>url<>");<>
+
+
+Open a url in a new window.
+
+
+Example:
+
+<cb>window.open("<v>https://speedsheet.io/<>");<>
+@
+@ open new window, open new url in window, popup
+@ window.open(), .open()
+
+
+
+### Window - Open, Set Width, Height
+
+<cb>= window.open("<v>url<>", "", "width=<v>width<>, height=<v>height<>")<>
+
+Usage:
+
+<cb>let <v>new_window<> = window.open("<v>url<>", "", "width=<v>width<>, height=<v>height<>");<>
+
+
+Open a url in a new window and set its dimensions.
+
+
+Example:
+
+<cb>window.open("<v>https://speedsheet.io<>", "", "width=<v>1024<>, height=<v>640<>");<>
+@
+@ open new window, open new url in window, set dimensions, width, height, popup
+@ window.open(), .open(), width=, height=
 
 
 
@@ -7571,6 +7919,25 @@ Put <c>debugger;<> at the place where the debugger will start.
 
 
 
+### Function - Fire and Forget
+
+<cb>setTimeout(<v>function1<>, 0)<>
+
+Using fireAndForget Function:
+
+<cb>const fireAndForget = (<v>function<>) => setTimeout(<v>function<>, 0);
+
+fileAndForget(<v>function1<>;<>
+
+
+Runs the function asynchronously.
+
+No async / await is required. Call and fogetaboutit.
+@
+@ run async, background, setTimeout()
+
+
+
 ### Media Query - Call Function on Change
 
 Define Listener:
@@ -7604,7 +7971,7 @@ Example:
 }
 
 var <v>mediaQuery<> = window.matchMedia("(min-width: 576px)");
-<v>mediaQuery<>.addEventListener("change", <v>mediaQueryListener);<>
+<v>mediaQuery<>.addEventListener("change", <v>mediaQueryListener<>);<>
 @
 @ responsive, @media, breakpoint, Media Query, .addEventListener(), "change" event, detect change
 
@@ -7809,6 +8176,28 @@ Preferred Method<>
 
 @
 @ equals, abstract equality operator, strict equality operator
+
+
+
+### Object vs Map
+
+The big difference is map values can be iterated over in insertion order.
+
+Both:
+
+<*>Store, Retrieve, and Delete Key Values<>
+
+Object:
+
+<*>Has a Prototype (Defines Default Keys with Values)
+Keys Must Be Strings
+Does Not Track Key Count<>
+
+Map:
+
+<*>Iterate Key Values in Insert Order
+Keys Can Be Anything
+Tracks Key Count (Size)<>
 
 
 
